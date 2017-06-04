@@ -1,0 +1,41 @@
+<section class="navigation">
+  <div class="nav-container">
+    <div class="brand">
+      <div class="logo"><%= image_tag('icons/favicon.ico', size:'45x45') %></div>
+      <div class="items"><%= link_to 'Home', '/welcome/home' %></div>
+    </div>
+    <nav>
+      <div class="nav-mobile">
+        <!-- This is the toggle element -->
+        <section id="nav-toggle"><%= link_to '', '#' %><span></span><span></span><span></span></section>
+      </div>
+      <ul class="nav-list">
+        <!-- After Sign In -->
+        <% if user_signed_in? %>
+            <li><%= link_to 'Competitions', '#' %>
+              <ul class="nav-dropdown">
+                <li><%= link_to 'Search', '#' %></li>
+                <li><%= link_to 'New', '#' %></li>
+              </ul>
+            </li>
+            <li><%= link_to 'User', '#' %>
+              <ul class="nav-dropdown">
+                <li><%= link_to 'Profile', current_user, :method => 'get' %></li>
+                <li><%= link_to 'Dashboard', '#' %></li>
+                <li><%= link_to 'Logout', '/users/sign_out', :method => 'delete' %></li>
+              </ul>
+            </li>
+        <% else %>
+            <li><%= link_to 'Competitions', '#' %>
+              <ul class="nav-dropdown">
+                <li><%= link_to 'Search', '#' %></li>
+                <li><%= link_to 'New', '#' %></li>
+              </ul>
+            </li>
+            <li><%= link_to 'Sign Up', '/users/sign_up' %></li>
+            <li><%= link_to 'Sign In', '/users/sign_in' %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</section>

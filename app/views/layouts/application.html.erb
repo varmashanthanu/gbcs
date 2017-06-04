@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GBCS</title>
+    <%= favicon_link_tag('/assets/icons/favicon.ico', size: '20x20') %>
+    <title><%= yield(:title)%> | GBCS</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +10,38 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'welcome/navbar' %>
+
+    <%= render 'welcome/sidebar' %>
+
+
+    <% if notice && notice != '' %>
+      <div class="notice-messages">
+        <p> <%= notice %></P>
+      </div>
+    <% elsif alert && alert != '' %>
+      <div class="notice-messages">
+        <p> <%= alert %></P>
+      </div>
+    <% end %>
+
+    <div class="pages">
+      <%= yield %>
+    </div>
+
+    <div class="footer">
+      <!--Footer section here TODO-->
+    </div>
+
+
+    <script>
+        $(document).ready(function(){
+            setTimeout(function(){
+                $('.notice-messages').fadeOut("very-slow", function(){
+                    $(this).remove();
+                })
+            }, 2000);
+        });
+    </script>
   </body>
 </html>

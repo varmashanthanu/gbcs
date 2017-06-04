@@ -1,0 +1,43 @@
+
+<div class="sidebar-container">
+  <div class="wrapper">
+    <% if user_signed_in? %>
+
+    <div class="cover">
+      <div class="image round">
+        <p>Profile Pic</p>
+      </div>
+      <div class="tabs">
+        <ul>
+          <li><%= link_to 'Dashboard', '#' %></li>
+        </ul>
+      </div>
+    </div>
+
+      <div class="settings">
+        <div class="tabs">
+          <ul>
+            <li><%= link_to 'Profile', current_user, :method => 'get' %></li>
+            <li><%= link_to 'Preferences', '#' %></li>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+    <div class="tasks">
+      <div class="tabs">
+        <ul>
+
+          <li><%= link_to 'Competitions', '#' %></li>
+          <li><%= link_to 'Teams', '#' %></li>
+        </ul>
+      </div>
+    </div>
+    <div class="close">
+      <div class="tabs">
+        <ul>
+          <li>Other Things</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

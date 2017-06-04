@@ -1,3 +1,16 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.pages{
+  position: absolute;
+  border: solid brown 0.1px;
+  top: 45px;
+  left: 185px;
+  right: 0;
+
+  bottom: 70px;
+  overflow: scroll;
+  display: block;
+  padding: 10px 15px 90px 15px;
+}

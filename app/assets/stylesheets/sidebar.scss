@@ -1,0 +1,12 @@
+
+$side-bar-width: 185px;
+
+.sidebar-container{
+  top: 45px;
+  left: 0;
+  bottom: 70px;
+  border: solid green 0.1px;
+  width: $side-bar-width;
+  position: fixed;
+  display: block;
+}
