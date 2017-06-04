@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  competition: one
+  team: one
+  expiry: 2017-06-03 21:07:55
+
+two:
+  competition: two
+  team: two
+  expiry: 2017-06-03 21:07:55
