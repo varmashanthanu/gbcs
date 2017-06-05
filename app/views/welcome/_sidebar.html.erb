@@ -4,8 +4,8 @@
     <% if user_signed_in? %>
 
     <div class="cover">
-      <div class="image round">
-        <p>Profile Pic</p>
+      <div class="image">
+        <%= image_tag current_user.avatar.url(:display), size:'80x80' , class: 'round' %>
       </div>
       <div class="tabs">
         <ul>

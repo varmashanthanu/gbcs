@@ -9,4 +9,26 @@ $side-bar-width: 185px;
   width: $side-bar-width;
   position: fixed;
   display: block;
+  .wrapper{
+    text-align: center;
+
+    .cover{
+      padding: 40px 5px 100px 5px;
+      .image{
+        text-align: center;
+      }
+      .round{
+        border-radius: 100%;
+      }
+    }
+    .tabs{
+      ul {
+        padding-left: 0;
+        li {
+
+          list-style: none;
+        }
+      }
+    }
+  }
 }
