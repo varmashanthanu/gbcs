@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'competitions/index'
+
+  get 'competitions/:id/show' => 'competitions#show', as: :competition, via: [:get]
+
+  get 'competitions/new'
+
+  match 'competitions/create' => 'competitions#create', as: :competitions_create, via: [:post]
+
+  get 'competitions/edit'
+
+  get 'competitions/update'
+
+  get 'competitions/destroy'
+
   get 'users/index'
 
   get 'users/show'
@@ -12,6 +26,7 @@ Rails.application.routes.draw do
   get 'welcome/contact_us'
 
   get 'welcome/about_us'
+
 
   # get 'users/edit_password' => 'users#edit_password'
   match 'users/edit_password' => 'users#edit_password', as: :user_edit_password, via: [:get]

@@ -26,9 +26,17 @@
     <div class="tasks">
       <div class="tabs">
         <ul>
-
-          <li><%= link_to 'Competitions', '#' %></li>
-          <li><%= link_to 'Teams', '#' %></li>
+          <li><%= 'Competitions'%>
+            <ul>
+              <li><%= link_to 'Create', competitions_new_path %></li>
+              <li><%= link_to 'Search', competitions_index_path %></li>
+            </ul>
+          </li><br/>
+          <li><%= 'Teams'%>
+            <ul>
+              <li><%= link_to 'My Teams', '#' %></li>
+              <li><%= link_to 'New Team', '#' %></li>
+            </ul>
         </ul>
       </div>
     </div>
