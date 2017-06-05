@@ -27,5 +27,16 @@ class User < ApplicationRecord
     (fname && fname!='' || lname && lname!='')? "#{fname} #{lname}":name
   end
 
+  def update_password_error(user_params)
+    if user_params[:password].length < 6
+      'Password is too short'
+    elsif user_params[:password] != user_params[:password_confirmation]
+      'Confirmation Password does not match.'
+    elsif !self.valid_password?(user_params[:current_password])
+      'Please enter your current Password.'
+    else
+      'Update Failed, Please try again.'
+    end
+  end
 end
 
