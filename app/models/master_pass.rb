@@ -1,0 +1,2 @@
+class MasterPass < ApplicationRecord
+end

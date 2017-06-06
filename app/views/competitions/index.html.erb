@@ -1,0 +1,33 @@
+<% content_for :title, 'Competitions' %>
+
+<div class="competitions">
+  <div class="wrapper">
+    <h1>Open Case Competitions</h1>
+    <% if @competitions.any? %>
+      <table>
+        <thead>
+        <tr>
+          <td>S.No.</td>
+          <td>Competition</td>
+          <td>Start Date</td>
+          <td>Duration</td>
+        </tr>
+        </thead>
+        <tbody>
+        <% i = 1 %>
+        <% @competitions.each do |competition| %>
+          <tr>
+            <td><%= i %></td>
+            <td><%= link_to "#{competition.name}", competition_path(competition)%></td>
+            <td><%= competition.start %></td>
+            <td><%= competition.duration %></td>
+          </tr>
+          <% i+=1 %>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <%= 'No case competitions added yet.' %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<% content_for :title, 'Edit Profile' %>
+<div class="user-form">
+  <h1>Edit Your Profile</h1>
+  <%= form_for(@user, html: {multipart: true}) do |f| %>
+
+      <div class="field-blocks">
+        <div class="image">
+          <%= f.file_field :avatar %>
+        </div>
+      </div>
+
+      <div class="data-fields">
+        <%= f.label 'Name'%>
+        <%= f.text_field :fname, autofocus: true, placeholder: 'First Name' %>
+        <%= f.text_field :lname, autofocus: true, placeholder: 'Last Name'%>
+      </div>
+      <div class="data-fields">
+        <%= f.label 'Program,'%> <%= f.label 'Graduation'%>
+        <%= f.text_field :program, autofocus: true, placeholder: 'MBA, ISOM' %>
+        <%= f.date_field :graduation, autofocus: true, :value => (Date.today+1.year).to_s(:db) %>
+      </div>
+      <div class="data-fields">
+        <%= f.label 'Contact No.' %>
+        <%= f.telephone_field :telno, autofocus: true, placeholder: '2225557777' %>
+      </div>
+      <div class="action-btn">
+        <%= f.submit 'Save', class: 'btn' %><br />
+      </div>
+
+  <% end %>
+
+  <div class="other">
+    <small><%= link_to 'Back', :back %></small>
+    <small><%= button_to 'Deactivate!', registration_path(@user), class: 'btn', data: { confirm: 'This would delete your account. Are you sure?' }, method: :delete %></small>
+  </div>
+
+
+
+</div>
+

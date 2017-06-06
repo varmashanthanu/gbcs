@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d56ecca-dc53-4f09-b863-d2ff3f840ae2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/admin_signup.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/admin_signup.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/registrations/new.html.erb" afterPath="$PROJECT_DIR$/app/views/users/registrations/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -971,7 +965,7 @@
       <option name="presentableId" value="Default" />
       <updated>1496511384939</updated>
       <workItem from="1496511387494" duration="37119000" />
-      <workItem from="1496672626560" duration="22137000" />
+      <workItem from="1496672626560" duration="22196000" />
     </task>
     <task id="LOCAL-00001" summary="First issue. Clean Start. Gems Installed. Going to start devise install.">
       <created>1496512963844</created>
@@ -1050,11 +1044,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496693197327</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Admin signup configured. Might be some clean up in users/registrations controller for unpermitted parameters fixing. Need to explore better ways of displaying master password input.">
+      <created>1496756586589</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1496756586589</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59256000" />
+    <option name="totallyTimeSpent" value="59315000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
@@ -1114,7 +1115,8 @@
     <MESSAGE value="Added Password update to users." />
     <MESSAGE value="Fixed footer hyperlinks." />
     <MESSAGE value="Competitions created. Routes Configured." />
-    <option name="LAST_COMMIT_MESSAGE" value="Competitions created. Routes Configured." />
+    <MESSAGE value="Admin signup configured. Might be some clean up in users/registrations controller for unpermitted parameters fixing. Need to explore better ways of displaying master password input." />
+    <option name="LAST_COMMIT_MESSAGE" value="Admin signup configured. Might be some clean up in users/registrations controller for unpermitted parameters fixing. Need to explore better ways of displaying master password input." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
