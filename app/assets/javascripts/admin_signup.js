@@ -23,9 +23,9 @@ jQuery(function($) {
             data: {password: $pass},
             success:function(result){
                 $('#admin-set').val(result);
-                if(result){alert('Admin Role Accepted');
+                if(result){alert('Admin Role Accepted.');
                 $(".hidden").toggle();}
-                else {alert('Incorrect admin Password');}
+                else {alert('Incorrect Admin Password.');}
             }
         })
     });

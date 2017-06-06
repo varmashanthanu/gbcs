@@ -15,9 +15,9 @@
         <%= f.text_field :lname, autofocus: true, placeholder: 'Last Name'%>
       </div>
       <div class="data-fields">
-        <%= f.label 'Program,'%> <%= f.label 'Graduation'%>
+        <%= f.label 'Program,'%> <%= @user.admin ? '': (f.label 'Graduation') %>
         <%= f.text_field :program, autofocus: true, placeholder: 'MBA, ISOM' %>
-        <%= f.date_field :graduation, autofocus: true, :value => (Date.today+1.year).to_s(:db) %>
+        <%= @user.admin ? '': (f.date_field :graduation, autofocus: true, :value => (Date.today+1.year).to_s(:db)) %>
       </div>
       <div class="data-fields">
         <%= f.label 'Contact No.' %>

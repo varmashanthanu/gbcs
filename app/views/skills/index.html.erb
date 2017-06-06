@@ -1,0 +1,36 @@
+<% content_for :title, 'Skills' %>
+
+<div class="skills">
+  <div class="wrapper">
+    <h1>Skills</h1>
+    <% if @skills.count > 0 %>
+        <div class="skills-table">
+          <table>
+            <thead>
+            <tr>
+              <td>S.No.</td>
+              <td>Skill</td>
+              <td>Group</td>
+              <td>Description</td>
+            </tr>
+            </thead>
+            <tbody>
+            <% i=1; @skills.each do |skill| %>
+                <tr>
+                  <td><%= i %></td>
+                  <td><%= link_to "#{skill.name}", skill %></td>
+                  <td><%= link_to "#{skill.group}" %></td>
+                  <td>Description Needed?</td>
+                  <!--Todo-->
+                </tr>
+                <% i+=1 %>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+    <% else %>
+        <p>No Skills Added Yet.</p>
+    <% end %>
+    <%= link_to 'Create Skill', new_skill_path %>
+  </div>
+</div>

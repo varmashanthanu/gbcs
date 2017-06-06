@@ -12,9 +12,7 @@
     <small><%= link_to 'Change Password', user_edit_password_path %></small>
   <% end %>
 
-  <% if current_user.admin %>
-    <p>If you See this you are admin</p>
-  <% end %>
+  <p><%= current_user.admin ? "If you See this you are admin":'' %></p>
 
   <p>content top</p>
   <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
