@@ -31,8 +31,9 @@ Rails.application.routes.draw do
   # get 'users/edit_password' => 'users#edit_password'
   match 'users/edit_password' => 'users#edit_password', as: :user_edit_password, via: [:get]
   match 'users/update_password' => 'users#update_password', as: :user_update_password, via: [:post]
+  match 'users/make_admin' => 'users#make_admin', as: :make_admin, via: [:get]
 
-  devise_for :users#, controllers: {confirmations: 'users/confirmations', passwords: 'users/passwords', registrations: 'users/registrations', sessions: 'users/sessions', unlocks: 'users/unlocks'}
+  devise_for :users#, controllers: {registrations: 'users/registrations'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users
 
