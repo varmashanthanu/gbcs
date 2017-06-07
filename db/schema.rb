@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170605214906) do
+ActiveRecord::Schema.define(version: 20170607201543) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "addr"
@@ -75,11 +75,11 @@ ActiveRecord::Schema.define(version: 20170605214906) do
 
   create_table "skills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.string   "group"
+    t.string   "category"
     t.integer  "weight"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group"], name: "index_skills_on_group", using: :btree
+    t.index ["category"], name: "index_skills_on_category", using: :btree
     t.index ["name"], name: "index_skills_on_name", using: :btree
   end
 

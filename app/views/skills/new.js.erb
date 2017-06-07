@@ -1,1 +1,6 @@
 $("#create-skill").hide().after("<%= j render ("newskill") %>");
+
+$('#cancel-create').click(function(){
+    $("#create-skill").show();
+    $("#new_skill").hide();
+});

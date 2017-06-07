@@ -7,7 +7,7 @@ class Skill < ApplicationRecord
   has_many :competitions, through: :comp_skills
 
   validates :name, :presence => true, uniqueness: true
-  validates :group, :presence => true
+  validates :category, :presence => true
 
 
   def duplicate

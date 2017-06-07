@@ -1,0 +1,7 @@
+$("#remove-id-<%= @skill.id %>").hide().after("<%= j render ("edit") %>");
+
+$("#cancel-<%= @skill.id %>").click(function(){
+    $("#remove-id-<%= @skill.id %>").show();
+    $("#editskill-<%= @skill.id %>").remove();
+});
+

@@ -10,8 +10,10 @@
             <tr>
               <td>S.No.</td>
               <td>Skill</td>
-              <td>Group</td>
+              <td>Category</td>
               <td>Description</td>
+              <td></td>
+              <td></td>
             </tr>
             </thead>
             <tbody id="skill-list">
@@ -23,6 +25,7 @@
         <p>No Skills Added Yet.</p>
     <% end %>
 
+    <hr/>
     <%= link_to 'Create Skill', new_skill_path, id: 'create-skill', remote: true %>
 
   </div>

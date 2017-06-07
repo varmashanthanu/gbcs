@@ -1,7 +1,9 @@
-<tr>
-  <td><%= "#{Skill.count}" %></td>
-  <td><%= link_to "#{skill.name}", skill %></td>
-  <td><%= link_to "#{skill.group}" %></td>
-  <td>Description Needed?</td>
-  <!--Todo-->
+<tr id="remove-id-<%= skill.id %>">
+    <td><%= "#{Skill.count}" %></td>
+    <td><%= link_to "#{skill.name}", skill %></td>
+    <td><%= link_to "#{skill.category}" %></td>
+    <td>Description Needed?</td>
+    <td><small><%= link_to 'Edit', edit_skill_path(skill),id:"edit-#{skill.id}", remote:true %></small></td>
+    <td><small><%= link_to 'Remove', skill, method: :delete, data: {confirm: 'Are You Sure?'}, remote: true %></small></td>
+    <!--Todo-->
 </tr>
