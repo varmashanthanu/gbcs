@@ -1,0 +1,17 @@
+$("#new_skill").hide();
+$("#create-skill").show();
+$("#skill-list").append("<%= j render(@skill) %>");
+$("#notice-message").html("<p><%= flash[:notice] %></p>").show();
+$(".error").show();
+
+$(function(){setTimeout(function(){
+    $("#notice-message").fadeOut('slow',function() {
+        $(this).hide();
+    })
+    $(".error").fadeOut('slow',function() {
+        $(this).hide();
+    })
+    }, 2000);
+});
+
+

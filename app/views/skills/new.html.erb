@@ -3,7 +3,7 @@
   <div class="wrapper">
     <div class="skills-form">
       <h1>Add Skill</h1>
-      <%= form_for @skill, url: {action: 'create'}, html: {:multipart => true}, remote: true do |f| %>
+      <%= form_for @skill, url: {action: 'create'}, html: {:multipart => true}, remote: true, id:'skill-form' do |f| %>
 
           <%= f.label :skill_name, 'Skill Name*' %>
           <%= f.text_field :name, autofocus: true, required: true, placeholder: 'E.g.: Formatting, Recycling' %>

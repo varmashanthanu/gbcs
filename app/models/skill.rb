@@ -9,4 +9,13 @@ class Skill < ApplicationRecord
   validates :name, :presence => true, uniqueness: true
   validates :group, :presence => true
 
+
+  def duplicate
+    if Skill.where(name:self.name)
+      true
+      Rails.logger.debug('Triggered duplicate')
+    else
+      false
+    end
+  end
 end

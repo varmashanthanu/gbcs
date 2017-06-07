@@ -16,10 +16,24 @@ class SkillsController < ApplicationController
   def create
     @skill = Skill.new(skill_params)
     if @skill.save
-      redirect_to @skill, notice: 'New Skill Created.'
+      respond_to do |format|
+        format.html { redirect_to skills_url, notice: 'Added' }
+        format.js { flash[:notice] = 'Added' }
+      end
+    elsif @skill.duplicate
+      respond_to do |format|
+        format.html { redirect_back(fallback_location:new_skill_path, notice:'Skill is Duplicate.') }
+        format.js { flash[:notice] = 'Skill is Duplicate.'
+                    render action: "error" }
+      end
     else
-      redirect_back(fallback_location:skills_new_path, notice:'Failed. Please try Again.')
+      respond_to do |format|
+        format.html { redirect_back(fallback_location:new_skill_path, notice:'Failed. Please try Again.') }
+        format.js { flash[:notice] = 'Failed. Please try Again.'
+                    render action: "error"}
+      end
     end
+
   end
 
   def edit

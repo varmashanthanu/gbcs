@@ -15,8 +15,11 @@
     <%= render 'welcome/sidebar' %>
 
 
+    <div class="notice-messages error" style="display: none">
+      <p id="notice-message" style="display: none"> <%= notice %></P>
+    </div>
     <% if notice && notice != '' %>
-      <div class="notice-messages">
+      <div class="notice-messages" id="notice-message">
         <p> <%= notice %></P>
       </div>
     <% elsif alert && alert != '' %>
@@ -38,7 +41,7 @@
         $(document).ready(function(){
             setTimeout(function(){
                 $('.notice-messages').fadeOut("very-slow", function(){
-                    $(this).remove();
+                    $(this).hide();
                 })
             }, 2000);
         });

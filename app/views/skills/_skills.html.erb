@@ -1,0 +1,10 @@
+<% i=1; @skills.each do |skill| %>
+    <tr>
+      <td><%= i %></td>
+      <td><%= link_to "#{skill.name}", skill %></td>
+      <td><%= link_to "#{skill.group}" %></td>
+      <td>Description Needed?</td>
+      <!--Todo-->
+    </tr>
+    <% i+=1 %>
+<% end %>

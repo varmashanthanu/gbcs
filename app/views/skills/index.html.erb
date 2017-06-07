@@ -14,23 +14,16 @@
               <td>Description</td>
             </tr>
             </thead>
-            <tbody>
-            <% i=1; @skills.each do |skill| %>
-                <tr>
-                  <td><%= i %></td>
-                  <td><%= link_to "#{skill.name}", skill %></td>
-                  <td><%= link_to "#{skill.group}" %></td>
-                  <td>Description Needed?</td>
-                  <!--Todo-->
-                </tr>
-                <% i+=1 %>
-            <% end %>
+            <tbody id="skill-list">
+                <%= render partial: 'skills' %>
             </tbody>
           </table>
         </div>
     <% else %>
         <p>No Skills Added Yet.</p>
     <% end %>
-    <%= link_to 'Create Skill', new_skill_path %>
+
+    <%= link_to 'Create Skill', new_skill_path, id: 'create-skill', remote: true %>
+
   </div>
 </div>
