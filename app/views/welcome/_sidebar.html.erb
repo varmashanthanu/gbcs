@@ -12,8 +12,7 @@
           <li><%= link_to 'Dashboard', '#' %>
             <% if current_user.admin %>
               <ul>
-                <li><%= link_to 'View Skills', skills_path %></li>
-                <li><%= link_to 'Create New Skill', new_skill_path %></li>
+                <li><%= link_to 'Skill List', skills_path %></li>
               </ul>
             <% end %>
           </li>

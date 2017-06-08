@@ -3,27 +3,36 @@
 <div class="skills">
   <div class="wrapper">
     <h1>Skills</h1>
-    <% if @skills.count > 0 %>
-        <div class="skills-table">
-          <table>
-            <thead>
-            <tr>
-              <td>S.No.</td>
-              <td>Skill</td>
-              <td>Category</td>
-              <td>Description</td>
-              <td></td>
-              <td></td>
-            </tr>
-            </thead>
-            <tbody id="skill-list">
-                <%= render partial: 'skills' %>
-            </tbody>
-          </table>
-        </div>
-    <% else %>
-        <p>No Skills Added Yet.</p>
-    <% end %>
+
+    <div class="pie-chart">
+      <h3>Total Skills by Group</h3>
+      <div id="pie-chart">
+        <%= render 'piechart' %>
+      </div>
+    </div>
+    <div class="table-wrapper">
+      <% if @skills.count > 0 %>
+          <div class="skills-table">
+            <table>
+              <thead>
+              <tr>
+                <td>S.No.</td>
+                <td>Skill</td>
+                <td>Category</td>
+                <td>Description</td>
+                <td></td>
+                <td></td>
+              </tr>
+              </thead>
+              <tbody id="skill-list">
+                  <%= render partial: 'skills' %>
+              </tbody>
+            </table>
+          </div>
+      <% else %>
+          <p>No Skills Added Yet.</p>
+      <% end %>
+    </div>
 
     <hr/>
     <%= link_to 'Create Skill', new_skill_path, id: 'create-skill', remote: true %>

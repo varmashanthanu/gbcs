@@ -1,5 +1,5 @@
 <tr id="remove-id-<%= skill.id %>">
-    <td><%= "#{Skill.count}" %></td>
+    <td><%= Skill.all.index(skill)+1 %></td>
     <td><%= link_to "#{skill.name}", skill %></td>
     <td><%= link_to "#{skill.category}" %></td>
     <td>Description Needed?</td>

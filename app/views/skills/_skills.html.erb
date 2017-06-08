@@ -1,6 +1,6 @@
-<% i=1; @skills.each do |skill| %>
+<% @skills.each do |skill| %>
     <tr id="remove-id-<%= skill.id %>">
-        <td><%= i %></td>
+        <td><%= @skills.all.index(skill)+1 %></td>
         <td><%= link_to "#{skill.name}", skill %></td>
         <td><%= link_to "#{skill.category}" %></td>
         <td>Description Needed?</td>
@@ -8,5 +8,4 @@
         <td><small><%= link_to 'Edit', edit_skill_path(skill),id:"edit-#{skill.id}", remote:true %></small></td>
         <td><small><%= link_to 'Remove', skill, method: :delete, data: {confirm: 'Are You Sure?'}, remote: true %></small></td>
     </tr>
-    <% i+=1 %>
 <% end %>

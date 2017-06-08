@@ -1,6 +1,7 @@
 $("#edit_skill_<%= @skill.id %>").hide();
 //$("#create-skill").show();
-$("#skill-list").append("<%= j render(@skill) %>");
+$("#remove-id-<%= @skill.id %>").replaceWith("<%= j render(@skill) %>");
+$("#remove-id-<%= @skill.id %>").show();
 $("#notice-message").html("<p><%= flash[:notice] %></p>").show();
 $(".error").show();
 

@@ -5,6 +5,10 @@ class SkillsController < ApplicationController
     @skills = Skill.order(category:'ASC').order(name:'ASC')
   end
 
+  def pie_chart
+    render json: Skill.group(:category).count
+  end
+
   def show
     @skill = Skill.find(params[:id])
   end

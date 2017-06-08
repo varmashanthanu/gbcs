@@ -1,6 +1,6 @@
   <%= form_for @skill, remote: true do |f| %>
         <div id="editskill-<%=@skill.id%>">
-          <td><%= Skill.all.index(@skill)+1 %></td>
+          <td><%= Skill.order(category:'ASC').order(name:'ASC').all.index(@skill)+1 %></td><!-- TODO Make a Scope? -->
           <td><%= f.text_field :name, autofocus: true, required: true, placeholder: 'Skill' %></td>
           <td><%= f.text_field :category, autofocus: true, required: true, placeholder: 'Skill category' %></td>
           <td><%= f.number_field :weight, autofocus: true, min: 0, max: 5, placeholder: '0' %><small><i> Weight: Scale 1-5, 0 for none</i></small></td>
