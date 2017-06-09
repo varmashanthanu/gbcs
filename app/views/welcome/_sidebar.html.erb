@@ -9,7 +9,7 @@
       </div>
       <div class="tabs">
         <ul>
-          <li><%= link_to 'Dashboard', '#' %>
+          <li><%= link_to 'Dashboard', user_dashboard_path %>
             <% if current_user.admin %>
               <ul>
                 <li><%= link_to 'Skill List', skills_path %></li>

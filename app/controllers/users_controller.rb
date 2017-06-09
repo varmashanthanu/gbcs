@@ -12,6 +12,12 @@ class UsersController < ApplicationController
   def show
   end
 
+  def dashboard
+    @user_skills = current_user.user_skills
+    @user_teams = current_user.members
+    @comps = Competition.where(creator_id: current_user.id)
+  end
+
   def edit
   end
 

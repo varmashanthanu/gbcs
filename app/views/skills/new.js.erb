@@ -1,6 +1,6 @@
-$("#create-skill").hide().after("<%= j render ("newskill") %>");
+$("#create-skill").hide().after("<%= j render ("newskill") %>").focus();
 
 $('#cancel-create').click(function(){
-    $("#create-skill").show();
     $("#new_skill").hide();
+    $("#create-skill").show();
 });

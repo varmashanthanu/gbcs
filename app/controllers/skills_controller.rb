@@ -18,7 +18,7 @@ class SkillsController < ApplicationController
   end
 
   def create
-    @skill = Skill.new(skill_params)
+    @skill = Skill.new(skills_params)
     if @skill.save
       respond_to do |format|
         format.html { redirect_to skills_url }
@@ -46,12 +46,10 @@ class SkillsController < ApplicationController
 
   def update
     @skill = Skill.find(params[:id])
-    Rails.logger.debug('Triggered Update')
-    if @skill.update_attributes(skill_params)
-      Rails.logger.debug('Triggered if in update')
+    if @skill.update_attributes(skills_params)
       respond_to do |format|
         format.html { redirect_to skills_url }
-        format.js { flash[:notice] = 'Updated' }
+        format.js { flash[:notice] = 'Updated.' }
       end
     end
   end
@@ -71,7 +69,7 @@ class SkillsController < ApplicationController
     end
   end
 
-  def skill_params
+  def skills_params
     params.require(:skill).permit(:name,:category,:weight)
   end
 end

@@ -1,0 +1,42 @@
+<% content_for :title, 'Dashboard' %>
+<div class="dashboard">
+  <div class="wrapper">
+    <div class="news-block">
+      <h2>New Competitions</h2>
+      <p>News Items for Competitions, Teams.</p>
+    </div>
+
+    <div class="activities-block">
+      <h2>Activities</h2>
+      <h3>Current Teams</h3>
+      <% if @user_teams.count > 0 %>
+          <% @user_teams.each do |uteam| %>
+              <p>
+                <%= uteam.team.name  %>
+              </p>
+          <% end %>
+      <% else %>
+          <p>No Teams Joined Yet</p>
+      <% end %>
+      <h3>Current Competitions</h3>
+      <% if @comps.count > 0 %>
+          <% @comps.each do |comp| %>
+              <p>
+                <%= comp.name  %>
+              </p>
+          <% end %>
+      <% else %>
+          <p>No Competitions Joined Yet</p>
+      <% end %>
+    </div>
+
+    <div info-block>
+      <h3>Skills Added</h3>
+      <div class="skill-list">
+        <%= render 'user_skills/index' %>
+      </div>
+      <hr/>
+      <%= link_to 'Add Skill', new_user_skill_path,remote:true, id: 'add-skill' %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+$("#edit_user_skill_<%= @user_skill.id %>").remove();
+$("#remove-id-<%= @user_skill.id %>").replaceWith("<%= j render(@user_skill) %>");
+$("#remove-id-<%= @user_skill.id %>").show();
+$("#notice-message").html("<p><%= flash[:notice] %></p>").show();
+$(".error").show();
+
+$(function(){setTimeout(function(){
+$("#notice-message").fadeOut('slow',function() {
+$(this).hide();
+})
+$(".error").fadeOut('slow',function() {
+$(this).hide();
+})
+}, 2000);
+});
+<% flash.clear %>
+

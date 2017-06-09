@@ -1,0 +1,4 @@
+$("#remove-id-<%=@user_skill.id%>").remove()
+<% if Skill.count < 1 %>
+$("#none-message").show()
+<% end %>

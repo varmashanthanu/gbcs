@@ -18,4 +18,14 @@ class Skill < ApplicationRecord
       false
     end
   end
+
+  def self.list_up
+    order(category:'ASC').order(name:'ASC')
+  end
+  def self.list_down
+    order(category:'DESC').order(name:'DESC')
+  end
+  def tag
+    "#{name}, #{category}"
+  end
 end

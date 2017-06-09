@@ -1,7 +1,8 @@
-$("#new_skill").hide();
-$("#create-skill").show();
+$("#new_user_skill").hide();
+$("#add-skill").show();
 $("#none-message").hide();
-$("#skill-list").append("<%= j render(@skill) %>");
+
+$("#user-skills").append("<%= j render(@user_skill) %>");
 $("#notice-message").html("<p><%= flash[:notice] %></p>").show();
 $(".error").show();
 $(function(){setTimeout(function(){
@@ -11,7 +12,7 @@ $(function(){setTimeout(function(){
     $(".error").fadeOut('slow',function() {
         $(this).hide();
     })
-    }, 2000);
+}, 2000);
 });
 
 <% flash.clear %>
