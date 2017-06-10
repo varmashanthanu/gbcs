@@ -28,4 +28,13 @@ class Skill < ApplicationRecord
   def tag
     "#{name}, #{category}"
   end
+  # TODO rethink the scoring mechanism
+  def rank
+    set = Skill.where(category:self.category) # All skills in category including self
+    base = 0.0 # Sum of all weights: 100% mark
+    set.each do |s|
+      base += s.weight||1
+    end
+    (self.weight||1)/base # Return the [ x / (x+y+z) ] for individual rank
+  end
 end

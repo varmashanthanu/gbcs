@@ -2,6 +2,8 @@
     <tr id="remove-id-<%= skill.id %>">
         <td><%= @skills.all.index(skill)+1 %></td>
         <td><%= link_to "#{skill.name}", skill %></td>
+        <td><%= skill.weight %></td>
+        <td><%= "#{'%.2f' % skill.rank}" %></td>
         <td><%= link_to "#{skill.category}" %></td>
         <td>Description Needed?</td>
         <!--Todo-->

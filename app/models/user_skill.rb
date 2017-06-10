@@ -17,5 +17,9 @@ class UserSkill < ApplicationRecord
   def name
     self.skill.name
   end
+  # TODO rethink the scoring mechanism
+  def weighted_level
+    self.skill.rank * level
+  end
 
 end

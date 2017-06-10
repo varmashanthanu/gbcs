@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   match 'pie_chart/skills' => 'skills#pie_chart', as: :pie_chart_skills, via: [:get]
 
   resources :user_skills
+  resources :teams
 
   root to: 'welcome#home'
 end

@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_many :members, dependent: :destroy
   has_many :teams, through: :members
 
+  scope :faculty, -> {where(admin: true)}
+  scope :students, -> {where('admin IS NULL OR admin is FALSE')}
+
   mount_uploader :avatar, AvatarUploader
 
   # Email validator for UFL domains. Uncomment when ready to launch.
@@ -41,5 +44,20 @@ class User < ApplicationRecord
       'Update Failed, Please try again.'
     end
   end
+  # TODO better way to create the scoring
+  def skill_score
+    score = 0
+    self.user_skills.each do |s|
+      score += s.weighted_level
+    end
+    score/Skill.count*100
+  end
+
+  # def self.students
+  #   where('admin IS NULL OR admin is FALSE')
+  # end
+  # def self.faculty
+  #   where(admin: true)
+  # end
 end
 
