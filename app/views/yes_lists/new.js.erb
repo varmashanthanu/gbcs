@@ -1,0 +1,6 @@
+$('#add-block').hide().after("<%= j render ('new') %>");
+
+$('#cancel-add').click(function(){
+    $('#new_yes_list').remove();
+    $('#add-block').show();
+});

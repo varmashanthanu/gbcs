@@ -1,0 +1,24 @@
+<% content_for :title, 'Y-List' %>
+<div class="yes-list">
+  <div class="wrapper">
+    <div class="main-block">
+      <h1>Your Yes-List</h1>
+
+    </div>
+
+    <div class="list-block">
+      <p> User Name - Your Working Preference</p>
+      <% if @yes_lists.any? %>
+          <%= render 'yes_lists' %>
+      <% else %>
+          <p id="none-message"> You have not marked any user-compatibility preferences.</p>
+      <% end %>
+    </div>
+
+    <hr/>
+
+    <div class="add-block">
+      <%= link_to 'Quick Add', new_yes_list_path, remote: true, id:'add-block' %>
+    </div>
+  </div>
+</div>

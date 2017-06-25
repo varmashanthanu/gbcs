@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607201543) do
+ActiveRecord::Schema.define(version: 20170624014430) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "addr"
@@ -56,6 +56,16 @@ ActiveRecord::Schema.define(version: 20170607201543) do
     t.datetime "updated_at",  null: false
     t.string   "comp_type"
     t.index ["name"], name: "index_competitions_on_name", using: :btree
+  end
+
+  create_table "invites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.integer  "sender_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_invites_on_team_id", using: :btree
+    t.index ["user_id"], name: "index_invites_on_user_id", using: :btree
   end
 
   create_table "master_passes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -136,10 +146,22 @@ ActiveRecord::Schema.define(version: 20170607201543) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "yes_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "target_id"
+    t.string   "match"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["target_id"], name: "index_yes_lists_on_target_id", using: :btree
+    t.index ["user_id"], name: "index_yes_lists_on_user_id", using: :btree
+  end
+
   add_foreign_key "comp_skills", "competitions"
   add_foreign_key "comp_skills", "skills"
   add_foreign_key "comp_teams", "competitions"
   add_foreign_key "comp_teams", "teams"
+  add_foreign_key "invites", "teams"
+  add_foreign_key "invites", "users"
   add_foreign_key "members", "teams"
   add_foreign_key "members", "users"
   add_foreign_key "user_skills", "skills"

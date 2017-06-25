@@ -9,6 +9,7 @@
       </div>
       <div class="tabs">
         <ul>
+          <li><%= link_to 'Users', users_path %></li>
           <li><%= link_to 'Dashboard', user_dashboard_path %>
             <% if current_user.admin %>
               <ul>
@@ -25,6 +26,7 @@
           <ul>
             <li><%= link_to 'Profile', current_user, :method => 'get' %></li>
             <li><%= link_to 'Preferences', '#' %></li>
+            <li><%= link_to 'The Yes-List', yes_lists_path %></li>
           </ul>
         </div>
       </div>
@@ -34,13 +36,13 @@
         <ul>
           <li><%= 'Competitions'%>
             <ul>
-              <li><%= link_to 'Create', competitions_new_path %></li>
-              <li><%= link_to 'Search', competitions_index_path %></li>
+              <li><%= link_to 'Create', new_competition_path %></li>
+              <li><%= link_to 'Search', competitions_path %></li>
             </ul>
           </li><br/>
           <li><%= 'Teams'%>
             <ul>
-              <li><%= link_to 'My Teams', '#' %></li>
+              <li><%= link_to 'My Teams', teams_path %></li>
               <li><%= link_to 'New Team', '#' %></li>
             </ul>
         </ul>

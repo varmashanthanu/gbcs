@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable
 
-  attr_accessor :address_attributes
+  attr_accessor :address_attributes, :teams_attributes
 
   has_one :address, as: :addressable, dependent: :destroy
   accepts_nested_attributes_for :address, reject_if: proc { |attributes| attributes[:addr].blank? }, allow_destroy: true
@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
   has_many :members, dependent: :destroy
   has_many :teams, through: :members
+
+  has_many :yes_lists, dependent: :destroy
 
   scope :faculty, -> {where(admin: true)}
   scope :students, -> {where('admin IS NULL OR admin is FALSE')}
@@ -31,6 +33,9 @@ class User < ApplicationRecord
 
   def fullname
     (fname && fname!='' || lname && lname!='')? "#{fname} #{lname}":name
+  end
+  def tag
+    "#{lname}, #{fname}"
   end
 
   def update_password_error(user_params)
@@ -51,6 +56,11 @@ class User < ApplicationRecord
       score += s.weighted_level
     end
     score/Skill.count*100
+  end
+
+  # TODO Do I really this function here? Shall I just call members on the Team Model?
+  def self.team_members(team)
+    where(:id=>Member.where(team:team).select(:user_id))
   end
 
   # def self.students

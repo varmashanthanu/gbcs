@@ -1,0 +1,18 @@
+$('#remove-id-<%= @team.id %>').remove();
+<% if Team.count == 0 %>
+$('#none-message').show();
+<% end %>
+
+$("#notice-message").html("<p><%= flash[:notice] %></p>").show();
+$(".error").show();
+$(function(){setTimeout(function(){
+    $("#notice-message").fadeOut('slow',function() {
+        $(this).hide();
+    })
+    $(".error").fadeOut('slow',function() {
+        $(this).hide();
+    })
+}, 2000);
+});
+
+<% flash.clear %>

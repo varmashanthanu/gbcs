@@ -10,17 +10,17 @@ class UserSkillsController < ApplicationController
 
   def create
     @user_skill = UserSkill.new(user_skills_params)
-    if @user_skill.save
-      respond_to do |format|
-        format.html { redirect_to user_dashboard_path }
-        format.js { flash[:notice] = 'Skill Added.' }
-      end
-    elsif @user_skill.duplicate(current_user)
+    if @user_skill.duplicate(current_user)
       respond_to do |format|
         format.html { redirect_back(fallback_location:user_dashboard_path) }
         format.js { flash[:notice] = 'Skill is Duplicate.'
         render action: "error" }
       end
+    elsif @user_skill.save
+    respond_to do |format|
+      format.html { redirect_to user_dashboard_path }
+      format.js { flash[:notice] = 'Skill Added.' }
+    end
     else
     respond_to do |format|
       format.html { redirect_back(fallback_location:user_dashboard_path) }

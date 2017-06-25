@@ -6,4 +6,7 @@ class Competition < ApplicationRecord
 
   validates :name, presence: true
 
+  has_many :comp_teams, dependent: :destroy
+  has_many :teams, through: :comp_teams
+
 end

@@ -16,7 +16,8 @@
       </div>
       <div class="data-fields">
         <%= f.label 'Program,'%> <%= @user.admin ? '': (f.label 'Graduation') %>
-        <%= f.text_field :program, autofocus: true, placeholder: 'MBA, ISOM' %>
+        <%= f.select :program, %w(EMBA18 FT1MBA18A FT1MBA18B FT2MBA18 FT2MBA19 O1MBAF16 O1MBAF17 O1MBAS18 O2MBAF17 O2MBAF18 O2MBAS18 O2MBAS19 P1MBAS18 P2MBAF17 P2MBAF18 P2MBAS18 P2MBAS19 SFMBA18), autofocus: true, placeholder: 'MBA, ISOM' %>
+        <!--TODO Shift the programs list into an admin editable model-->
         <%= @user.admin ? '': (f.date_field :graduation, autofocus: true, :value => (Date.today+1.year).to_s(:db)) %>
       </div>
       <div class="data-fields">

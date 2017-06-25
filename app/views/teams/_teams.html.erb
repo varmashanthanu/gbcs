@@ -1,0 +1,14 @@
+<% @teams.each do |team| %>
+    <p id="remove-id-<%= team.id %>">
+      <%= link_to team.name, team %>
+      <% if team.comp_teams.any? %>
+        <% team.comp_teams.each do |ct| %>
+              <%= ct.competition.name %>
+        <% end %>
+      <% end %>
+      <small>
+        <%= link_to 'Edit', edit_team_path(team), id: "edit-team-#{team.id}", remote: true %>
+        <%= link_to 'Delete', team, method: :delete, data: {confirm: 'Are you sure?'}, remote: true if team.is_lead(current_user) %>
+      </small>
+    </p>
+<% end %>

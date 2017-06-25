@@ -1,0 +1,21 @@
+<% content_for :title, 'My Teams' %>
+
+<div class="teams">
+  <div class="wrapper"?>
+    <h1>My Teams</h1>
+    <div class="team-list">
+      <div id="team-list">
+        <% if @teams.count > 0 %>
+            <%= render 'teams' %>
+        <%else%>
+            <div id="none-message">
+              <p>No Teams Added/Joined Yet.</p>
+            </div>
+        <%end%>
+      </div>
+      <hr/>
+      <%= link_to 'Create Team', new_team_path, remote: true, id:'new-team' %>
+
+    </div>
+  </div>
+</div>

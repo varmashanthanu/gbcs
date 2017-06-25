@@ -1,4 +1,18 @@
-$("#remove-id-<%=@user_skill.id%>").remove()
-<% if Skill.count < 1 %>
-$("#none-message").show()
+$("#remove-id-<%=@user_skill.id%>").remove();
+<% if current_user.user_skills.count < 1 %>
+$("#none-message").show();
 <% end %>
+
+$("#notice-message").html("<p><%= flash[:notice] %></p>").show();
+$(".error").show();
+$(function(){setTimeout(function(){
+    $("#notice-message").fadeOut('slow',function() {
+        $(this).hide();
+    })
+    $(".error").fadeOut('slow',function() {
+        $(this).hide();
+    })
+}, 2000);
+});
+
+<% flash.clear %>

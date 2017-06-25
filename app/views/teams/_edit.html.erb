@@ -1,0 +1,7 @@
+<%= form_for @team, remote: true do |f| %>
+
+    <%= f.text_field :name, autofocus: true, required: true, placeholder: 'Team Name' %>
+    <%= f.submit 'Update' %>
+    <%= link_to 'Cancel', '#', remote: true, id:"cancel-edit-#{@team.id}" %>
+
+<% end %>

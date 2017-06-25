@@ -1,0 +1,6 @@
+$('#new-team').hide().after('<%= j render('new') %>');
+
+$('#cancel-create').click(function(){
+   $('#new_team').remove();
+   $('#new-team').show();
+});

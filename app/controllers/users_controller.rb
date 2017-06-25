@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   before_action :store_current_location
 
   def index
+    @users = User.students
   end
 
   def show
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
   def dashboard
     @user_skills = current_user.user_skills
     @user_teams = current_user.members
+    @invites = Invite.received(current_user)
     @comps = Competition.where(creator_id: current_user.id)
   end
 

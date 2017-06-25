@@ -1,0 +1,9 @@
+<%= form_for @yes_list, remote: true do |f| %>
+
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.collection_select :target_id, User.students.order(lname:'ASC'), :id, :tag, required: true %>
+    <%= f.select :match, %W(YES NO), autofocus:true, placeholder: 'Choose One' %>
+    <%= f.submit 'Save' %>
+    <small><%= link_to 'Cancel', '#', id:'cancel-add', remote: true %></small>
+
+<% end %>

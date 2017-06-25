@@ -1,0 +1,16 @@
+<%= form_for @team, remote: true do |f| %>
+    <%= f.hidden_field :lead_id, value: current_user.id %>
+    <%= f.text_field :name, autofocus: true, required: true, placeholder: 'Team Name' %>
+    <!--TODO Add fields for nested competitions<= f.fields_for(:comp_teams) %>-->
+
+
+    <%= f.fields_for :comp_teams do |builder| %>
+
+          <%= builder.label :competition_id, 'Competition' %>
+          <%= builder.collection_select :competition_id, Competition.all, :id, :name,{ include_blank: true } %>
+
+    <% end %>
+    <%= f.submit 'Create' %>
+    <%= link_to 'Cancel', '#', remote: true, id:'cancel-create' %>
+
+<% end %>

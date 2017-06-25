@@ -1,0 +1,37 @@
+<% content_for :title, "#{@team.name.humanize}" %>
+
+<div class="team">
+  <div class="wrapper">
+    <h1>Team Information</h1>
+    <div class="team-display">
+      <%= "Name: #{@team.name.humanize}" %><br/>
+      <%= "Lead: #{User.find(@team.lead_id).name.humanize}" %><br/>
+      <%= "Created On: #{@team.created_at}" %><br/>
+      <% if @team.comp_teams.any? %>
+          <p>Competitions:</p>
+          <ul>
+            <% @team.comp_teams.each do |ct| %>
+                <li><%=link_to "#{ct.competition.name.humanize}", ct.competition %></li>
+            <% end %>
+          </ul>
+      <% end %>
+      <% if @team.members.any? %>
+          <p>Members:</p>
+          <ul>
+            <% @team.members.each do |m| %>
+                <li><%=link_to "#{m.user.name.humanize}", m.user %></li>
+            <% end %>
+          </ul>
+      <% end %>
+      <% if @team.is_member(current_user) %> <!-- Options if member, add additional members -->
+          <div class="add-members">
+            <div id="add-member-button">
+              <%= link_to 'Quick Add', new_invite_path, :team_id => @team.id, id:'invite-member', remote: true %>
+            </div>
+          </div>
+      <% else %> <!-- Options if not member, request join permission -->
+
+      <% end %>
+    </div>
+  </div>
+</div>

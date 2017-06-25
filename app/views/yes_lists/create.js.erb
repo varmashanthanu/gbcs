@@ -1,0 +1,19 @@
+$('#new_yes_list').remove();
+$('.list-block').append("<%= j render('yes_list') %>");
+$('#none-message').hide();
+$('#add-block').show();
+
+$("#notice-message").html("<%= flash[:notice] %>").show();
+$(".error").show();
+$(function () {
+    setTimeout(function () {
+        $("#notice-message").fadeOut('slow', function () {
+            $(this).hide();
+        })
+        $(".error").fadeOut('slow',function() {
+            $(this).hide();
+        })
+    }, 2000);
+});
+
+<% flash.clear %>
