@@ -10,8 +10,8 @@
 #   http://dev.mysql.com/doc/refman/5.7/en/old-client.html
 #
 default: &default
-  adapter: mysql2
-  encoding: utf8
+  adapter: postgresql
+  encoding: unicode
   reconnect: false
   pool: 5
   host: localhost
@@ -21,8 +21,8 @@ default: &default
 development:
   <<: *default
   database: GBCS_development
-  username: root
-  password:
+  username: gbcs
+  password: admin
   socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and

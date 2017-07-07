@@ -10,20 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170624014430) do
+ActiveRecord::Schema.define(version: 20170626084328) do
 
-  create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
     t.string   "addr"
     t.string   "addressable_type"
     t.integer  "addressable_id"
-    t.float    "latitude",         limit: 24
-    t.float    "longitude",        limit: 24
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.index ["addr"], name: "index_addresses_on_addr", using: :btree
   end
 
-  create_table "comp_skills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "comp_skills", force: :cascade do |t|
     t.integer  "competition_id"
     t.integer  "skill_id"
     t.integer  "level"
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 20170624014430) do
     t.index ["skill_id"], name: "index_comp_skills_on_skill_id", using: :btree
   end
 
-  create_table "comp_teams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "comp_teams", force: :cascade do |t|
     t.integer  "competition_id"
     t.integer  "team_id"
     t.datetime "expiry"
@@ -43,7 +46,7 @@ ActiveRecord::Schema.define(version: 20170624014430) do
     t.index ["team_id"], name: "index_comp_teams_on_team_id", using: :btree
   end
 
-  create_table "competitions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "competitions", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
     t.datetime "start"
@@ -58,7 +61,7 @@ ActiveRecord::Schema.define(version: 20170624014430) do
     t.index ["name"], name: "index_competitions_on_name", using: :btree
   end
 
-  create_table "invites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "invites", force: :cascade do |t|
     t.integer  "team_id"
     t.integer  "user_id"
     t.integer  "sender_id"
@@ -68,13 +71,13 @@ ActiveRecord::Schema.define(version: 20170624014430) do
     t.index ["user_id"], name: "index_invites_on_user_id", using: :btree
   end
 
-  create_table "master_passes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "master_passes", force: :cascade do |t|
     t.string   "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "members", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "team_id"
     t.datetime "created_at", null: false
@@ -83,7 +86,7 @@ ActiveRecord::Schema.define(version: 20170624014430) do
     t.index ["user_id"], name: "index_members_on_user_id", using: :btree
   end
 
-  create_table "skills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "skills", force: :cascade do |t|
     t.string   "name"
     t.string   "category"
     t.integer  "weight"
@@ -93,7 +96,7 @@ ActiveRecord::Schema.define(version: 20170624014430) do
     t.index ["name"], name: "index_skills_on_name", using: :btree
   end
 
-  create_table "teams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.string   "avatar"
     t.integer  "lead_id"
@@ -102,7 +105,7 @@ ActiveRecord::Schema.define(version: 20170624014430) do
     t.index ["name"], name: "index_teams_on_name", using: :btree
   end
 
-  create_table "user_skills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "user_skills", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "skill_id"
     t.integer  "level"
@@ -112,7 +115,7 @@ ActiveRecord::Schema.define(version: 20170624014430) do
     t.index ["user_id"], name: "index_user_skills_on_user_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -139,14 +142,16 @@ ActiveRecord::Schema.define(version: 20170624014430) do
     t.boolean  "admin"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "score"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["fname"], name: "index_users_on_fname", using: :btree
     t.index ["lname"], name: "index_users_on_lname", using: :btree
     t.index ["program"], name: "index_users_on_program", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["score"], name: "index_users_on_score", using: :btree
   end
 
-  create_table "yes_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "yes_lists", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "target_id"
     t.string   "match"

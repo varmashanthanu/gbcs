@@ -99,11 +99,11 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.2)
     multi_json (1.12.1)
-    mysql2 (0.4.5)
     nio4r (2.0.0)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
+    pg (0.18.4)
     puma (3.7.1)
     rack (2.0.3)
     rack-test (0.6.3)
@@ -200,7 +200,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   mini_magick
-  mysql2 (>= 0.3.18, < 0.5)
+  pg (~> 0.18.4)
   puma (~> 3.0)
   rails (~> 5.0.2)
   rqrcode-with-patches

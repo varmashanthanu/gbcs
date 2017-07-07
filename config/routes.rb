@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  devise_for :users#, controllers: {registrations: 'users/registrations'}
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   resources :users
   resources :skills
   resources :user_skills
@@ -20,10 +23,9 @@ Rails.application.routes.draw do
   match 'users/make_admin' => 'users#make_admin', as: :make_admin, via: [:get]
   match 'user/dashboard' => 'users#dashboard', as: :user_dashboard, via: [:get]
 
-  devise_for :users#, controllers: {registrations: 'users/registrations'}
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
   match 'pie_chart/skills' => 'skills#pie_chart', as: :pie_chart_skills, via: [:get]
+  match 'column_graph/:id/users' => 'users#column_graph', as: :column_graph_users, via: [:get]
+  match 'indi_graph/:id/users' => 'users#indi_graph', as: :indi_graph_users, via: [:get]
   get 'yes_lists/:id/toggle' => 'yes_lists#toggle', as: :toggle_yes_lists, via: [:get]
 
   root to: 'welcome#home'

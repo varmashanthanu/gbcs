@@ -37,10 +37,17 @@
     </div>
 
     <div info-block>
-      <h3>Skills Added</h3>
+      <h3>Skills Added - <%= current_user.score %></h3>
+      <div class="column-graph">
+        <% if @user_skills.any? %>
+            <% @user = current_user %>
+            <%= render 'indi_skill_graph' %>
+        <% end %>
+      </div>
       <div class="skill-list">
         <%= render 'user_skills/index' %>
       </div>
+
       <hr/>
       <%= link_to 'Add Skill', new_user_skill_path,remote:true, id: 'add-skill' %>
     </div>

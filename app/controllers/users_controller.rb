@@ -7,10 +7,32 @@ class UsersController < ApplicationController
   before_action :store_current_location
 
   def index
-    @users = User.students
+
+    # @users = User.all
+    # Rails.logger.debug('Starting Calc')
+    # @users.each do |u|
+    #   u.update_attribute(:score,u.calc_score)
+    # end
+    # Rails.logger.debug('Done Calc')
+    @users = User.gen_sort(current_user) - [current_user]
+    Rails.logger.debug(@users.class)
+    Rails.logger.debug(@users.count)
+    Rails.logger.debug(@users.first.class)
+    Rails.logger.debug('TESTINGGGGGGGGGG')
   end
 
   def show
+  end
+
+  def column_graph
+    @user = User.find(params[:id])
+    skill_graph = @user.skill_calc
+    render json: skill_graph
+  end
+  def indi_graph
+    @user = User.find(params[:id])
+    indi_skill_graph = @user.indi_skill_calc
+    render json: indi_skill_graph
   end
 
   def dashboard
@@ -77,7 +99,7 @@ class UsersController < ApplicationController
   # end
 
   def user_params
-    params.require(:user).permit(:admin, :current_password, :password, :password_confirmation, :avatar, :fname, :lname, :email, :telno, address_attributes: [:id, :addr, :addressable_type, :addressable_id])
+    params.require(:user).permit(:admin, :program, :graduation, :current_password, :password, :password_confirmation, :avatar, :fname, :lname, :email, :telno, address_attributes: [:id, :addr, :addressable_type, :addressable_id])
   end
 
   def store_current_location

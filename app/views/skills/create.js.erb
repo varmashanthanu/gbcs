@@ -1,6 +1,7 @@
 $("#new_skill").hide();
 $("#create-skill").show();
 $("#none-message").hide();
+
 $("#skill-list").append("<%= j render(@skill) %>");
 $("#notice-message").html("<p><%= flash[:notice] %></p>").show();
 $(".error").show();

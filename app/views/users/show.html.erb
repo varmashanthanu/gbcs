@@ -14,6 +14,14 @@
 
   <p><%= current_user.admin ? "If you See this you are admin":'' %></p>
 
+
+  <div class="column-graph">
+    <% if current_user.user_skills.any? %>
+
+        <%= render 'indi_skill_graph' %>
+    <% end %>
+  </div>
+
   <p>content top</p>
   <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
   <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

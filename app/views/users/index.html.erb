@@ -2,6 +2,8 @@
 
 <% @users.each do |user| %>
 
-    <p><%= link_to "#{user.fname}", user %> <%= " #{user.lname} #{user.email}"%></p>
+    <p><%= link_to "#{user.fname}", user %> <%= " #{user.lname} -- #{user.email} -- #{user.score} -- #{user.program} -- #{user.graduation}"%></p>
+    <% @user = user %>
+    <%= render 'skill_graph' %>
 
 <% end %>

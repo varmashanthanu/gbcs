@@ -6,12 +6,7 @@ class UserSkill < ApplicationRecord
   # validates :skill_id, uniqueness: true
 
   def duplicate(user)
-    if UserSkill.where("skill_id = ? AND user_id = ?", self.skill_id, user.id).present?
-      true
-      Rails.logger.debug('Triggered duplicate')
-    else
-      false
-    end
+    UserSkill.where("skill_id = ? AND user_id = ?", self.skill_id, user.id).present?
   end
 
   def name
@@ -19,7 +14,8 @@ class UserSkill < ApplicationRecord
   end
   # TODO rethink the scoring mechanism
   def weighted_level
-    self.skill.rank * level
+
+    (self.skill.rank*Skill.mult * self.level).floor #need to find optimized way to evaluate multiplier
   end
 
 end
