@@ -1,0 +1,5 @@
+<%= form_tag admin_make_admin_path, :method => :get, id:'get-pass', :multipart => true, format: 'js', remote:true do %>
+    <%= label_tag 'master_password' %>
+    <%= password_field_tag 'master_password', nil, autocomplete: 'off', id: 'password'%>
+    <p><%= submit_tag 'Enter' %> <small id="cancel" class="btn-style">Cancel</small></p>
+<% end %>

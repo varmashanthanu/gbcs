@@ -5,7 +5,7 @@
   <%= devise_error_messages! %>
 
 
-
+    <input name="authenticity_token" type="hidden" ng-model="User.token" ng-init="User.token='<%= form_authenticity_token %>'">
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
@@ -22,22 +22,22 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-    <%= f.hidden_field :admin, value: '', id: 'admin-set' %>
-
-    <div class="admin-setup">
-      <div class="hidden">
-        <%= f.label :master_password %>
-        <%= f.password_field :master_password, autocomplete: 'off', id: 'password'%>
-        <p class="btn-style enter">Enter</p><small class="cancel btn-style">Cancel</small>
-      </div>
-      <div class="admin-select">
-        <p class="btn-style">Admin Signup</p>
-      </div>
-    </div>
+    <%= f.text_field :admin, value: false, id: 'admin-set'%>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
 
+<div class="admin-setup">
+  <div id="admin-select">
+    <%= link_to 'Admin Signup', admin_get_pass_path, id: 'admin-select-btn', remote: true %>
+  </div>
+</div>
+
 <%= render "devise/shared/links" %>
+
+
+<!--<= f.label :master_password %>-->
+<!--<= f.password_field :master_password, autocomplete: 'off', id: 'password'%>-->
+<!--<p class="btn-style enter">Enter</p><small id="cancel" class="btn-style">Cancel</small>-->

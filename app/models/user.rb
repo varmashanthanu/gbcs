@@ -26,7 +26,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   # Email validator for UFL domains. Uncomment when ready to launch.
-  # validates_format_of :email, with: /\@ufl\.edu/, message: 'should have ufl.edu domain.'
+  validates_format_of :email, with: /\@ufl\.edu/, message: 'should have ufl.edu domain.'
 
   # Name Calls
   def name

@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     #   u.update_attribute(:score,u.calc_score)
     # end
     # Rails.logger.debug('Done Calc')
-    @users = User.gen_sort(current_user) - [current_user]
+    current_user.admin ? @users = User.students : @users = User.gen_sort(current_user) - [current_user]
     Rails.logger.debug(@users.class)
     Rails.logger.debug(@users.count)
     Rails.logger.debug(@users.first.class)
@@ -67,16 +67,6 @@ class UsersController < ApplicationController
       notice = @user.update_password_error(user_params)
       redirect_to user_edit_password_path, notice: "#{notice}"
     end
-  end
-
-  def make_admin
-    password = params[:password]
-    if password == MasterPass.first.password
-      render json: true
-    else
-      render json: false, notice: 'Wrong Master Password'
-    end
-
   end
 
   private
