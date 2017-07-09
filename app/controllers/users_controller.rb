@@ -7,18 +7,7 @@ class UsersController < ApplicationController
   before_action :store_current_location
 
   def index
-
-    # @users = User.all
-    # Rails.logger.debug('Starting Calc')
-    # @users.each do |u|
-    #   u.update_attribute(:score,u.calc_score)
-    # end
-    # Rails.logger.debug('Done Calc')
     current_user.admin ? @users = User.students : @users = User.gen_sort(current_user) - [current_user]
-    Rails.logger.debug(@users.class)
-    Rails.logger.debug(@users.count)
-    Rails.logger.debug(@users.first.class)
-    Rails.logger.debug('TESTINGGGGGGGGGG')
   end
 
   def show

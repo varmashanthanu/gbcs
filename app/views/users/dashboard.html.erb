@@ -37,6 +37,9 @@
     </div>
 
     <div info-block>
+      <h3>Preferences</h3>
+      <%= render 'preferences/preference' %>
+
       <h3>Skills Added - <%= current_user.score %></h3>
       <div class="column-graph">
         <% if @user_skills.any? %>

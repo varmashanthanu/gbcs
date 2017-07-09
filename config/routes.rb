@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :members
   resources :yes_lists
   resources :competitions
+  resources :preferences
 
   # Additional routes.
   get 'members/:id/join' => 'members#join', as: :members_join, via: [:get]

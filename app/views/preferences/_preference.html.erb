@@ -1,0 +1,4 @@
+<div id="pref-id-<%= current_user.preference.id %>">
+  <%= "Locations: #{current_user.preference.location.humanize} | Competition Types: #{current_user.preference.competition.humanize}" %>
+  <small><%= link_to 'Edit', edit_preference_path(current_user.preference), remote: true %></small>
+</div>

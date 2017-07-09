@@ -1,11 +1,11 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :confirmable, :lockable, :timeoutable and :omniauthable, :confirmable,
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable
+         :lockable
 
-  after_initialize :init
+  after_initialize :init, :init_pref_addr
 
   attr_accessor :address_attributes, :teams_attributes
 
@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
   has_many :yes_lists, dependent: :destroy
 
+  has_one :preference, dependent: :destroy
+
   scope :faculty, -> {where(admin: true)}
   scope :students, -> {where('admin IS NULL OR admin is FALSE')}
 
@@ -27,6 +29,12 @@ class User < ApplicationRecord
 
   # Email validator for UFL domains. Uncomment when ready to launch.
   validates_format_of :email, with: /\@ufl\.edu/, message: 'should have ufl.edu domain.'
+
+  # Initializer
+  def init_pref_addr
+    self.preference = Preference.new(location:'Any',competition:'Any') unless self.preference.present?
+    self.build_address unless self.preference.present?
+  end
 
   # Name Calls
   def name
@@ -68,22 +76,13 @@ class User < ApplicationRecord
       data[category] = 0
       userskill = self.user_skills.where(:skill => Skill.where(category:category))
       userskill.each do |us|
-        data[category] += us.weighted_level
+        data[category] += us.weighted_level/50.0
       end
     end
     data
   end
 
   def indi_skill_calc
-    # data = Skill.group(:category).count
-    # data.each do |category,set|
-    #   skill_weight = Skill.where(category:category).group(:name).count
-    #   skill_weight.each do |name,score|
-    #     skill_weight[name] = self.user_skills.where(:skill => Skill.where(name:name)).any? ? self.user_skills.where(:skill => Skill.where(name:name)).first.level : 0
-    #   end
-    #   data[category] = skill_weight
-    # end
-    # data
     skill_weight = Skill.group(:name).count
     skill_weight.each do |name,score|
       skill_weight[name] = self.user_skills.where(:skill => Skill.where(name:name)).any? ? self.user_skills.where(:skill => Skill.where(name:name)).first.level : 0
@@ -98,54 +97,20 @@ class User < ApplicationRecord
   def self.gen_sort(user)
     # hate_list = User.where(id:YesList.where("user_id = ? AND match = ?", user, "NO").select(:target_id))
     hate_list = User.students.where(id:YesList.where(user:user, match:'NO').select(:target_id)).order(score:'DESC')
-    Rails.logger.debug(hate_list.count)
-    Rails.logger.debug(' TEST 1 ')
     yes_students = User.students.where.not(id:YesList.where(user:user, match:'NO').select(:target_id)).order(score:'DESC')
     # yes_students = User.where(id:YesList.where("user = ? AND match = ? OR match IS NULL", user,'YES').select(:target_id))
-    Rails.logger.debug(yes_students.class)
-    Rails.logger.debug(' TEST 2')
     same_year = yes_students.where(graduation:user.graduation).order(score:'DESC')
-    Rails.logger.debug(same_year.count)
-    Rails.logger.debug(' TEST 3')
     # mix_year_yes_students = yes_students.where(graduation:nil)# change this after seeding
-    mix_year_yes_students = yes_students.where("graduation != ? OR graduation is NULL", user.graduation).order(score:'DESC')# change this after seeding
-    Rails.logger.debug(mix_year_yes_students.count)
-    Rails.logger.debug(' TEST 4')
+    mix_year_yes_students = yes_students.where.not(graduation:user.graduation).order(score:'DESC')# change this after seeding
     same_class = mix_year_yes_students.where(program:user.program).order(score:'DESC')
-    Rails.logger.debug(same_class.count)
-    Rails.logger.debug(' TEST 5')
-    mix_class_year_yes_students = mix_year_yes_students.where("program != ? OR program is NULL ",user.program).order(score:'DESC')
-    Rails.logger.debug(mix_class_year_yes_students.count)
-    Rails.logger.debug(' TEST 6')
-    Rails.logger.debug(mix_class_year_yes_students.class)
+    mix_class_year_yes_students = mix_year_yes_students.where.not(program:user.program).order(score:'DESC')
 
     mix_class_year_yes_students.order(score:'DESC')
     same_class.order(score:'DESC')
     same_year.order(score:'DESC')
     hate_list.order(score:'DESC')
 
-    students = User.none
-
-    mix_class_year_yes_students.each do |d|
-      students+=[d]
-    end
-    same_class.each do |d|
-      students<<d
-    end
-    same_year.each do |d|
-      students<<d
-    end
-    hate_list.each do |d|
-      students<<d
-    end
-
-    # students = mix_class_year_yes_students.merge(same_class).merge(same_year).merge(hate_list)
-    # Rails.logger.debug(students.count)
-    # Rails.logger.debug(' TEST 7')
-    #
-    # Rails.logger.debug('TESTTTTTIIIINNNNGGGGGG')
-    # Rails.logger.debug(students.class)
-    return students
+    mix_class_year_yes_students | same_class | same_year | hate_list
   end
 
   # TODO Do I really this function here? Shall I just call members on the Team Model?

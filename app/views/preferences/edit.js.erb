@@ -1,0 +1,5 @@
+$("#pref-id-<%= @preference.id %>").hide().after("<%= j render('edit') %>");
+$('#pref-cancel').click(function(){
+    $("#edit_preference_<%=@preference.id%>").remove();
+    $("#pref-id-<%= @preference.id %>").show();
+});

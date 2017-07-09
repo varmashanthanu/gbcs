@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  location: MyString
+  competition: MyString
+
+two:
+  user: two
+  location: MyString
+  competition: MyString
