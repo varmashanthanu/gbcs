@@ -5,6 +5,10 @@ class TeamsController < ApplicationController
 
 
   def index
+    current_user.admin ? @teams = Team.order(:created_at) : @teams = Team.skill_match(current_user)
+  end
+
+  def mine
     @teams = Team.mine(current_user)
   end
 

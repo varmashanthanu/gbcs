@@ -69,4 +69,11 @@ class Team < ApplicationRecord
     end
   end
 
+  def self.skill_match(user)
+    skills = user.skills
+    nteams = Team.where.not(id:TeamSkill.where(skill:skills).select(:team_id))
+    yteams = Team.where(id:TeamSkill.where(skill:skills).select(:team_id))
+    nteams | yteams
+  end
+
 end

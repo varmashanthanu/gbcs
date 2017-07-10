@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  match 'admin/make_admin' => 'admin#make_admin', as: :admin_make_admin, via: [:get]
-  match 'admin/get_pass' => 'admin#get_pass', as: :admin_get_pass, via: [:get]
-
   devise_for :users#, controllers: {registrations: 'users/registrations'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -30,6 +27,12 @@ Rails.application.routes.draw do
   match 'column_graph/:id/users' => 'users#column_graph', as: :column_graph_users, via: [:get]
   match 'indi_graph/:id/users' => 'users#indi_graph', as: :indi_graph_users, via: [:get]
   get 'yes_lists/:id/toggle' => 'yes_lists#toggle', as: :toggle_yes_lists, via: [:get]
+
+  get 'mine/teams' => 'teams#mine', as: :teams_mine, via: [:get]
+
+  match 'admin/make_admin' => 'admin#make_admin', as: :admin_make_admin, via: [:get]
+  match 'admin/get_pass' => 'admin#get_pass', as: :admin_get_pass, via: [:get]
+
 
   root to: 'welcome#home'
 end
