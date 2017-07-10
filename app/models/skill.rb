@@ -6,6 +6,9 @@ class Skill < ApplicationRecord
   has_many :comp_skills, dependent: :destroy
   has_many :competitions, through: :comp_skills
 
+  has_many :team_skills, dependent: :destroy
+  has_many :teams, through: :team_skills
+
   validates :name, :presence => true, uniqueness: true
   validates :category, :presence => true
 

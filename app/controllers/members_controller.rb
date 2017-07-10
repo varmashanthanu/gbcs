@@ -10,8 +10,9 @@ class MembersController < ApplicationController
                     render action: 'error'}
       end
     else
-      @member = Member.new(user_id:@invite.user_id,team_id:@invite.team_id)
+      @member = Member.new(user:@invite.user,team:@invite.team)
         if @member.save
+          @invite.team.skill_add(@invite.user)
           @invite.destroy
           respond_to do |format|
             format.html { redirect_to user_dashboard_path}
@@ -25,7 +26,9 @@ class MembersController < ApplicationController
   def destroy
     @member = Member.find(params[:id])
     team = @member.team
+    user = @member.user
     @member.destroy
+    team.skill_update(user)
     if team.is_lead(current_user)
       team.members.any? ? team.update(lead_id:team.members.first.user.id):team.destroy
       # TODO Move logic to model.^^

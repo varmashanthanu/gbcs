@@ -20,7 +20,10 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(teams_params)
     if @team.save
-      Member.create(team:@team,user:current_user)
+      unless current_user.admin
+        Member.create(team:@team,user:current_user)
+        @team.skill_add(current_user)
+      end
       if @team.comp_teams_attributes
         @team.comp_teams_attributes.first[1].each do | k,v|
           Rails.logger.debug(v)

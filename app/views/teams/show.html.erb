@@ -7,11 +7,21 @@
       <%= "Name: #{@team.name.humanize}" %><br/>
       <%= "Lead: #{User.find(@team.lead_id).name.humanize}" %><br/>
       <%= "Created On: #{@team.created_at}" %><br/>
+
+      <div class="team-skills">
+        <p>
+          <%= "Team Skills:"%><br/>
+          <% @team.team_skills.each do |ts| %>
+            <%= "Skill: #{ts.name} - Level: #{ts.level} - #{ts.count} Members." %><br/>
+          <% end %>
+        </p>
+      </div>
+
       <% if @team.comp_teams.any? %>
           <p>Competitions:</p>
           <ul>
             <% @team.comp_teams.each do |ct| %>
-                <li><%=link_to "#{ct.competition.name.humanize}", ct.competition %></li>
+                <li><%=link_to "#{ct.competition.name.camelcase}", ct.competition %></li>
             <% end %>
           </ul>
       <% end %>
