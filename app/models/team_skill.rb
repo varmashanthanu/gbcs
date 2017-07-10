@@ -1,6 +1,6 @@
 class TeamSkill < ApplicationRecord
   belongs_to :skill
-  belongs_to :team
+  belongs_to :team, counter_cache: true
 
   after_initialize :init
 

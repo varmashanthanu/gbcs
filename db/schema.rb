@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710050911) do
+ActiveRecord::Schema.define(version: 20170710112132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,8 +120,9 @@ ActiveRecord::Schema.define(version: 20170710050911) do
     t.string   "name"
     t.string   "avatar"
     t.integer  "lead_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "team_skills_count", default: 0
     t.index ["name"], name: "index_teams_on_name", using: :btree
   end
 

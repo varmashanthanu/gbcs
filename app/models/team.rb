@@ -16,6 +16,8 @@ class Team < ApplicationRecord
 
   has_many :invites, dependent: :destroy
 
+  # scope :complementary,
+
   def self.mine(user)
     where(:id=>Member.where(user:user).select(:team_id))
   end
@@ -73,7 +75,7 @@ class Team < ApplicationRecord
     skills = user.skills
     nteams = Team.where.not(id:TeamSkill.where(skill:skills).select(:team_id))
     yteams = Team.where(id:TeamSkill.where(skill:skills).select(:team_id))
-    nteams | yteams
+    nteams.order('team_skills_count DESC') | yteams.order('team_skills_count DESC')
   end
 
 end

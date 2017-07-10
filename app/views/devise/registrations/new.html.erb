@@ -22,7 +22,7 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-    <%= f.text_field :admin, value: false, id: 'admin-set'%>
+    <%= f.hidden_field :admin, value: false, id: 'admin-set'%>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
