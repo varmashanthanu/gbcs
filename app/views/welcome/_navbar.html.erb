@@ -12,12 +12,12 @@
       <ul class="nav-list">
         <!-- After Sign In -->
         <% if user_signed_in? %>
-            <li><%= link_to 'Competitions', '#' %>
-              <ul class="nav-dropdown">
-                <li><%= link_to 'Search', '#' %></li>
-                <li><%= link_to 'New', '#' %></li>
-              </ul>
-            </li>
+            <!--<li><= link_to 'Competitions', competitions_path %>-->
+              <!--<ul class="nav-dropdown">-->
+                <!--<li><= link_to 'Search', '#' %></li>-->
+                <!--<li><= link_to 'New', '#' %></li>-->
+              <!--</ul>-->
+            <!--</li>-->
             <li><%= link_to 'User', '#' %>
               <ul class="nav-dropdown">
                 <li><%= link_to 'Profile', current_user, :method => 'get' %></li>
@@ -26,14 +26,13 @@
               </ul>
             </li>
         <% else %>
-            <li><%= link_to 'Competitions', '#' %>
-              <ul class="nav-dropdown">
-                <li><%= link_to 'Search', '#' %></li>
-                <li><%= link_to 'New', '#' %></li>
-              </ul>
+            <li><%= link_to 'Competitions', competitions_path %>
+              <!--<ul class="nav-dropdown">-->
+              <!--<li><= link_to 'Search', '#' %></li>-->
+              <!--<li><= link_to 'New', '#' %></li>-->
+              <!--</ul>-->
             </li>
             <li><%= link_to 'Sign Up', '/users/sign_up' %></li>
-            <li><%= link_to 'Sign In', '/users/sign_in' %></li>
         <% end %>
       </ul>
     </nav>

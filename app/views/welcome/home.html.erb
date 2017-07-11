@@ -1,4 +1,17 @@
 <%= content_for :title, 'Home' %>
+<% unless user_signed_in? %>
+  <div class="login-control">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field">
+          <%= f.email_field :email, autofocus: true, placeholder:'email.address@ufl.edu', class:'login-field' %>
+          <%= f.password_field :password, autocomplete: "off", placeholder:'-Password-', class:'login-field' %>
+          <%= f.submit "LOG IN", class:'login-button' %>
+        </div>
+
+    <%end%>
+  </div>
+<% end %>
+
 <p>This is the Home Page.</p>
 
 <h3>Objective</h3>

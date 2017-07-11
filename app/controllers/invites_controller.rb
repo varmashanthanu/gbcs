@@ -2,7 +2,11 @@ class InvitesController < ApplicationController
 
   def new
     @invite = Invite.new
-    # @team = params[:team]
+    params.each do |k,v|
+      Rails.logger.debug(k)
+      Rails.logger.debug(v)
+    end
+    @team = Team.find(params[:team])
     # Rails.logger.debug("test #{params[:team_id]}")
   end
 

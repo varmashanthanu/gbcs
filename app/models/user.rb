@@ -113,6 +113,24 @@ class User < ApplicationRecord
     mix_class_year_yes_students | same_class | same_year | hate_list
   end
 
+  def self.search(priority,order)
+    users = User.students
+
+    string = []
+    query = ''
+    string << priority[:sp1].downcase+' '+order[:so1] if priority[:sp1].present?
+    string << priority[:sp2].downcase+' '+order[:so2] if priority[:sp2].present?
+    string << priority[:sp3].downcase+' '+order[:so3] if priority[:sp3].present?
+
+    string.each do |s|
+      query += s
+      query += ', ' unless s==string.last
+    end
+
+
+    users.order(query)
+  end
+
   # TODO Do I really this function here? Shall I just call members on the Team Model?
   def self.team_members(team)
     where(:id=>Member.where(team:team).select(:user_id))

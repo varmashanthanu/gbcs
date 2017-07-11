@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   before_action :store_current_location
 
   def index
-    current_user.admin ? @users = User.students : @users = User.gen_sort(current_user) - [current_user]
+    @users = search_params
   end
 
   def show
@@ -84,4 +84,24 @@ class UsersController < ApplicationController
   def store_current_location
     session[:return_to] ||= request.referer
   end
+
+  def search_params
+    current_user.admin ? user = User.students.order(:program).order(score:'DESC') : user = User.gen_sort(current_user)
+    params.each do |k,v|
+      Rails.logger.debug("Key #{k}, Value #{v}")
+    end
+    if (params[:name] && params[:name] != '') || (params[:sp].present? && (params[:sp][:sp1].present? || params[:sp][:sp2].present? || params[:sp][:sp3].present?))
+      if params[:sp].present? && (params[:sp][:sp1].present? || params[:sp][:sp2].present? || params[:sp][:sp3].present?)
+        user = User.search(params[:sp],params[:so])
+        Rails.logger.debug("Triggered 1 #{user.class}")
+      end
+      (user = user.students.where("fname iLIKE ? OR lname iLIKE ?", "%#{params[:name]}%", "%#{params[:name]}%");Rails.logger.debug("Triggered 3")) if (params[:name] && params[:name] != '')
+
+    else
+      current_user.admin ? user = User.students.order(:program).order(score:'DESC') : user = User.gen_sort(current_user)
+      Rails.logger.debug("Triggered 4")
+    end
+    current_user.admin ? user : user - [current_user]
+  end
+
 end

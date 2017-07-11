@@ -13,7 +13,7 @@
   <body>
     <%= render 'welcome/navbar' %>
 
-    <%= render 'welcome/sidebar' %>
+    <%= render 'welcome/sidebar' if user_signed_in? %>
 
 
     <div class="notice-messages error" style="display: none">
@@ -27,6 +27,10 @@
       <div class="notice-messages">
         <p> <%= alert %></P>
       </div>
+    <% end %>
+
+    <% if controller_name=='welcome' || controller_name=='registrations' || controller_name=='sessions' %>
+      <div class="gator-background"></div>
     <% end %>
 
     <div class="pages">

@@ -1,9 +1,25 @@
 <% content_for :title, 'All Students' %>
 <h1>All Users</h1>
 
+<div class="user-search">
+  <%= form_tag users_path, method: :get do %>
+      <%= text_field_tag :name, params[:name],autofocus: true, placeholder: 'Enter Name', class: 'txt-fld' %>
+
+      <%= select :sp, :sp1, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp1] if params[:sp]) %>
+      <%= select :so, :so1, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so1] if params[:sp]) %>
+      <%= select :sp, :sp2, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp2] if params[:sp]) %>
+      <%= select :so, :so2, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so2] if params[:sp]) %>
+      <%= select :sp, :sp3, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp3] if params[:sp]) %>
+      <%= select :so, :so3, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so3] if params[:sp]) %>
+
+      <%= submit_tag 'Sort', name: nil, class: 'btn' %>
+  <% end %>
+</div>
+
+
 <% @users.each do |user| %>
 
-    <p><%= link_to "#{user.fname}", user %> <%= " #{user.lname} -- #{user.email} -- #{user.score} -- #{user.program} -- #{user.graduation}"%></p>
+    <p><%= link_to "#{user.fname} #{user.lname}", user %><%= " | #{user.email} | #{user.score} | #{user.program} | #{user.graduation.strftime('%Y')}"%></p>
     <% @user = user %>
     <%= render 'skill_graph' %>
 
