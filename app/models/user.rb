@@ -155,6 +155,24 @@ class User < ApplicationRecord
     where(:id=>Member.where(team:team).select(:user_id))
   end
 
+  def self.combined_skills(users)
+    c_skills = Hash.new
+    Skill.order(:category).all.each do |k,v|
+      c_skills[k.name] = 0
+    end
+
+    users.each do |u|
+      u.user_skills.each do |us|
+        c_skills[us.name] = [c_skills[us.name],us.level].max
+      end
+    end
+    data = Hash.new
+    c_skills.each do |k,v|
+      data[k] = c_skills[k] if c_skills[k] > 0
+    end
+    data
+  end
+
 
 end
 

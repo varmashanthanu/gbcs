@@ -19,10 +19,8 @@
   left: -185;
   border: solid black 1px;
   height: 1000px;
-  background-image: url('/assets/core/gator_monument.jpg');
-  background-position: center;
+  background: url("/assets/core/gator_monument.jpg") fixed no-repeat;
   background-size: cover;
-  background-repeat: no-repeat;
 }
 
 .login-control {

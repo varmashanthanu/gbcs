@@ -34,7 +34,7 @@ class Team < ApplicationRecord
     self.members.where(user:user).present?
   end
 
-  def skill_update(user)
+  def skill_update(user) #TODO check if team skills change when Members edit skills / leaves team
     user.user_skills.each do |us|
       if self.team_skills.where(skill:us.skill).present?
         l = self.team_skills.where(skill:us.skill).first.level
@@ -62,7 +62,7 @@ class Team < ApplicationRecord
     end
   end
 
-  def skill_update(user)
+  def skill_delete(user)
     user.user_skills.each do |us|
       m = self.members.where(user_id:UserSkill.where(skill:us.skill).select(:user_id))
       l = m.collect{|m|m.user.user_skills.where(skill:us.skill).first.level} - [us.level]

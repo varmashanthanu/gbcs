@@ -1,0 +1,40 @@
+<% content_for :title, 'Builder' %>
+
+<h1>Team Builder</h1>
+
+<div class="user-view">
+  <div class="user-search" id="user-search">
+    <%= form_tag simulations_search_path, method: :get, remote: true do %>
+        <%= text_field_tag :name, params[:name],autofocus: true, placeholder: 'Enter Name', class: 'txt-fld' %>
+        <%= hidden_field :team, :id, value: @team.id %>
+        <%= select :sp, :sp1, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp1] if params[:sp]) %>
+        <%= select :so, :so1, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so1] if params[:sp]) %>
+        <%= select :sp, :sp2, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp2] if params[:sp]) %>
+        <%= select :so, :so2, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so2] if params[:sp]) %>
+        <%= select :sp, :sp3, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp3] if params[:sp]) %>
+        <%= select :so, :so3, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so3] if params[:sp]) %>
+
+        <%= submit_tag 'Sort', name: nil, class: 'btn' %>
+    <% end %>
+  </div>
+
+  <pre><%= "Name\t\tSkill Score\tProgram\t\tGraduation\tLocation Pref\tCompetition Pref" %> </pre>
+  <div id="user-view">
+    <%= render 'users' %>
+  </div>
+
+
+</div>
+
+<div class="member-view">
+
+  <pre><%= "Name\tScore\tProgram" %></pre>
+  <div id="list">
+    <%= render 'members' %>
+  </div>
+</div>
+
+<div class="team-skill-view">
+
+  <%= @members.any? ? (bar_chart simulations_team_skills_path :members => @members.pluck(:id), id:'team-skills', remote:true) : "No Members in Team." %>
+</div>

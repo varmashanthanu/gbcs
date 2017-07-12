@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   resources :yes_lists
   resources :competitions
   resources :preferences
+  resources :simulations
+  match 'team_skills/simulations' => 'simulations#team_skills', as: :simulations_team_skills, via: [:get]
+  match 'search/simulations' => 'simulations#search', as: :simulations_search, via: [:get]
 
   # Additional routes.
   get 'members/:id/join' => 'members#join', as: :members_join, via: [:get]

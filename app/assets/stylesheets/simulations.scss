@@ -1,0 +1,26 @@
+// Place all the styles related to the simulations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.user-view {
+  border: orangered solid 2px;
+  height: 200px;
+  overflow: scroll;
+}
+
+.member-view {
+  border: orangered solid 2px;
+  height: 250px;
+  overflow: scroll;
+  width: 35%;
+  display: inline-block;
+}
+
+.team-skill-view {
+  border: orangered solid 2px;
+  height: 250px;
+  overflow: scroll;
+  width: 63.85%;
+  display: inline-block;
+}

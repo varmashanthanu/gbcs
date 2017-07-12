@@ -28,7 +28,7 @@ class MembersController < ApplicationController
     team = @member.team
     user = @member.user
     @member.destroy
-    team.skill_update(user)
+    team.skill_delete(user)
     if team.is_lead(current_user)
       team.members.any? ? team.update(lead_id:team.members.first.user.id):team.destroy
       # TODO Move logic to model.^^

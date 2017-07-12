@@ -36,7 +36,8 @@
       <% if @team.is_member(current_user) %> <!-- Options if member, add additional members -->
           <div class="add-members">
             <div id="add-member-button">
-              <%= link_to 'Quick Add', {:controller => "invites", :action => "new", :team => @team.id }, id:'invite-member', remote: true %>
+              <%= link_to 'Quick Add', {:controller => "invites", :action => "new", :team => @team.id }, id:'invite-member', remote: true %> |
+              <%= link_to 'Constructor', {:controller => "simulations", :action => "index", :team => @team.id } %>
             </div>
           </div>
       <% else %> <!-- Options if not member, request join permission -->

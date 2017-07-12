@@ -1,0 +1,20 @@
+$('#list').empty();
+$('#list').append("<%= j render('members') %>");
+$('#user-view').empty();
+$('#user-view').append("<%= j render('users') %>");
+
+$('#chart-1').replaceWith("<%= j bar_chart simulations_team_skills_path :members => @members.pluck(:id), id:'team-skills', remote:true %>");
+
+$(".error").show();
+$(function(){setTimeout(function(){
+    $("#notice-message").fadeOut('slow',function() {
+        $(this).hide();
+    })
+    $(".error").fadeOut('slow',function() {
+        $(this).hide();
+    })
+}, 2000);
+});
+
+<% flash.clear %>
+

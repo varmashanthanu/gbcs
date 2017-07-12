@@ -9,4 +9,10 @@ class Competition < ApplicationRecord
   has_many :comp_teams, dependent: :destroy
   has_many :teams, through: :comp_teams
 
+  private
+
+  def participant(user)
+    self.teams.exists?Team.where(:id => Member.where(user:user).select(:team_id))
+  end
+
 end

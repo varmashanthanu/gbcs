@@ -5,7 +5,7 @@ class SkillsController < ApplicationController
     @skills = Skill.order(category:'ASC').order(name:'ASC')
   end
 
-  def pie_chart
+  def pie_chart #TODO maybe name this action appropriately
     render json: Skill.skill_dist
   end
 
