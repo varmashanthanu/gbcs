@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   def show
+
   end
 
   def column_graph
@@ -85,8 +86,11 @@ class UsersController < ApplicationController
     session[:return_to] ||= request.referer
   end
 
-  def search_params
-    current_user.admin ? user = User.students.order(:program).order(score:'DESC') : user = User.gen_sort(current_user)
+  def search_params #TODO remove loggers
+    user = User.students
+    (user = user.where("fname iLIKE ? OR lname iLIKE ?", "%#{params[:name]}%", "%#{params[:name]}%");Rails.logger.debug("Triggered 3")) if (params[:name] && params[:name] != '')
+    current_user.admin ? user = user.students.order(:program).order(score:'DESC') : user = user.gen_sort(current_user)
+
     params.each do |k,v|
       Rails.logger.debug("Key #{k}, Value #{v}")
     end
@@ -95,11 +99,6 @@ class UsersController < ApplicationController
         user = User.search(params[:sp],params[:so])
         Rails.logger.debug("Triggered 1 #{user.class}")
       end
-      (user = user.students.where("fname iLIKE ? OR lname iLIKE ?", "%#{params[:name]}%", "%#{params[:name]}%");Rails.logger.debug("Triggered 3")) if (params[:name] && params[:name] != '')
-
-    else
-      current_user.admin ? user = User.students.order(:program).order(score:'DESC') : user = User.gen_sort(current_user)
-      Rails.logger.debug("Triggered 4")
     end
     current_user.admin ? user : user - [current_user]
   end

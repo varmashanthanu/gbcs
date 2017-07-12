@@ -41,4 +41,14 @@ class Skill < ApplicationRecord
   def self.mult
     100/(Skill.sum(&:rank)*5/Skill.count)
   end
+
+  def self.skill_dist
+    set = Skill.order(:category).joins(:users).group(:name,:category).count
+    data = Hash.new
+    set.each do |k,v|
+      data[k[0]] = v
+    end
+    data
+  end
+
 end

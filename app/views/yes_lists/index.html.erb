@@ -1,24 +1,51 @@
 <% content_for :title, 'Y-List' %>
 <div class="yes-list">
   <div class="wrapper">
-    <div class="main-block">
-      <h1>Your Yes-List</h1>
 
-    </div>
+    <% if current_user.admin %>
+        <div class="main-block">
+          <h1>Student Working Preferences</h1>
 
-    <div class="list-block">
-      <p> User Name - Your Working Preference</p>
-      <% if @yes_lists.any? %>
-          <%= render 'yes_lists' %>
-      <% else %>
-          <p id="none-message"> You have not marked any user-compatibility preferences.</p>
-      <% end %>
-    </div>
+          <div class="yes-list-chart-1">
+            <p>The Most Difficult</p>
+            <%= column_chart difficult_graph_yes_lists_path, id:'difficult-chart' %>
+          </div>
+          <div class="yes-list-chart-2">
+            <p>The Most Hated</p>
+            <%= column_chart hated_graph_yes_lists_path, id:'hated-chart' %>
+          </div>
 
-    <hr/>
+          <hr/>
+          <% c = 0; @users.each do ; c+=1; end %> <!-- Need to optimize TODO -->
+          <%= "#{c} students with Working Preferences." %>
+          <% @users.each do |u| %>
+              <% @yes_lists = u.yes_lists %>
+              <h4><%= "#{u.fullname} - #{@yes_lists.count} Choices" %></h4>
+              <%= render 'yes_lists' %>
+              <hr/>
+          <% end %>
 
-    <div class="add-block">
-      <%= link_to 'Quick Add', new_yes_list_path, remote: true, id:'add-block' %>
-    </div>
+        </div>
+    <% else %>
+        <div class="main-block">
+          <h1>Your Yes-List</h1>
+
+        </div>
+
+        <div class="list-block">
+          <p> User Name - Your Working Preference</p>
+          <% if @yes_lists.any? %>
+              <%= render 'yes_lists' %>
+          <% else %>
+              <p id="none-message"> You have not marked any user-compatibility preferences.</p>
+          <% end %>
+        </div>
+
+        <hr/>
+
+        <div class="add-block">
+          <%= link_to 'Quick Add', new_yes_list_path, remote: true, id:'add-block' %>
+        </div>
+    <% end %>
   </div>
 </div>

@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   match 'column_graph/:id/users' => 'users#column_graph', as: :column_graph_users, via: [:get]
   match 'indi_graph/:id/users' => 'users#indi_graph', as: :indi_graph_users, via: [:get]
   get 'yes_lists/:id/toggle' => 'yes_lists#toggle', as: :toggle_yes_lists, via: [:get]
+  match 'difficult_graph/yes_lists' => 'yes_lists#difficult_graph', as: :difficult_graph_yes_lists, via: [:get]
+  match 'hated_graph/yes_lists' => 'yes_lists#hated_graph', as: :hated_graph_yes_lists, via: [:get]
 
   get 'mine/teams' => 'teams#mine', as: :teams_mine, via: [:get]
 

@@ -1,3 +1,4 @@
-<div id="pie-chart">
-  <%= pie_chart pie_chart_skills_path %>
+<div id="skill-density-chart">
+  <p>User Skill Density</p>
+  <%= column_chart pie_chart_skills_path, xtitle:'No. of Users',colors:["orangered","blue","green"],legend:true %>
 </div>

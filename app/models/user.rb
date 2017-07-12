@@ -131,6 +131,25 @@ class User < ApplicationRecord
     users.order(query)
   end
 
+  def self.hated
+    list = YesList.where(match:'NO').select(:target_id).group(:target_id).limit(10).count.sort_by { |k,v|v}.reverse
+    data = Hash.new
+    list.each do |k,v|
+      data[User.find(k).fullname] = v
+    end
+
+    data
+  end
+  def self.difficult
+    list = YesList.where(match:'NO').select(:user_id).group(:user_id).limit(10).count.sort_by { |k,v|v}.reverse
+    data = Hash.new
+    list.each do |k,v|
+      data[User.find(k).fullname] = v
+    end
+
+    data
+  end
+
   # TODO Do I really this function here? Shall I just call members on the Team Model?
   def self.team_members(team)
     where(:id=>Member.where(team:team).select(:user_id))

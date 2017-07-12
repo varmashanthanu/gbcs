@@ -6,7 +6,7 @@ class SkillsController < ApplicationController
   end
 
   def pie_chart
-    render json: Skill.group(:category).count
+    render json: Skill.skill_dist
   end
 
   def show

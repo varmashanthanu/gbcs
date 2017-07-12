@@ -3,27 +3,14 @@
 
   <h1> Profile Page </h1>
 
-<p><%= @user.fullname %></p>
-
-<p>
-  <%= @user.program ? "Program: #{@user.program}" : "Program information not filled." %><br/>
-  <%= @user.graduation ? "Graduation: #{@user.graduation.strftime('%Y')}" : "Graduation information not filled." %><br/>
-  <%= "Locations available: #{@user.preference.location.humanize}" %><br/>
-  <%= "Competitions Interested: #{@user.preference.competition.humanize}" %><br/>
-  <%= "Skill Score: #{@user.score}" %>
-</p>
-
-
-
-
+  <div class="profile-info">
+    <%= render 'user' %>
+  </div>
 
   <% if current_user == @user %>
     <small><%= link_to 'Edit', edit_user_path(@user) %></small>
     <small><%= link_to 'Change Password', user_edit_password_path %></small>
   <% end %>
-
-  <p><%= current_user.admin ? "If you See this you are admin":'' %></p>
-
 
   <div class="column-graph">
     <% if @user.user_skills.any? %>

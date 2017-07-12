@@ -1,0 +1,18 @@
+<% if current_user.admin %>
+    <%= "Name: #{@user.fullname||'Incomplete'}" %><br/>
+    <%= "Email: #{@user.email}" %><br/>
+    <%= "Contact No.: #{@user.telno}" %><br/>
+
+    <br/><%= link_to 'Change Master Password', '#', remote: true %><br/><br/>
+
+<% else %>
+    <p><%= @user.fullname %></p>
+
+    <p>
+      <%= @user.program ? "Program: #{@user.program}" : "Program information not filled." %><br/>
+      <%= @user.graduation ? "Graduation: #{@user.graduation.strftime('%Y')}" : "Graduation information not filled." %><br/>
+      <%= "Locations available: #{@user.preference.location.humanize}" %><br/>
+      <%= "Competitions Interested: #{@user.preference.competition.humanize}" %><br/>
+      <%= "Skill Score: #{@user.score}" %>
+    </p>
+<% end %>
