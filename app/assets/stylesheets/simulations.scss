@@ -24,3 +24,22 @@
   width: 63.85%;
   display: inline-block;
 }
+
+.user-stats {
+  position: fixed;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  width: 800px;
+  line-height: 0.5;
+  border: solid violet 2px;
+  background-color: rgba(beige,0.9);
+  display: none;
+}
+
+.yes-list-no, .yes-list-yes {
+  width: 30%;
+  display: inline-block;
+}

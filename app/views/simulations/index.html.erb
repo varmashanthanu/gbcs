@@ -2,11 +2,20 @@
 
 <h1>Team Builder</h1>
 
+<div class="user-stats">
+
+</div>
+
 <div class="user-view">
   <div class="user-search" id="user-search">
     <%= form_tag simulations_search_path, method: :get, remote: true do %>
         <%= text_field_tag :name, params[:name],autofocus: true, placeholder: 'Enter Name', class: 'txt-fld' %>
         <%= hidden_field :team, :id, value: @team.id %>
+        <div id="member-adds">
+          <% @members.each do |m| %>
+              <%= hidden_field :members, :id, :value => m.id,multiple:true, id:"member-#{m.id}" %>
+          <% end %>
+        </div>
         <%= select :sp, :sp1, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp1] if params[:sp]) %>
         <%= select :so, :so1, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so1] if params[:sp]) %>
         <%= select :sp, :sp2, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp2] if params[:sp]) %>

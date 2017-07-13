@@ -1,20 +1,12 @@
-$('#list').empty();
-$('#list').append("<%= j render('members') %>");
-$('#user-view').empty();
-$('#user-view').append("<%= j render('users') %>");
+$('#list').empty().append("<%= j render('members') %>");
+$('#user-view').empty().append("<%= j render('users') %>");
+//$('#user-<=@member.id%>').remove();
+
+$('#member-adds').empty();
+<% @members.each do |m| %>
+$('#member-adds').append("<%= j hidden_field :members, :id, :value => m.id,multiple:true, id:"member-#{m.id}" %>")
+<% end %>
 
 $('#chart-1').replaceWith("<%= j bar_chart simulations_team_skills_path :members => @members.pluck(:id), id:'team-skills', remote:true %>");
 
-$(".error").show();
-$(function(){setTimeout(function(){
-    $("#notice-message").fadeOut('slow',function() {
-        $(this).hide();
-    })
-    $(".error").fadeOut('slow',function() {
-        $(this).hide();
-    })
-}, 2000);
-});
-
-<% flash.clear %>
 

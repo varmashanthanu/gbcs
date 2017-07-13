@@ -7,6 +7,12 @@ class YesList < ApplicationRecord
     where("user_id = ? AND target_id = ?", ylist.user.id, ylist.target.id) || false
   end
 
+  # def compatibility(members)
+  #   data = Hash.new
+  #   members.each do |m|
+  #     data[m.name] = m.yes_lists.where(target:members,match:'NO')
+  #   end
+  # end
   # def toggle
   #    unless !self.match
   #      self.match == 'YES' ? self.match = 'NO' : self.match = 'YES'

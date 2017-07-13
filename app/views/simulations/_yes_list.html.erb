@@ -1,0 +1,16 @@
+<div class="yes-list-no">
+    <% if @user.yes_lists.where(match:'NO').present? %>
+      <h4>Issues With:</h4>
+        <% @user.yes_lists.where(match:'NO').each do |y| %>
+            <p><%= User.find(y.target_id).fullname  %></p>
+        <% end %>
+    <% end %>
+</div>
+<div class="yes-list-yes">
+    <% if @user.yes_lists.where(match:'YES').present? %>
+      <h4>Preference For:</h4>
+        <% @user.yes_lists.where(match:'YES').each do |y| %>
+            <p><%= User.find(y.target_id).fullname  %></p>
+        <% end %>
+    <% end %>
+</div>

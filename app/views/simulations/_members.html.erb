@@ -1,4 +1,4 @@
 <% @members.each do |u| %>
-  <pre id="<%=u.id%>"><%= "#{u.fname}\t#{u.score}\t#{u.program}\t" %><%= link_to 'Remove', '#', id:"remove-#{u.id}", remote: true %>
+  <pre id="member-<%=u.id%>"><%= link_to "#{u.fullname}", simulations_user_stats_path(u), remote: true %><%= "\t#{u.score}\t#{u.program}\t" %><%= link_to 'Remove', {controller:'simulations', action:'remove_member', :team => @team.id, :remove_member => u.id, :members => @members.pluck(:id)}, id:"remove-#{u.id}", remote: true unless @team.is_member(u) %>
   </pre>
 <% end %>

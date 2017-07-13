@@ -1,0 +1,5 @@
+$('.user-stats').empty().append("<%= j render('indi_skill_graph') %>").append("<%= j render('yes_list') %>")
+$('.user-stats').show();
+$(document).click(function(){
+    $('.user-stats').hide();
+});

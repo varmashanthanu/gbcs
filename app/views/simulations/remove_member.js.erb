@@ -1,0 +1,5 @@
+$('#list').empty().append("<%= j render('members') %>");
+$('#user-view').empty().append("<%= j render('users') %>");
+
+
+$('#chart-1').replaceWith("<%= j bar_chart simulations_team_skills_path :members => @members.pluck(:id), id:'team-skills', remote:true %>");
