@@ -1,0 +1,9 @@
+
+    <% @compatibility.each do |name,list| %>
+      <h4><%= "#{name} has issues with:" %></h4>
+        <% list.each do |l| %>
+            <p><%= l.target.fullname %></p>
+        <% end %>
+    <% end %>
+
+    <br/><br/><p id="close">CLOSE</p>

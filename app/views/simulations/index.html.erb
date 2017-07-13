@@ -36,8 +36,12 @@
 </div>
 
 <div class="member-view">
+  <div class="compatibility">
 
-  <pre><%= "Name\tScore\tProgram" %></pre>
+  </div>
+  <pre class="heading"><%= "Name\t\tScore\tProgram" %></pre>
+  <div id="warning">Issues</div>
+
   <div id="list">
     <%= render 'members' %>
   </div>

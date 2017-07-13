@@ -43,3 +43,30 @@
   width: 30%;
   display: inline-block;
 }
+
+.compatibility {
+  width: 29%;
+  height: inherit;
+  overflow: scroll;
+  position: fixed;
+  z-index: 5;
+  background-color: rgba(beige,0.9);
+  display: none;
+  //border: solid green;
+  line-height: 0.5;
+}
+
+#warning {
+  display: none;
+  position: absolute;
+  float: right;
+  width: 25%;
+  //display: inline-block;
+  padding-left: 15px;
+  color: red;
+}
+
+.heading {
+  width: 70%;
+  display: inline-block;
+}

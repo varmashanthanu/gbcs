@@ -2,6 +2,24 @@ $('#list').empty().append("<%= j render('members') %>");
 $('#user-view').empty().append("<%= j render('users') %>");
 //$('#user-<=@member.id%>').remove();
 
+<% if @compatibility.present? %>
+$('#warning').css('display','inline-block');
+$('#warning').click(function(){
+    $('#warning').hide();
+    $('.compatibility').show();
+    $('.compatibility').empty().append("<%= j render('compatibility') %>");
+    $('#close').click(function(){
+        $('.compatibility').hide();
+        $('#warning').css('display','inline-block');
+    });
+});
+
+//$(document).click(function(){
+//    $('.compatibility').hide();
+//        $('#warning').css('display','inline-block');
+//});
+<% end %>
+
 $('#member-adds').empty();
 <% @members.each do |m| %>
 $('#member-adds').append("<%= j hidden_field :members, :id, :value => m.id,multiple:true, id:"member-#{m.id}" %>")
