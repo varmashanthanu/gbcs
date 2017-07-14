@@ -26,6 +26,20 @@ class InvitesController < ApplicationController
     end
   end
 
+  def mass_invite
+    @team = Team.find(params[:team])
+    @users = User.where(:id=>params[:members]).where.not(:id=>@team.members.pluck(:user_id))
+    Rails.logger.debug(@users.pluck(:id))
+    @users.each do |user|
+      @invite = @team.invites.new(user:user)
+      @invite.save unless Invite.duplicate(@invite).present?
+    end
+    respond_to do |format|
+      format.html
+      format.js { flash[:notice] = 'Invites sent.'}
+    end
+  end
+
   def destroy
     @invite = Invite.destroy(params[:id])
     respond_to do |format|

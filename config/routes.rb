@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   match 'admin/make_admin' => 'admin#make_admin', as: :admin_make_admin, via: [:get]
   match 'admin/get_pass' => 'admin#get_pass', as: :admin_get_pass, via: [:get]
 
+  match 'mass_invite/invites' => 'invites#mass_invite', as: :invites_mass_invite, via: [:get]
 
   root to: 'welcome#home'
 end

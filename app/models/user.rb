@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   after_initialize :init, :init_pref_addr
 
-  attr_accessor :address_attributes, :teams_attributes
+  attr_accessor :address_attributes, :teams_attributes, :invites_attributes
 
   has_one :address, as: :addressable, dependent: :destroy
   accepts_nested_attributes_for :address, reject_if: proc { |attributes| attributes[:addr].blank? }, allow_destroy: true
@@ -21,6 +21,9 @@ class User < ApplicationRecord
   has_many :yes_lists, dependent: :destroy
 
   has_one :preference, dependent: :destroy
+
+  has_many :invites, dependent: :destroy
+  accepts_nested_attributes_for :invites, reject_if: :all_blank, allow_destroy: true
 
   scope :faculty, -> {where(admin: true)}
   scope :students, -> {where('admin IS NULL OR admin is FALSE')}
@@ -126,7 +129,6 @@ class User < ApplicationRecord
       query += s
       query += ', ' unless s==string.last
     end
-
 
     users.order(query)
   end

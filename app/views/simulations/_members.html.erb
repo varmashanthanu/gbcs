@@ -2,3 +2,4 @@
   <pre id="member-<%=u.id%>"><%= link_to "#{u.fullname}", simulations_user_stats_path(u), remote: true %><%= "\t#{u.score}\t#{u.program}\t" %><%= link_to 'Remove', {controller:'simulations', action:'remove_member', :team => @team.id, :remove_member => u.id, :members => @members.pluck(:id)}, id:"remove-#{u.id}", remote: true unless @team.is_member(u) %>
   </pre>
 <% end %>
+<%= link_to 'Send Invites', {controller:'invites', action:'mass_invite', :team => @team.id, :members => @members.pluck(:id)}, id:'mass-invite', remote: true if User.where(:id=>@members).where.not(:id=>@team.members.collect{|m|m.user_id}).present? %>
