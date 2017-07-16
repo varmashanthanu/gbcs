@@ -22,6 +22,8 @@ class User < ApplicationRecord
 
   has_one :preference, dependent: :destroy
 
+  has_many :competitions, foreign_key: :creator_id
+
   has_many :invites, foreign_key: :user_id, dependent: :destroy
   has_many :requests, :class_name => 'Invite', foreign_key: :sender_id, dependent: :destroy
 

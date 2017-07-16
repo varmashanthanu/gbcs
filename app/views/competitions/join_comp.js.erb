@@ -1,0 +1,18 @@
+$('#team-form').remove();
+$('#choices').hide();
+$('#participate-button').show();
+$('.participate').hide();
+$('.actions').append("<%= j render('team') %>");
+
+$("#notice-message").html("<%= flash[:notice] %>").show();
+$(".error").show();
+$(function () {
+    setTimeout(function () {
+        $("#notice-message").fadeOut('slow', function () {
+            $(this).hide();
+        })
+        $(".error").fadeOut('slow',function() {
+            $(this).hide();
+        })
+    }, 2000);
+});

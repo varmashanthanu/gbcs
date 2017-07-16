@@ -3,28 +3,15 @@
 <div class="competition-view">
   <div class="wrapper">
     <div class="data-fields">
-      <%= "Name: #{@competition.name}" %>
+      <%= render 'competition' %>
     </div>
-    <div class="data-fields">
-      <%= "Link: #{@competition.url}" if @competition.url %>
-    </div>
-    <div class="data-fields">
-      <%= "Description: #{@competition.description}" if @competition.description %>
-    </div>
-    <div class="data-fields">
-      <%= "Start Date: #{@competition.start}" if @competition.start %>
-    </div>
-    <div class="data-fields">
-      <%= "Type: #{@competition.comp_type}" if @competition.comp_type %>
-    </div>
-    <div class="data-fields">
-      <%= "Duration: #{@competition.duration}" if @competition.duration %>
-    </div>
-    <div class="data-fields">
-        <%= "Hosted by: #{@competition.host}" if @competition.host %>
-    </div>
-    <div class="data-fields">
-      <%= "Prize: #{@competition.prize}" if @competition.prize %>
+    <hr/>
+    <div class="actions">
+      <% if @team %>
+          <%= render 'team' %>
+      <% else %>
+          <%= render 'participate' %>
+      <% end %>
     </div>
   </div>
 </div>

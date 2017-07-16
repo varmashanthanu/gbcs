@@ -1,0 +1,5 @@
+$('.data-fields').empty().append("<%= j render('edit') %>");
+
+$('#cancel-edit').click(function(){
+    $('.data-fields').empty().append("<%= j render('competition') %>");
+});

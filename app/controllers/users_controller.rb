@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     @user_skills = current_user.user_skills
     @user_teams = current_user.members
     @invites = Invite.received(current_user)
-    @comps = Competition.where(creator_id: current_user.id)
+    @comps = Competition.mine(current_user)
   end
 
   def edit

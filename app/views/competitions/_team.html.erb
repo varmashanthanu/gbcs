@@ -1,0 +1,4 @@
+<div class="team-show">
+  <%= 'Your Participating Team: ' %><%= link_to @team.name, @team %>
+  <small>| <%= link_to 'Leave Competition', { controller: 'competitions', action: 'leave_comp', team: @team.id, competition: @competition.id }, data: {confirm:'Are You Sure?'}, remote:true, id:'leave-competition' if @team.is_lead(current_user) %></small>
+</div>

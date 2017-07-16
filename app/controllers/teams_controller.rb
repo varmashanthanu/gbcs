@@ -29,7 +29,7 @@ class TeamsController < ApplicationController
         @team.skill_add(current_user)
       end
       if @team.comp_teams_attributes
-        @team.comp_teams_attributes.first[1].each do | k,v|
+        @team.comp_teams_attributes.first[1].each do | k,v| #TODO WTF is going on here?
           Rails.logger.debug(v)
           if v.to_i>0
             @team.comp_teams.create(competition_id:v.to_i)

@@ -1,0 +1,5 @@
+<%= form_tag join_comp_competitions_path, method: 'get',id:'team-form', remote: true do %>
+    <%= hidden_field_tag 'competition', @competition.id %>
+    <%= collection_select :team, :id, @teams, :id, :name %>
+    <%= submit_tag 'Save' %><small><%= link_to 'Cancel', '#', id:'cancel-select'%></small>
+<% end %>

@@ -28,7 +28,7 @@
       <% if @comps.count > 0 %>
           <% @comps.each do |comp| %>
               <p>
-                <%= comp.name  %>
+                <%= link_to comp.name, comp  %>
               </p>
           <% end %>
       <% else %>

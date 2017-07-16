@@ -1,0 +1,14 @@
+$('.data-fields').empty().append("<%= j render('competition') %>");
+
+$("#notice-message").html("<%= flash[:notice] %>").show();
+$(".error").show();
+$(function () {
+    setTimeout(function () {
+        $("#notice-message").fadeOut('slow', function () {
+            $(this).hide();
+        })
+        $(".error").fadeOut('slow',function() {
+            $(this).hide();
+        })
+    }, 2000);
+});

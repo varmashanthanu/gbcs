@@ -36,6 +36,9 @@ Rails.application.routes.draw do
   get 'yes_lists/:id/toggle' => 'yes_lists#toggle', as: :toggle_yes_lists, via: [:get]
   match 'difficult_graph/yes_lists' => 'yes_lists#difficult_graph', as: :difficult_graph_yes_lists, via: [:get]
   match 'hated_graph/yes_lists' => 'yes_lists#hated_graph', as: :hated_graph_yes_lists, via: [:get]
+  match 'select_team/competitions' => 'competitions#select_team', as: :select_team_competitions, via: [:get]
+  match 'join_comp/competitions' => 'competitions#join_comp', as: :join_comp_competitions, via: [:get]
+  match 'leave_comp/competitions' => 'competitions#leave_comp', as: :leave_comp_competitions, via: [:get]
 
   get 'mine/teams' => 'teams#mine', as: :teams_mine, via: [:get]
 

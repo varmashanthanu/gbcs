@@ -1,0 +1,5 @@
+$('#choices').hide().after("<%= j render('select_team') %>");
+$('#cancel-select').click(function(){
+    $('#team-form').remove();
+    $('#choices').show();
+});

@@ -1,0 +1,8 @@
+<div class="participate">
+  <%= link_to 'Participate', '#', remote: true, id:'participate-button' %>
+  <div id="choices" style="display: none">
+    <%= link_to 'Select team', {controller:'competitions', action:'select_team', :competition => @competition.id}, remote: true, id:'select-button' if current_user.teams.present? %>
+    <%= link_to 'Create Team', teams_mine_path, id:'create-button' %>
+    <small><%= link_to 'Cancel', '#', remote: true, id:'participate-cancel' %></small>
+  </div>
+</div>

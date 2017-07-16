@@ -8,6 +8,7 @@ class CompetitionsController < ApplicationController
 
   def show
     @competition = Competition.find(params[:id])
+    @team = @competition.user_team(current_user)
   end
 
   def new
@@ -25,12 +26,74 @@ class CompetitionsController < ApplicationController
   end
 
   def edit
+    @competition = Competition.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def update
+    @competition = Competition.find(params[:id])
+    if @competition.update_attributes(comp_params)
+      respond_to do |format|
+        format.html
+        format.js { flash[:notice] = 'Updated.' }
+      end
+    else
+      respond_to do |format|
+        format.html
+        format.js { flash[:notice] = 'Update Failed.'
+                  render action: 'error' }
+      end
+    end
   end
 
   def destroy
+    @competition = Competition.find(params[:id]).destroy
+    respond_to do |format|
+      format.html {redirect_to(competitions_path, notice: 'Deleted.')}
+      format.js { flash[:notice] = 'Deleted.' }
+    end
+  end
+
+  def select_team
+    @teams = current_user.teams
+    @competition = Competition.find(params[:competition])
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def join_comp
+    @competition = Competition.find(params[:competition])
+    Rails.logger.debug("TESTING #{params[:competition]}")
+    @team = Team.find(params[:team][:id]) || Team.create(team_params)
+    @comp_team = CompTeam.new(competition:@competition,team:@team)
+    if @comp_team.save
+      respond_to do |format|
+        format.html
+        format.js { flash[:notice] = "You are participating in #{@competition.name} with Team #{@team.name}." }
+      end
+    else
+      respond_to do |format|
+        format.html
+        format.js { flash[:notice] = 'Unable to add team to competition.'
+                  render action: 'error' }
+      end
+    end
+  end
+
+  def leave_comp
+    @competition = Competition.find(params[:competition])
+    @team = Team.find(params[:team])
+    @comp_team = CompTeam.where(competition:@competition, team:@team).first
+    @comp_team.destroy
+    respond_to do |format|
+      format.html
+      format.js { flash[:notice] = 'Your team has left this competition.' }
+    end
   end
 
   private
@@ -40,8 +103,8 @@ class CompetitionsController < ApplicationController
 
   def check_authorization
     @competition = Competition.find(params[:id])
-    unless current_user.id == @competition.creator_id
-      redirect_to reports_path, :notice => 'That report does not belong to you. Shame.'
+    unless current_user.admin || current_user == @competition.creator
+      redirect_to @competition, :notice => 'Authorization Error.'
     end
   end
 end

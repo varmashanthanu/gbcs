@@ -1,0 +1,18 @@
+<h4>Competition Information</h4>
+<p>Name: <%= @competition.name %></p>
+<p>Link: <%= @competition.url ? link_to(@competition.url, @competition.full_url) : 'None provided.' %></p>
+<p>Description: <%= @competition.description || 'None Provided.' %></p>
+<p>Start Date: <%= @competition.start ? @competition.start.strftime('%d %b %Y') : 'None Provided.' %></p>
+<p>Duration: <%= @competition.duration || 'None Provided.' %></p>
+<p>Type: <%= @competition.comp_type || 'None Provided.' %></p>
+<p>Hosted By: <%= @competition.host || 'None Provided.' %></p>
+<p>Prize: <%= @competition.prize || 'None Provided.' %></p>
+<p>Added By: <%= @competition.creator.fullname || 'None Provided.' %></p>
+<div class="comp-edit">
+  <% if current_user.admin || current_user == @competition.creator %>
+      <small>
+        <%= link_to 'Edit', edit_competition_path(@competition), remote: true, id:"edit-competition-#{@competition.id}" %>
+        <%= link_to 'Delete', @competition, method: 'delete', data:{confirm: 'Are you sure?'} %>
+      </small>
+  <% end %>
+</div>
