@@ -11,9 +11,7 @@
       <div class="team-skills">
         <p>
           <%= "Team Skills:"%><br/>
-          <% @team.team_skills.each do |ts| %>
-            <%= "Skill: #{ts.name} - Level: #{ts.level} - #{ts.count} Members." %><br/>
-          <% end %>
+          <%= column_chart @team.skill_set %>
         </p>
       </div>
 
@@ -29,11 +27,13 @@
           <p>Members:</p>
           <ul>
             <% @team.members.each do |m| %>
-                <li><%=link_to "#{m.user.name.humanize}", m.user %></li>
+                <li id="member-team-<%=m.id%>"><%=link_to "#{m.user.name.humanize}", m.user %>
+                  <small><%= link_to 'Remove', m, remote:true, method: :delete, data: {confirm: 'Are you Sure?'} if @team.is_lead(current_user)%></small>
+                </li>
             <% end %>
           </ul>
       <% end %>
-      <% if @team.is_member(current_user) %> <!-- Options if member, add additional members -->
+      <% if @team.is_member(current_user) || @team.is_lead(current_user) %> <!-- Options if member, add additional members -->
           <div class="add-members">
             <div id="add-member-button">
               <%= link_to 'Quick Add', {:controller => "invites", :action => "new", :team => @team.id }, id:'invite-member', remote: true %> |
@@ -41,7 +41,7 @@
             </div>
           </div>
       <% else %> <!-- Options if not member, request join permission -->
-
+          <%= link_to 'Request Join', '#', remote: true %>
       <% end %>
     </div>
   </div>

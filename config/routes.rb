@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :competitions
   resources :preferences
   resources :simulations
+  resources :programs
   match 'team_skills/simulations' => 'simulations#team_skills', as: :simulations_team_skills, via: [:get]
   match 'search/simulations' => 'simulations#search', as: :simulations_search, via: [:get]
   match 'remove_member/simulations' => 'simulations#remove_member', as: :simulations_remove_member, via: [:get]
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
   match 'users/edit_password' => 'users#edit_password', as: :user_edit_password, via: [:get]
   match 'users/update_password' => 'users#update_password', as: :user_update_password, via: [:post]
   match 'user/dashboard' => 'users#dashboard', as: :user_dashboard, via: [:get]
+  match 'user/edit_avatar' => 'users#edit_avatar', as: :user_edit_avatar, via: [:get]
 
   match 'pie_chart/skills' => 'skills#pie_chart', as: :pie_chart_skills, via: [:get]
   match 'column_graph/:id/users' => 'users#column_graph', as: :column_graph_users, via: [:get]

@@ -1,0 +1,7 @@
+$('#edit-avatar').replaceWith("<%= j render('edit_avatar') %>");
+$('#cancel-avatar').click(function(){
+    $('#edit_user_<%=@user.id%>').replaceWith("<%= j render('avatar') %>");
+});
+$('#upload').change(function(){
+    $('#edit_user_<%=@user.id%>').submit();
+});

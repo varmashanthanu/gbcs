@@ -1,0 +1,5 @@
+<%= form_for @program, remote:true, id:'edit-program' do |f| %>
+    <%= f.text_field :name, autofocus: true, required: true, value: @program.name, placeholder:'Program Tag, e.g.: FTMBA2' %>
+    <%= f.text_field :description, required: true, autofocus: true, value: @program.description, placeholder:'Description, e.g.: Full Time MBA 2-Year' %>
+    <%= f.submit 'Update' %> <%= link_to 'Cancel', '#', id:"cancel-edit-#{@program.id}", remote:true %>
+<% end %>

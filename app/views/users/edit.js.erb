@@ -1,0 +1,7 @@
+$('#edit-user').hide();
+$('.profile-info').empty().append("<%= j render('edit') %>");
+
+$('#cancel-edit').click(function(){
+    $('.profile-info').empty().append("<%= j render('user') %>");
+    $('#edit-user').show();
+});

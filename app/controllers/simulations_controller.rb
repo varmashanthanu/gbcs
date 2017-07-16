@@ -23,9 +23,10 @@ class SimulationsController < ApplicationController
 
   def new
     # TODO need to figure out how to recreate the list without resorting to default mets.
-    params[:members] << params[:new_member]
+    params[:members].present? ? params[:members] << params[:new_member] : params[:members] = params[:new_member]
     @team = Team.find(params[:team])
-    @members = User.find(params[:members])
+    @members = User.where(:id => params[:members])
+    Rails.logger.debug("Action NEW #{@members.count} #{@members.first.name}")
     @compatibility = YesList.compatibility(@members)
     @users = search_params
     respond_to do |format|

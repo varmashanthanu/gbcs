@@ -9,8 +9,9 @@
     <p><%= @user.fullname %></p>
 
     <p>
-      <%= @user.program ? "Program: #{@user.program}" : "Program information not filled." %><br/>
-      <%= @user.graduation ? "Graduation: #{@user.graduation.strftime('%Y')}" : "Graduation information not filled." %><br/>
+      <%= @user.program ? "Program: #{@user.program}" : "Program information not filled." %> |
+      <%= @user.term ? "Program: #{@user.term}" : "Term information not filled." %> |
+      <%= @user.graduation ? "Graduation: #{@user.graduation}" : "Graduation information not filled." %><br/>
       <%= "Locations available: #{@user.preference.location.humanize}" %><br/>
       <%= "Competitions Interested: #{@user.preference.competition.humanize}" %><br/>
       <%= "Skill Score: #{@user.score}" %>

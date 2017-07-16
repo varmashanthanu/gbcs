@@ -1,5 +1,8 @@
 $('#list').empty().append("<%= j render('members') %>");
 $('#user-view').empty().append("<%= j render('users') %>");
 
-
+<% if @members.present? %>
 $('#chart-1').replaceWith("<%= j bar_chart simulations_team_skills_path :members => @members.pluck(:id), id:'team-skills', remote:true %>");
+<% else %>
+$('#chart-1').replaceWith("<%= j bar_chart [["",0]],library: { title:'Team Skills',colors: ['orangered']}, id:'chart-1', remote:true %>");
+<% end %>

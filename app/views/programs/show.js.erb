@@ -1,0 +1,5 @@
+$('#program-show').remove();
+$('#program-<%=@program.id%>').append("<%= j render('show') %>");
+$(document).click(function(){
+   $('#program-show').remove();
+});

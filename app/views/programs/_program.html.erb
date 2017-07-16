@@ -1,0 +1,8 @@
+<p id="program-<%=@program.id%>">
+<%= link_to @program.name, @program, remote:true, id:"name-#{@program.id}"%>
+<%= @program.description %>
+<small>
+  <%= link_to 'Edit', edit_program_path(@program), remote:true, id:"edit-#{@program.id}" %>
+  <%= link_to 'Delete', @program,method: 'delete', remote:true, id:"delete-#{@program.id}" %>
+</small>
+</p>

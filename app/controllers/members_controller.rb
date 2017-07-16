@@ -35,7 +35,7 @@ class MembersController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.js { flash[:notice] = "You have left team #{team.name}" }
+      format.js { flash[:notice] = "Removed from team #{team.name}" }
     end
   end
 

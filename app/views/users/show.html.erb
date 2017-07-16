@@ -8,8 +8,8 @@
   </div>
 
   <% if current_user == @user %>
-    <small><%= link_to 'Edit', edit_user_path(@user) %></small>
-    <small><%= link_to 'Change Password', user_edit_password_path %></small>
+    <small><%= link_to 'Edit', edit_user_path(@user), remote:true, id:'edit-user' %></small>
+    <small><%= link_to 'Change Password', user_edit_password_path, id:current_user.id %></small>
   <% end %>
 
   <div class="column-graph">

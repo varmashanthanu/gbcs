@@ -19,7 +19,16 @@ class Team < ApplicationRecord
   # scope :complementary,
 
   def self.mine(user)
-    where(:id=>Member.where(user:user).select(:team_id))
+    user.admin ? where(:lead_id=>user):where(:id=>Member.where(user:user).select(:team_id))
+  end
+
+  def skill_set
+    data = Hash.new
+    teamskills = self.team_skills
+    teamskills.each do |ts|
+      data[ts.name] = ts.level
+    end
+    data
   end
 
   def is_lead(user)

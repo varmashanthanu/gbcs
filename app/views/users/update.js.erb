@@ -1,0 +1,17 @@
+$('.profile-info').empty().append("<%= j render('user') %>");
+$('#edit-user').show();
+
+$("#notice-message").html("<%= flash[:notice] %>").show();
+$(".error").show();
+$(function () {
+    setTimeout(function () {
+        $("#notice-message").fadeOut('slow', function () {
+            $(this).hide();
+        })
+        $(".error").fadeOut('slow',function() {
+            $(this).hide();
+        })
+    }, 2000);
+});
+
+<% flash.clear %>

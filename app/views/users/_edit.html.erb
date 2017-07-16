@@ -1,0 +1,44 @@
+
+<div class="user-form">
+  <%= form_for(@user, html: {multipart: true}, remote:true) do |f| %>
+
+      <!--<div class="field-blocks">-->
+        <!--<div class="image">-->
+          <!--<= f.file_field :avatar %>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <div class="data-fields">
+        <%= f.label 'Name'%>
+        <%= f.text_field :fname, autofocus: true, placeholder: 'First Name' %>
+        <%= f.text_field :lname, autofocus: true, placeholder: 'Last Name'%>
+        <br/><br/>
+      </div>
+      <div class="data-fields">
+        <%= f.label :program %>
+        <%= f.collection_select :program, Program.asc ,:name,:tag, autofocus: true, selected:@user.program, required:true %>
+        <%= f.label :term %>
+        <%= f.select :term, %w(FALL SPRING SUMMER) , autofocus: true, selected: @user.term %>
+        <%= f.label :graduation %>
+        <%= f.select :graduation, (Date.today.year)..(Date.today.year+6),selected:@user.graduation, required:true, autofocus:true %>
+        <!--TODO Shift the programs list into an admin editable model-->
+      </div>
+      <div class="data-fields">
+        <%= f.label 'Contact No.' %>
+        <%= f.telephone_field :telno, autofocus: true, placeholder: '2225557777' %>
+      </div>
+      <div class="action-btn">
+        <%= f.submit 'Save', class: 'btn' %><br />
+      </div>
+
+  <% end %>
+
+  <div class="other">
+    <small><%= link_to 'Back', '#', remote: true, id:'cancel-edit' %>
+    <%= button_to 'Deactivate!', registration_path(@user), class: 'btn', data: { confirm: 'This would delete your account. Are you sure?' }, method: :delete %></small>
+  </div>
+
+
+
+</div>
+

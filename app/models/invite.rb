@@ -1,6 +1,7 @@
 class Invite < ApplicationRecord
   belongs_to :team
   belongs_to :user
+  belongs_to :sender, class_name: 'User'
 
   scope :sent, -> {where(sender_id:current_user.id)}
   scope :received, -> {where(user:current_user)}

@@ -1,0 +1,19 @@
+$('#new_program').remove();
+$('#none-message').hide();
+$('#add-program').show();
+$('#program-list').append("<%= j render('program') %>");
+
+$("#notice-message").html("<%= flash[:notice] %>").show();
+$(".error").show();
+$(function () {
+    setTimeout(function () {
+        $("#notice-message").fadeOut('slow', function () {
+            $(this).hide();
+        })
+        $(".error").fadeOut('slow',function() {
+            $(this).hide();
+        })
+    }, 2000);
+});
+
+<% flash.clear %>

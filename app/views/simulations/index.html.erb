@@ -49,5 +49,5 @@
 
 <div class="team-skill-view">
 
-  <%= @members.any? ? (bar_chart simulations_team_skills_path :members => @members.pluck(:id), id:'team-skills', remote:true) : "No Members in Team." %>
+  <%= @members.any? ? (bar_chart simulations_team_skills_path  library: { hAxis:{title:'Level'},title:'Team Skills',colors: ['orangered'],min:0,max:5}, :members => @members.pluck(:id), id:'team-skills', remote:true) : (bar_chart [["",0]],library: { hAxis:{title:'Level'}, vAxis: {title:'Skills'},title:'Team Skills',colors: ['orangered']}, id:'chart-1', remote:true) %>
 </div>

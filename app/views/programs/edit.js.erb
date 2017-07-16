@@ -1,0 +1,4 @@
+$('#program-<%=@program.id%>').replaceWith("<%= j render('edit') %>");
+$('#cancel-edit-<%=@program.id%>').click(function(){
+   $('#edit_program_<%=@program.id%>').replaceWith("<%= j render(@program) %>")
+});

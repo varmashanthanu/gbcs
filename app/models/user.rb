@@ -22,8 +22,8 @@ class User < ApplicationRecord
 
   has_one :preference, dependent: :destroy
 
-  has_many :invites, dependent: :destroy
-  accepts_nested_attributes_for :invites, reject_if: :all_blank, allow_destroy: true
+  has_many :invites, foreign_key: :user_id, dependent: :destroy
+  has_many :requests, :class_name => 'Invite', foreign_key: :sender_id, dependent: :destroy
 
   scope :faculty, -> {where(admin: true)}
   scope :students, -> {where('admin IS NULL OR admin is FALSE')}
@@ -107,7 +107,7 @@ class User < ApplicationRecord
     mix_year_yes_students = yes_students.where.not(graduation:user.graduation).order(score:'DESC')# change this after seeding
     same_class = mix_year_yes_students.where(program:user.program).order(score:'DESC')
     mix_class_year_yes_students = mix_year_yes_students.where.not(program:user.program).order(score:'DESC')
-
+    # TODO "ORDER BY SCORE" may be redundant in this section. Need to Review
     mix_class_year_yes_students.order(score:'DESC')
     same_class.order(score:'DESC')
     same_year.order(score:'DESC')

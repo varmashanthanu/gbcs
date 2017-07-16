@@ -1,0 +1,5 @@
+$('#add-program').hide().after("<%= j render('new') %>");
+$('#cancel').click(function(){
+   $('#new_program').remove();
+   $('#add-program').show();
+});

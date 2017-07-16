@@ -3,8 +3,10 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :show, :edit, :update, :show]
   before_action :check_authorization, only: [:edit, :update]
   # before_action :set_address, only: [:edit]
-  before_action :set_user, only: [:edit, :update, :show]
+  before_action :set_user, only: [:show, :edit, :update], except: [:edit_password]
   before_action :store_current_location
+
+  skip_before_filter :verify_authenticity_token, :only => :update_avatar
 
   def index
     @users = search_params
@@ -33,17 +35,43 @@ class UsersController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def edit_password
     @user = current_user
   end
 
+  def edit_avatar
+    @user = current_user
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'Updated'
+      if user_params[:avatar].present?
+        respond_to do |format|
+          format.html { redirect_back(fallback_location: @user)}
+          format.js { flash[:notice] = 'Avatar Updated.'
+                    render action: 'update_avatar'}
+        end
+      else
+        respond_to do |format|
+          format.html
+          format.js { flash[:notice] = 'Profile Updated.' }
+        end
+      end
     else
-      redirect_to edit_user_path(@user), notice: 'Update failed, Please Try Again.'
+      respond_to do |format|
+        format.html
+        format.js { flash[:notice] = 'Update Failed.'}
+      end
     end
   end
 
@@ -79,7 +107,7 @@ class UsersController < ApplicationController
   # end
 
   def user_params
-    params.require(:user).permit(:admin, :program, :graduation, :current_password, :password, :password_confirmation, :avatar, :fname, :lname, :email, :telno, address_attributes: [:id, :addr, :addressable_type, :addressable_id])
+    params.require(:user).permit(:admin, :program, :graduation, :current_password, :password, :password_confirmation, :avatar, :fname, :lname, :email, :telno, :term, address_attributes: [:id, :addr, :addressable_type, :addressable_id])
   end
 
   def store_current_location

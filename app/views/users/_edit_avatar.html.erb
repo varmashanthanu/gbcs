@@ -1,0 +1,7 @@
+<div class="user-form">
+  <%= form_for(@user, html: {multipart: true}, remote:true) do |f| %>
+      <%= image_tag current_user.avatar.url(:display), size:'80x80' , class: 'round' %>
+      <%= f.file_field :avatar, id:'upload' %><small><%= link_to '[x]', '#', remote: true, id:'cancel-avatar' %></small>
+  <% end %>
+</div>
+
