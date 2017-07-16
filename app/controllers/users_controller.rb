@@ -107,7 +107,7 @@ class UsersController < ApplicationController
   # end
 
   def user_params
-    params.require(:user).permit(:admin, :program, :graduation, :current_password, :password, :password_confirmation, :avatar, :fname, :lname, :email, :telno, :term, address_attributes: [:id, :addr, :addressable_type, :addressable_id])
+    params.require(:user).permit(:admin, :program, :graduation, :current_password, :password, :password_confirmation, :avatar, :fname, :lname, :email, :telno, :term, :active, address_attributes: [:id, :addr, :addressable_type, :addressable_id])
   end
 
   def store_current_location

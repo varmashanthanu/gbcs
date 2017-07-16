@@ -14,6 +14,7 @@
       <%= @user.graduation ? "Graduation: #{@user.graduation}" : "Graduation information not filled." %><br/>
       <%= "Locations available: #{@user.preference.location.humanize}" %><br/>
       <%= "Competitions Interested: #{@user.preference.competition.humanize}" %><br/>
+      <%= @user.active ? 'Participation Status: Active' : 'Participation Status: Inactive' %><br/>
       <%= "Skill Score: #{@user.score}" %>
     </p>
 <% end %>

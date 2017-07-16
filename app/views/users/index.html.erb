@@ -19,7 +19,7 @@
 
 <% @users.each do |user| %>
 
-    <p><%= link_to "#{user.fname} #{user.lname}", user %><%= " | #{user.email} | #{user.score} | #{user.program} | #{user.graduation.strftime('%Y')}"%></p>
+    <p><%= link_to "#{user.fname} #{user.lname}", user %><%= " | #{user.email} | #{user.score} | #{user.program} | #{user.graduation}"%></p>
     <% @user = user %>
     <%= render 'skill_graph' %>
 

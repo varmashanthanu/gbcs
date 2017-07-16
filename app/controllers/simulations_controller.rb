@@ -71,7 +71,7 @@ class SimulationsController < ApplicationController
   end
 
   def search_params #TODO remove loggers
-    user = User.where.not(:id=>@members.pluck(:id))
+    user = User.active.where.not(:id=>@members.pluck(:id))
     (user = user.where("fname iLIKE ? OR lname iLIKE ?", "%#{params[:name]}%", "%#{params[:name]}%");Rails.logger.debug("Triggered 3")) if (params[:name] && params[:name] != '')
 
     params.each do |k,v|

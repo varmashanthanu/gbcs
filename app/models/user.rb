@@ -27,6 +27,8 @@ class User < ApplicationRecord
 
   scope :faculty, -> {where(admin: true)}
   scope :students, -> {where('admin IS NULL OR admin is FALSE')}
+  scope :active, -> {where(active: true)}
+  scope :inactive, -> {where('active IS NULL OR active is FALSE')}
 
   mount_uploader :avatar, AvatarUploader
 
@@ -95,6 +97,9 @@ class User < ApplicationRecord
 
   def init
     self.score ||= 0
+    self.graduation ||= Date.today.year + 1
+    self.term ||= 'Pending'
+    self.program ||= 'Pending'
   end
 
   def self.gen_sort(user)

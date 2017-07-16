@@ -21,6 +21,8 @@
         <%= f.select :term, %w(FALL SPRING SUMMER) , autofocus: true, selected: @user.term %>
         <%= f.label :graduation %>
         <%= f.select :graduation, (Date.today.year)..(Date.today.year+6),selected:@user.graduation, required:true, autofocus:true %>
+        <%= f.check_box :active %>
+        <%= f.label 'Active for Competitions' %>
         <!--TODO Shift the programs list into an admin editable model-->
       </div>
       <div class="data-fields">
