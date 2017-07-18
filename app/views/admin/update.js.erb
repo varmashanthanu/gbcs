@@ -1,0 +1,17 @@
+$('#edit_master_pass_<%=@password.id%>').remove();
+$('#master-pass').show();
+
+$("#notice-message").html("<%= flash[:notice] %>").show();
+$(".error").show();
+$(function () {
+    setTimeout(function () {
+        $("#notice-message").fadeOut('slow', function () {
+            $(this).hide();
+        })
+        $(".error").fadeOut('slow',function() {
+            $(this).hide();
+        })
+    }, 2000);
+});
+
+<% flash.clear %>

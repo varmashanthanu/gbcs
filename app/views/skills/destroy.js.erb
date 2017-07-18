@@ -1,4 +1,5 @@
 $("#remove-id-<%=@skill.id%>").remove();
+$('#pie-chart').empty().append("<%= j render('piechart') %>");
 
 <% if Skill.count < 1 %>
 $("#none-message").show()

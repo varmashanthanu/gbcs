@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :preferences
   resources :simulations
   resources :programs
+  resources :admin
   match 'team_skills/simulations' => 'simulations#team_skills', as: :simulations_team_skills, via: [:get]
   match 'search/simulations' => 'simulations#search', as: :simulations_search, via: [:get]
   match 'remove_member/simulations' => 'simulations#remove_member', as: :simulations_remove_member, via: [:get]
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
   get 'welcome/contact_us'
   get 'welcome/about_us'
 
-  match 'users/edit_password' => 'users#edit_password', as: :user_edit_password, via: [:get]
+  match 'users/:id/edit_password' => 'users#edit_password', as: :user_edit_password, via: [:get]
   match 'users/update_password' => 'users#update_password', as: :user_update_password, via: [:post]
   match 'user/dashboard' => 'users#dashboard', as: :user_dashboard, via: [:get]
   match 'user/edit_avatar' => 'users#edit_avatar', as: :user_edit_avatar, via: [:get]

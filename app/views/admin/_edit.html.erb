@@ -1,0 +1,5 @@
+<%= form_for @password, url: admin_path, remote: true do |f| %>
+    <%= f.label '', 'Enter New Password' %>
+    <%= f.password_field :password, autofocus:true %>
+    <%= f.submit 'Update' %>
+<% end %>

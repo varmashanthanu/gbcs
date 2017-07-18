@@ -61,7 +61,7 @@ class User < ApplicationRecord
     elsif user_params[:password] != user_params[:password_confirmation]
       'Confirmation Password does not match.'
     elsif !self.valid_password?(user_params[:current_password])
-      'Please enter your current Password.'
+      'Incorrect Old Password.'
     else
       'Update Failed, Please try again.'
     end
@@ -69,11 +69,11 @@ class User < ApplicationRecord
 
   # Calculating the User Score
   def calc_score
-    score = 0.0
+    self.score = 0.0
     Skill.all.each do |s|
-      score += self.user_skills.where(skill:s).any? ? self.user_skills.where(skill:s).first.weighted_level : 0
+      self.score += self.user_skills.where(skill:s).any? ? self.user_skills.where(skill:s).first.weighted_level : 0
     end
-    (score/Skill.count).ceil
+    self.score = (self.score/Skill.count).ceil
   end
 
   # Skill_Calc builds a data hash for Skill category & Score for building a graph.

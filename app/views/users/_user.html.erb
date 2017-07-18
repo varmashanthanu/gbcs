@@ -3,7 +3,7 @@
     <%= "Email: #{@user.email}" %><br/>
     <%= "Contact No.: #{@user.telno}" %><br/>
 
-    <br/><%= link_to 'Change Master Password', '#', remote: true %><br/><br/>
+    <br/><%= link_to 'Change Master Password', edit_admin_path(MasterPass.first), remote: true, id:'master-pass' %><br/><br/>
 
 <% else %>
     <p><%= @user.fullname %></p>

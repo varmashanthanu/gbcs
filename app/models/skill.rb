@@ -43,12 +43,19 @@ class Skill < ApplicationRecord
   end
 
   def self.skill_dist
-    set = Skill.order(:category).joins(:users).group(:name,:category).count
-    data = Hash.new
-    set.each do |k,v|
-      data[k[0]] = v
+    data = []
+    Skill.group(:category).count.each do |cat|
+      set = {}
+      set[:name] = cat[0]
+      set[:data] = []
+      Skill.where(category:cat).order(:category).joins(:users).group(:name,:category).count.each do |s,c|
+        set[:data] << [s[0],c]
+      end
+      data << set
     end
     data
   end
 
 end
+
+

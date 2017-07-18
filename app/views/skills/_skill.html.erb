@@ -2,8 +2,7 @@
     <td><%= Skill.all.index(skill)+1 %></td>
     <td><%= link_to "#{skill.name}", skill %></td>
     <td><%= skill.weight %></td>
-    <td><%= "#{'%.2f' % skill.rank}" %></td>
-    <td><%= link_to "#{skill.category}" %></td>
+    <td><%= "#{skill.category}" %></td>
     <td>Description Needed?</td>
     <td><small><%= link_to 'Edit', edit_skill_path(skill),id:"edit-#{skill.id}", remote:true %></small></td>
     <td><small><%= link_to 'Remove', skill, method: :delete, data: {confirm: 'Are You Sure?'}, remote: true %></small></td>

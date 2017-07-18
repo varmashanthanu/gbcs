@@ -83,7 +83,7 @@ class UsersController < ApplicationController
       redirect_to current_user, notice: 'Password Changed'
     else
       notice = @user.update_password_error(user_params)
-      redirect_to user_edit_password_path, notice: "#{notice}"
+      redirect_to user_edit_password_path(@user), notice: "#{notice}"
     end
   end
 
@@ -117,16 +117,15 @@ class UsersController < ApplicationController
   def search_params #TODO remove loggers
     user = User.students
     (user = user.where("fname iLIKE ? OR lname iLIKE ?", "%#{params[:name]}%", "%#{params[:name]}%");Rails.logger.debug("Triggered 3")) if (params[:name] && params[:name] != '')
-    current_user.admin ? user = user.students.order(:program).order(score:'DESC') : user = user.gen_sort(current_user)
 
     params.each do |k,v|
       Rails.logger.debug("Key #{k}, Value #{v}")
     end
-    if (params[:name] && params[:name] != '') || (params[:sp].present? && (params[:sp][:sp1].present? || params[:sp][:sp2].present? || params[:sp][:sp3].present?))
-      if params[:sp].present? && (params[:sp][:sp1].present? || params[:sp][:sp2].present? || params[:sp][:sp3].present?)
-        user = User.search(params[:sp],params[:so])
-        Rails.logger.debug("Triggered 1 #{user.class}")
-      end
+    if params[:sp].present? && (params[:sp][:sp1].present? || params[:sp][:sp2].present? || params[:sp][:sp3].present?)
+      user = user.search(params[:sp],params[:so])
+      Rails.logger.debug("Triggered 1 #{user.class}")
+    else
+      current_user.admin ? user = user.students.order(:program).order(score:'DESC') : user = user.gen_sort(current_user)
     end
     current_user.admin ? user : user - [current_user]
   end

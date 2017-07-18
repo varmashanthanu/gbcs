@@ -1,4 +1,3 @@
 <div id="skill-density-chart">
-  <p>User Skill Density</p>
-  <%= column_chart pie_chart_skills_path, xtitle:'No. of Users',colors:["orangered","blue","green"],legend:true %>
+  <%= column_chart pie_chart_skills_path, library: {title: 'User Distribution', vAxis:{title: 'No. of Users'}}, stacked: true %>
 </div>
