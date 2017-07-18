@@ -79,12 +79,16 @@ class User < ApplicationRecord
   # Skill_Calc builds a data hash for Skill category & Score for building a graph.
   def skill_calc
     data = Skill.group(:category).count
+    mult = Skill.mult
     data.each do |category,score|
       data[category] = 0
+      mod = 0.0
       userskill = self.user_skills.where(:skill => Skill.where(category:category))
       userskill.each do |us|
-        data[category] += us.weighted_level/50.0
+        mod += us.skill.rank * mult * 5.0
+        data[category] += us.weighted_level
       end
+      data[category] = data[category]*5.0/mod
     end
     data
   end
