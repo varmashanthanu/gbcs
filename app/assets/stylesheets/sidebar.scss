@@ -36,16 +36,18 @@ $side-background: #593674;
         font-family: 'Bellefair', serif;
         text-transform: uppercase;
         padding-left: 0;
+        text-decoration: none;
+        a{
+          text-decoration: none;
+        }
         li {
           padding: 8px 0 7px 0;
           text-decoration: none;
           list-style: none;
-
           vertical-align: middle;
           font-size: 0.9em;
           width: 100%;
           color: white;
-          text-decoration: none;
 
         }
         li:hover {
