@@ -1,8 +1,8 @@
 <section class="navigation">
   <div class="nav-container">
     <div class="brand">
-      <div class="logo"><%= image_tag('icons/favicon.ico', size:'45x45') %></div>
-      <div class="items"><%= link_to 'Home', '/welcome/home' %></div>
+      <div class="logo"><%= image_tag('icons/UFsig_small.gif') %></div>
+      <div class="items"><%= link_to 'WARRINGTON SCHOOL OF BUSINESS', 'http://warrington.ufl.edu/' %></div>
     </div>
     <nav>
       <div class="nav-mobile">
@@ -12,25 +12,16 @@
       <ul class="nav-list">
         <!-- After Sign In -->
         <% if user_signed_in? %>
-            <!--<li><= link_to 'Competitions', competitions_path %>-->
-              <!--<ul class="nav-dropdown">-->
-                <!--<li><= link_to 'Search', '#' %></li>-->
-                <!--<li><= link_to 'New', '#' %></li>-->
-              <!--</ul>-->
-            <!--</li>-->
-            <li><%= link_to 'User', '#' %>
+            <li><%= link_to 'Home', '/welcome/home' %></li>
+            <li><%= (current_user.fname && current_user.fname !='') ? link_to(current_user.fname, '#') : link_to(current_user.fullname, '#') %>
               <ul class="nav-dropdown">
                 <li><%= link_to 'Profile', current_user, :method => 'get' %></li>
                 <li><%= link_to 'Logout', '/users/sign_out', :method => 'delete' %></li>
               </ul>
             </li>
-        <% else %>
-            <li><%= link_to 'Competitions', competitions_path %>
-              <!--<ul class="nav-dropdown">-->
-              <!--<li><= link_to 'Search', '#' %></li>-->
-              <!--<li><= link_to 'New', '#' %></li>-->
-              <!--</ul>-->
-            </li>
+        <% else %> <!-- If not signed in -->
+            <li><%= link_to 'Home', '/welcome/home' %></li>
+            <li><%= link_to 'Competitions', competitions_path %></li> <!-- To see what competitions are going on -->
             <li><%= link_to 'Sign Up', '/users/sign_up' %></li>
         <% end %>
       </ul>

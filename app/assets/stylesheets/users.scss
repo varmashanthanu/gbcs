@@ -1,3 +1,25 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+.avatar-upload-buttons {
+  position: absolute;
+  display: block;
+  text-align: center;
+  z-index: 10;
+  a {
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 100%;
+    background: rgba(darkorange,0.2);
+    padding: 0 4px 0 4px;
+    font-family: 'Lato';
+  }
+  a:hover {
+    background: rgba(darkorange,0.5);
+  }
+}

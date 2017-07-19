@@ -1,30 +1,43 @@
 
 .footer{
-  border: solid 0.1px blue;
-  border-top: 1px solid red;
-
+  //border: solid 0.1px blue;
+  //border-top: 1px solid red;
+  background: #593674;
   bottom: 0;
-  height: 70px;
+  height: 40px;
   width: 100%;
   left: 0;
-
+  font-family: 'Bellefair', serif;
   position: fixed;
   display: block;
-
+  padding-bottom: 5px;
+  vertical-align: middle;
   .footer-box{
 
     width: 100%;
     .links{
       ul{
-        padding: 0;
+
         text-decoration: none;
         width: 100%;
+
         li{
           float: left;
           //border: .1px solid purple;
           display: inline;
           width: 33.33333%;
           text-align: center;
+
+        }
+        a {
+          text-decoration: none;
+          text-transform: uppercase;
+          color: whitesmoke;
+          font-size: 0.6em;
+          -webkit-filter: brightness(70%);
+        }
+        a:hover {
+          -webkit-filter: brightness(100%);
         }
       }
     }

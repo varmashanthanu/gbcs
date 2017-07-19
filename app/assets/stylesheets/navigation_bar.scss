@@ -1,12 +1,17 @@
-
+//font-family: 'Bellefair', serif;
+//font-family: 'Zilla Slab', serif;
 
 $nav-bar-height: 45px;
-$nav-background: #212b35;
-$nav-text: white;
-$content-width: 90%;
+//$nav-background: #212b35;
+//$nav-text: white;
+$nav-text: #f7f7f4;
+$nav-background: #593674;
+$content-width: 100%;
 $breakpoint: 800px;
+$navFont: 'Bellefair', serif;
 
 .navigation {
+  font-family: $navFont;
   position: fixed;
   left: 0;
   top: 0;
@@ -30,37 +35,44 @@ $breakpoint: 800px;
     float: left;
     line-height: $nav-bar-height;
     text-transform: uppercase;
-    padding-left: 20px;
-    font-size: 1.4em;
+    //padding-left: 20px;
+    font-size: 0.8em;
     .logo{
-      vertical-align: middle;
+      height: 100%;
+      display: inline-block;
+      background: white;
+      img {
+        vertical-align: middle;
+      }
     }
     .items, .logo {
       //border: solid mediumpurple 0.5px;
       margin: -3px 0 0 0;
-      padding: 0 5px 0 5px;
+      padding: 0 5.5px 0 5.5px;
       display: inline-block;
       height: $nav-bar-height;
+      vertical-align: middle;
     }
 
     a {
       text-decoration: none;
       color: $nav-text;
     }
-    .items:hover, a:hover{
+    .items:hover {
       transition: background-color 0.5s ease;
-      background-color: #344452;
+      background-color: darkorange;
     }
   }
 
   nav {
     float: right;
+    padding-right: 20px;
     ul {
       list-style: none;
       margin: 0;
       padding: 0;
       text-transform: uppercase;
-      font-weight: bold;
+      font-size: 0.8em;
       li {
         float: left;
         position: relative;
@@ -69,13 +81,13 @@ $breakpoint: 800px;
         text-decoration: none;
         //color: $nav-text;
 
-        color: orangered;
+        color: $nav-text;
         display: block;
         padding: 0 10px;
         line-height: $nav-bar-height;
         &:hover {
           transition: background-color 0.5s ease;
-          background-color: #344452;
+          background-color: darkorange;
         }
         &:not(:only-child):after {
           padding-left: 4px;
@@ -87,8 +99,7 @@ $breakpoint: 800px;
         min-width: 120px;
         background: $nav-background;
         height: 100%;
-        font-size: 90%;
-
+        font-size: 120%;
       }
     }
   }

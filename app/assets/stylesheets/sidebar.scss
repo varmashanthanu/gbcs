@@ -1,11 +1,19 @@
+//font-family: 'Bellefair', serif;
+//font-family: 'Zilla Slab', serif;
+//font-family: 'Lato', sans-serif;
+//font-family: 'Raleway', sans-serif;
+//font-family: 'Oxygen', sans-serif;
 
-$side-bar-width: 185px;
+$side-bar-width: 150px;
+$side-background: #593674;
 
 .sidebar-container{
   top: 45px;
   left: 0;
-  bottom: 70px;
-  border: solid green 0.1px;
+  bottom: 40px;
+  //border: solid green 0.1px;
+  background: $side-background;
+  color: white;
   width: $side-bar-width;
   position: fixed;
   display: block;
@@ -13,7 +21,7 @@ $side-bar-width: 185px;
     text-align: center;
 
     .cover{
-      padding: 40px 5px 20px 5px;
+      padding: 40px 0 20px 0;
       .image{
         text-align: center;
       }
@@ -23,10 +31,30 @@ $side-bar-width: 185px;
     }
     .tabs{
       ul {
+        font-size: 0.9em;
+        width: inherit;
+        font-family: 'Bellefair', serif;
+        text-transform: uppercase;
         padding-left: 0;
         li {
-
+          padding: 5px 0 5px 0;
+          text-decoration: none;
           list-style: none;
+          li:visited {
+            text-decoration: none;
+          }
+          a {
+            vertical-align: middle;
+            font-size: 0.9em;
+            width: 100%;
+            color: white;
+            text-decoration: none;
+          }
+
+        }
+        li:hover {
+          transition: background-color 0.5s ease;
+          background-color: rgba(darkorange,0.7);
         }
       }
     }
