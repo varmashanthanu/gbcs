@@ -60,7 +60,7 @@ $navFont: 'Bellefair', serif;
     }
     .items:hover {
       transition: background-color 0.5s ease;
-      background-color: darkorange;
+      background-color: #E28F41;
     }
   }
 
@@ -87,7 +87,7 @@ $navFont: 'Bellefair', serif;
         line-height: $nav-bar-height;
         &:hover {
           transition: background-color 0.5s ease;
-          background-color: darkorange;
+          background-color: #E28F41;
         }
         &:not(:only-child):after {
           padding-left: 4px;

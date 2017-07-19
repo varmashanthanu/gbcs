@@ -37,24 +37,23 @@ $side-background: #593674;
         text-transform: uppercase;
         padding-left: 0;
         li {
-          padding: 5px 0 5px 0;
+          padding: 8px 0 7px 0;
           text-decoration: none;
           list-style: none;
-          li:visited {
-            text-decoration: none;
-          }
-          a {
-            vertical-align: middle;
-            font-size: 0.9em;
-            width: 100%;
-            color: white;
-            text-decoration: none;
-          }
+
+          vertical-align: middle;
+          font-size: 0.9em;
+          width: 100%;
+          color: white;
+          text-decoration: none;
 
         }
         li:hover {
           transition: background-color 0.5s ease;
-          background-color: rgba(darkorange,0.7);
+          background-color: rgba(#E28F41,0.7);
+        }
+        a:hover {
+          text-decoration: none;
         }
       }
     }

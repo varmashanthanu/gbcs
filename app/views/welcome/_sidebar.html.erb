@@ -12,12 +12,20 @@
       <div class="settings">
         <div class="tabs">
           <ul>
-            <li><%= link_to 'Dashboard', user_dashboard_path %></li>
-            <% if current_user.admin %>
-                <li><%= link_to 'Skill List', skills_path %></li>
-                <li><%= link_to 'Program List', programs_path %></li>
+            <%= link_to user_dashboard_path do %>
+                <li>Dashboard</li>
             <% end %>
-            <li><%= link_to 'The Yes-List', yes_lists_path %></li>
+            <% if current_user.admin %>
+                <%= link_to skills_path do %>
+                    <li>Skill List</li>
+                <% end %>
+                <%= link_to programs_path do %>
+                    <li>Program List</li>
+                <% end %>
+            <% end %>
+            <%= link_to yes_lists_path do %>
+                <li>The Yes-List</li>
+            <% end %>
           </ul>
         </div>
       </div>
@@ -25,13 +33,23 @@
     <div class="tasks">
       <div class="tabs">
         <ul>
-          <li><%= link_to 'Create Competition', new_competition_path %></li>
-          <li><%= link_to 'Search Competition', competitions_path %></li>
+          <%= link_to new_competition_path do %>
+              <li>Create Competition</li>
+          <% end %>
+          <%= link_to competitions_path do %>
+              <li>Search Competition</li>
+          <% end %>
           <br/>
-          <li><%= link_to 'My Teams', teams_mine_path %></li>
-          <li><%= link_to 'Search Teams', teams_path %></li>
+          <%= link_to teams_mine_path do %>
+              <li>My Teams</li>
+          <% end %>
+          <%= link_to teams_path do %>
+              <li>Search Teams</li>
+          <% end %>
           <br/>
-          <li><%= link_to 'All Students', users_path %></li>
+          <%= link_to users_path do %>
+              <li>All Students</li>
+          <% end %>
         </ul>
       </div>
     </div>
