@@ -29,8 +29,7 @@
         <p> <%= alert %></P>
       </div>
     <% end %>
-
-    <% if controller_name=='welcome' || controller_name=='registrations' || controller_name=='sessions' %>
+    <% if %w[welcome registrations sessions confirmations passwords unlocks].include?controller_name %>
       <div class="gator-background"></div>
     <% end %>
 

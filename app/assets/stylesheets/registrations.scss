@@ -41,13 +41,21 @@ $orange: #E28F41;
     border-radius: 4px ;
     width: 400px;
 
-    .field {
+    .master-field, .field {
+      padding-top: 5px;
       #inputs {
         border: $orange solid 1px;
         height: 20px;
         width: 180px;
         padding-left: 5px;
       }
+      #check-box {
+        border: solid 1px $orange;
+      }
+    }
+    .master-field {
+      display: inline-block;
+      position: absolute;
     }
     .admin-setup {
       padding-top: 5px;
