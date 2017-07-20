@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     match 'admin/make_admin' => 'admin#make_admin', as: :admin_make_admin, via: [:get]
     match 'admin/get_pass' => 'admin#get_pass', as: :admin_get_pass, via: [:get]
 
+  resources :admin, only: [:edit, :update] do
+    get :make_admin, :get_pass
+  end
+
   resources :competitions do
     collection do
       get :select_team, :join_comp, :leave_comp
