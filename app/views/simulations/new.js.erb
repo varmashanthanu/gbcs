@@ -13,14 +13,9 @@ $('#warning').click(function(){
         $('#warning').css('display','inline-block');
     });
 });
-
-//$(document).click(function(){
-//    $('.compatibility').hide();
-//        $('#warning').css('display','inline-block');
-//});
 <% end %>
 
-$('#chart-1').replaceWith("<%= j bar_chart simulations_team_skills_path :members => @members.pluck(:id), id:'team-skills', remote:true %>");
+$('#chart-1').replaceWith("<%= j bar_chart team_skills_simulations_path :members => @members.pluck(:id), id:'team-skills', remote:true %>");
 $('#member-adds').empty();
 <% @members.each do |m| %>
 $('#member-adds').append("<%= j hidden_field :members, :id, :value => m.id,multiple:true, id:"member-#{m.id}" %>")

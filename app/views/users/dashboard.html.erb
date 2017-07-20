@@ -9,11 +9,11 @@
         <p>Received Invites</p>
         <% @invites.each do |invite| %>
           <p id="invite-<%=invite.id%>">
-            <%= "#{User.find(invite.sender_id).name} has invited you to join #{Team.find(invite.team_id).name}" %>
+            <%= "#{invite.sender.name} has invited you to join #{invite.team.name}" %>
             <small>
-              <%= link_to 'Accept', members_join_path(invite), remote: true %>
+              <%= link_to 'Accept', join_member_path(invite), remote: true %>
             </small>
-            <small><%= link_to 'Reject', invite, method: :delete, data: {confirm: 'Are you Sure?'} %></small>
+            <small><%= link_to 'Reject', invite, method: :delete, data: {confirm: 'Are you Sure?'}, remote:true %></small>
           </p>
         <% end %>
       <%end%>

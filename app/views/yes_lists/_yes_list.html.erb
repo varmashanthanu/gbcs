@@ -1,6 +1,6 @@
 <p id="yes-list-<%= @yes_list.id %>">
   <%= "#{@yes_list.target.fullname} - " %>
-  <%= @yes_list.match == 'YES' ? 'YES':link_to('YES',toggle_yes_lists_path(@yes_list.id),remote:true) %>
-  <%= @yes_list.match == 'NO' ? 'NO':link_to('NO',toggle_yes_lists_path(@yes_list.id),remote:true) %>
+  <%= @yes_list.match == 'YES' ? 'YES':link_to('YES',toggle_yes_list_path(@yes_list.id),remote:true) %>
+  <%= @yes_list.match == 'NO' ? 'NO':link_to('NO',toggle_yes_list_path(@yes_list.id),remote:true) %>
   <%= !@yes_list.match ? 'Don\'t Care':link_to('Don\'t Care',@yes_list, method: :delete, data: {confirm: 'Are You Sure?'},remote:true) %>
 <br/>

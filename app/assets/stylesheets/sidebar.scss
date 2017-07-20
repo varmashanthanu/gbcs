@@ -8,6 +8,7 @@ $side-bar-width: 150px;
 $side-background: #593674;
 
 .sidebar-container{
+  z-index: 5;
   top: 45px;
   left: 0;
   bottom: 40px;

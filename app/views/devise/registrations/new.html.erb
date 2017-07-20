@@ -1,41 +1,44 @@
 <% content_for :title, 'Sign Up' %>
-<h2>Sign up</h2>
+<div class="registrations">
+  <div class="wrapper">
+    <h2>SIGN UP</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
 
 
-    <input name="authenticity_token" type="hidden" ng-model="User.token" ng-init="User.token='<%= form_authenticity_token %>'">
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+        <input name="authenticity_token" type="hidden" ng-model="User.token" ng-init="User.token='<%= form_authenticity_token %>'">
+        <div class="field">
+          <% f.label :email, 'UFL Email Address' %>
+          <%= f.email_field :email, autofocus: true, id:'inputs', placeholder:'my.email@ufl.edu' %>
+        </div>
+        <div class="field">
+          <% f.label :password %>
+          <%= f.password_field :password, autocomplete: "off", id:'inputs', placeholder:'Password, 6 Characters Min.' %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-    <%= f.hidden_field :admin, value: false, id: 'admin-set'%>
+        <div class="field">
+          <% f.label :password_confirmation, 'Confirm Password' %>
+          <%= f.password_field :password_confirmation, autocomplete: "off", id:'inputs', placeholder:'Retype Password' %>
+        </div>
+        <%= f.hidden_field :admin, value: false, id: 'admin-set'%>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+        <p></p>
 
-<div class="admin-setup">
-  <div id="admin-select">
-    <%= link_to 'Admin Signup', admin_get_pass_path, id: 'admin-select-btn', remote: true %>
+        <div class="actions">
+          <%= f.submit "Sign up", class:'submit-btn' %>
+        </div>
+    <% end %>
+
+    <div class="admin-setup">
+      <div id="admin-select">
+        <%= link_to 'Admin Signup', admin_get_pass_path, class:'submit-btn', id: 'admin-select-btn', remote: true %>
+      </div>
+    </div>
+
+    <%= render "devise/shared/links" %>
   </div>
 </div>
-
-<%= render "devise/shared/links" %>
 
 
 <!--<= f.label :master_password %>-->

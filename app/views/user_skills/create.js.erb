@@ -1,7 +1,7 @@
 $("#new_user_skill").hide();
 $("#add-skill").show();
 $("#none-message").hide();
-
+$('#indi-chart').replaceWith("<%= j render('users/indi_skill_graph') %>");
 $("#user-skills").append("<%= j render(@user_skill) %>");
 $("#notice-message").html("<p><%= flash[:notice] %></p>").show();
 $(".error").show();

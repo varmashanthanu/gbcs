@@ -1,0 +1,96 @@
+//font-family: 'Bellefair', serif;
+//font-family: 'Zilla Slab', serif;
+//font-family: 'Lato', sans-serif;
+//font-family: 'Raleway', sans-serif;
+//font-family: 'Oxygen', sans-serif;
+
+$breakpoint: 650px;
+$orange: #E28F41;
+.registrations {
+
+  .wrapper {
+    h2 {
+      text-align: center;
+    }
+
+    .new_user{
+      #error_explanation {
+        h2, li {
+          font-size: 0.7em;
+          font-family: 'Oxygen', sans-serif;
+        }
+      }
+    }
+
+    font-family: 'Zilla Slab', serif;
+    color: gray;
+    //display: none;
+
+    //background-color: #eebc8c;
+    //background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
+    //background-image: -moz-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
+    //background-image: -o-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
+    //background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
+    //-webkit-background-size: 50px 50px;
+    //-moz-background-size: 50px 50px;
+    //background-size: 50px 50px;
+
+    background: rgba(247,246,240,0.8);
+    position: fixed;
+    padding: 10px 5px 50px 20px;
+    border-radius: 4px ;
+    width: 400px;
+
+    .field {
+      #inputs {
+        border: $orange solid 1px;
+        height: 20px;
+        width: 180px;
+        padding-left: 5px;
+      }
+    }
+    .admin-setup {
+      padding-top: 5px;
+      #admin-select {
+        width: 200px;
+        #get-pass {
+          #password {
+              border: $orange solid 1px;
+              height: 20px;
+              width: 180px;
+              padding-left: 5px;
+          }
+        }
+
+      }
+    }
+    .submit-btn {
+      border-radius: 0;
+      background: none;
+      color: $orange;
+      border: $orange solid 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.7em;
+      font-family: 'Bellefair', san-serif;
+      padding: 3px 6px 3px 6px;
+      display: inline-block;
+    }
+    .actions, .admin-setup {
+      width: 100px;
+    }
+  }
+}
+
+@media only screen and (max-width: $breakpoint) {
+  .registrations {
+
+    margin: 0;
+
+    .wrapper {
+      left: 20px;
+      width: 90%;
+    }
+  }
+}

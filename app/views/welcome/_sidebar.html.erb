@@ -5,14 +5,14 @@
 
     <div class="cover">
       <div class="image">
-        <%= link_to(image_tag(current_user.avatar.url(:display), size:'80x80' , class: 'round'), user_edit_avatar_path, remote:true, id:'edit-avatar') %>
+        <%= link_to(image_tag(current_user.avatar.url(:display), size:'80x80' , class: 'round'), edit_avatar_users_path, remote:true, id:'edit-avatar') %>
       </div>
     </div>
 
       <div class="settings">
         <div class="tabs">
           <ul>
-            <%= link_to user_dashboard_path do %>
+            <%= link_to dashboard_users_path do %>
                 <li>Dashboard</li>
             <% end %>
             <% if current_user.admin %>
@@ -40,7 +40,7 @@
               <li>Search Competition</li>
           <% end %>
           <br/>
-          <%= link_to teams_mine_path do %>
+          <%= link_to mine_teams_path do %>
               <li>My Teams</li>
           <% end %>
           <%= link_to teams_path do %>

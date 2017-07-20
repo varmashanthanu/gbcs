@@ -1,10 +1,7 @@
-$('#edit_preference_<%=@preference.id%>').remove();
-$('#pref-id-<%=@preference.id%>').replaceWith("<%= j render('preference')%>");
-
+$('#invite-<%= @invite.id %>').remove();
 
 $("#notice-message").html("<p><%= flash[:notice] %></p>").show();
 $(".error").show();
-
 $(function(){setTimeout(function(){
     $("#notice-message").fadeOut('slow',function() {
         $(this).hide();
@@ -14,4 +11,5 @@ $(function(){setTimeout(function(){
     })
 }, 2000);
 });
+
 <% flash.clear %>

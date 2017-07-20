@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
 
-  before_action :check_admin
+  # before_action :check_admin, only: [:edit, :update]
 
   def get_pass
   end
@@ -10,7 +10,7 @@ class AdminController < ApplicationController
     if password == MasterPass.first.password
       respond_to do |format|
         format.html { redirect_back fallback_location: root_path, notice: 'Admin status set.'}
-        format.js { flash[:notice] = 'Admin status set.' }
+        format.js { flash[:error] = 'Admin status set.' }
       end
     else
       respond_to do |format|

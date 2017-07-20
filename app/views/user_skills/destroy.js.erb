@@ -1,6 +1,9 @@
 $("#remove-id-<%=@user_skill.id%>").remove();
 <% if current_user.user_skills.count < 1 %>
 $("#none-message").show();
+$('#indi-chart').remove();
+<% else %>
+$('#indi-chart').replaceWith("<%= j render('users/indi_skill_graph') %>");
 <% end %>
 
 $("#notice-message").html("<p><%= flash[:notice] %></p>").show();

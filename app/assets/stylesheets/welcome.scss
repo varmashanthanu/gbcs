@@ -12,13 +12,17 @@
   bottom: 40px;
   overflow: scroll;
   display: block;
-  padding: 10px 15px 90px 15px;
+  padding: 10px 15px 20px 15px;
 }
 
 .gator-background {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  min-width: 100%;
+  min-height: 100%;
   left: -185;
   border: solid black 1px;
-  height: 1000px;
   background: url("/assets/core/gator_monument.jpg") fixed no-repeat;
   background-size: cover;
 }

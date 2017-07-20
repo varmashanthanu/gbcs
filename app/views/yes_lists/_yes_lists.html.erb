@@ -2,8 +2,8 @@
 
     <p id="yes-list-<%= ylist.id %>">
       <%= "#{ylist.target.fullname} - " %>
-      <%= ylist.match == 'YES' ? 'YES':link_to('YES',toggle_yes_lists_path(ylist.id),remote:true) %>
-      <%= ylist.match == 'NO' ? 'NO':link_to('NO',toggle_yes_lists_path(ylist.id),remote:true) %>
+      <%= ylist.match == 'YES' ? 'YES':link_to('YES',toggle_yes_list_path(ylist.id),remote:true) %>
+      <%= ylist.match == 'NO' ? 'NO':link_to('NO',toggle_yes_list_path(ylist.id),remote:true) %>
       <%= !ylist.match ? 'Don\'t Care':link_to('Don\'t Care',ylist, method: :delete, data: {confirm: 'Are You Sure?'},remote:true) %>
     </p>
 

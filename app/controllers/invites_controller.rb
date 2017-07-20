@@ -31,7 +31,7 @@ class InvitesController < ApplicationController
     @users = User.where(:id=>params[:members]).where.not(:id=>@team.members.pluck(:user_id))
     Rails.logger.debug(@users.pluck(:id))
     @users.each do |user|
-      @invite = @team.invites.new(user:user)
+      @invite = @team.invites.new(sender_id:current_user.id,user:user)
       @invite.save unless Invite.duplicate(@invite).present?
     end
     respond_to do |format|
@@ -44,7 +44,7 @@ class InvitesController < ApplicationController
     @invite = Invite.destroy(params[:id])
     respond_to do |format|
       format.html
-      format.js
+      format.js { flash[:notice] = 'Invitation has been removed.' }
     end
   end
 

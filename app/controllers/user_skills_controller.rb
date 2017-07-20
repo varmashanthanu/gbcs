@@ -10,6 +10,7 @@ class UserSkillsController < ApplicationController
 
   def create
     @user_skill = UserSkill.new(user_skills_params)
+    @user = @user_skill.user
     if @user_skill.duplicate(current_user)
       respond_to do |format|
         format.html { redirect_back(fallback_location:user_dashboard_path) }
@@ -17,8 +18,8 @@ class UserSkillsController < ApplicationController
         render action: "error" }
       end
     elsif @user_skill.save
-      current_user.calc_score
-      current_user.teams.each do |t|; t.skill_update(current_user) ; end
+      @user.update_attribute(:score,current_user.calc_score)
+      @user.teams.each do |t|; t.skill_update(current_user) ; end
       respond_to do |format|
         format.html { redirect_to user_dashboard_path }
         format.js { flash[:notice] = 'Skill Added.' }
@@ -38,9 +39,10 @@ class UserSkillsController < ApplicationController
 
   def update
     @user_skill = UserSkill.find(params[:id])
-    if @user_skill.calc_score
-      current_user.update_attribute(:score,current_user.calc_score)
-      current_user.teams.each do |t|; t.skill_update(current_user) ; end
+    @user = @user_skill.user
+    if @user_skill.update_attributes(user_skills_params)
+      @user.update_attribute(:score,current_user.calc_score)
+      @user.teams.each do |t|; t.skill_update(current_user) ; end
       respond_to do |format|
         format.html { redirect_to user_dashboard_path }
         format.js { flash[:notice] = 'Updated.' }
@@ -50,8 +52,9 @@ class UserSkillsController < ApplicationController
 
   def destroy
     @user_skill = UserSkill.destroy(params[:id])
-    current_user.calc_score
-    current_user.teams.each do |t|; t.skill_update(current_user) ; end
+    @user = @user_skill.user
+    @user.update_attribute(:score,current_user.calc_score)
+    @user.teams.each do |t|; t.skill_update(current_user) ; end
     respond_to do |format|
       format.html { redirect_to user_dashboard_path }
       format.js { flash[:notice] = 'Deleted.' }

@@ -1,6 +1,7 @@
 $("#edit_user_skill_<%= @user_skill.id %>").remove();
 $("#remove-id-<%= @user_skill.id %>").replaceWith("<%= j render(@user_skill) %>");
 $("#remove-id-<%= @user_skill.id %>").show();
+$('#indi-chart').replaceWith("<%= j render('users/indi_skill_graph') %>");
 $("#notice-message").html("<p><%= flash[:notice] %></p>").show();
 $(".error").show();
 
