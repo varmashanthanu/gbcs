@@ -1,7 +1,19 @@
 <% @users.each do |user| %>
 
-    <p><%= link_to "#{user.fname} #{user.lname}", user %><%= " | #{user.email} | #{user.score} | #{user.program} | #{user.graduation}"%></p>
-    <% @user = user %>
-    <%= render 'skill_graph' %>
+    <%= link_to user do%>
+        <span class="<%=cycle('light','dark')%>" id="user-<%= user.id %>">
+          <li style="text-align: left; width: 200px">
+            <%=image_tag(user.avatar.url(:thumb), size:'20x20', class:'round') %>
+            <%=user.fullname%>
+          </li>
+          <li><%=user.program%></li>
+          <li><%=user.score%></li>
+          <li class="mobile"><%=user.term%></li>
+          <li class="mobile"><%=user.graduation%></li>
+          <li class="mobile"><%=user.active ? 'Active':'Inactive'%></li>
+        </span>
+    <% end %>
+    <%= link_to 'STATS', skill_graph_user_path(user), class:'stats submit-btn', id:"stats-#{user.id}", remote:true %>
+    <br/>
 
 <% end %>

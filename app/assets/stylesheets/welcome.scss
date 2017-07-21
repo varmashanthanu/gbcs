@@ -2,9 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$orange: #E28F41;
+
 .pages{
   position: absolute;
   //border: solid brown 0.1px;
+
   top: 45px;
   left: 150px;
   right: 0;
@@ -12,7 +15,6 @@
   bottom: 40px;
   overflow: scroll;
   display: block;
-  padding: 10px 15px 20px 15px;
 }
 
 .gator-background {
@@ -28,26 +30,44 @@
 }
 
 .login-control {
-  top: 45px;
-  right: 0;
+  top: 65px;
+  right: 20px;
   position: fixed;
+  z-index: 10;
   //border: solid red 1px;
   padding: 15px 10px 10px 10px;
-  border-radius: 0 0 5px 5px;
-  background: rgba(#E28F41,0.4);
+  background: rgba(247,246,240,0.95);
+  width: 280px;
+
+  font-family: 'Zilla Slab', serif;
+  color: gray;
+
+  input {
+    color: $orange;
+    font-family: 'Zilla Slab', serif;
+    letter-spacing: 1px;
+    padding: 4px 10px 4px 12px;
+  }
+  input:focus {
+    outline: solid $orange 2px;
+  }
 
   .login-field {
-    border: solid white 1px;
-    background: whitesmoke;
+    border: none;
+    background: white;
     border-radius: 0;
-    color: #593674;
-    padding-left: 5px;
+    height: 20px;
+    width: 260px;
+
   }
   .login-button {
-    border: solid white 1px;
-    background: #E28F41;
+    font-family: 'Lato', sans-serif;
+    border: solid $orange 1.5px;
+    padding: 4px 9px 4px 9px;
+    background: transparent;
     border-radius: 0;
-    color: white;
+    color: $orange;
+    height: 30px;
   }
 }
 

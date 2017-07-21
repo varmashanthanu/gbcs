@@ -20,34 +20,30 @@ $orange: #E28F41;
           font-family: 'Oxygen', sans-serif;
         }
       }
+      input {
+        font-family: 'Zilla Slab', serif;
+      }
+      input:focus {
+        outline: solid $orange 2px;
+      }
     }
 
     font-family: 'Zilla Slab', serif;
     color: gray;
-    //display: none;
 
-    //background-color: #eebc8c;
-    //background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
-    //background-image: -moz-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-    //background-image: -o-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-    //background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-    //-webkit-background-size: 50px 50px;
-    //-moz-background-size: 50px 50px;
-    //background-size: 50px 50px;
-
-    background: rgba(247,246,240,0.8);
+    background: rgba(247,246,240,0.95);
     position: fixed;
+    top: 70px;
     padding: 10px 5px 50px 20px;
-    border-radius: 4px ;
     width: 400px;
 
     .master-field, .field {
       padding-top: 5px;
       #inputs {
-        border: $orange solid 1px;
-        height: 20px;
+        border: none;
+        height: 28px;
         width: 180px;
-        padding-left: 5px;
+        padding-left: 10px;
       }
       #check-box {
         border: solid 1px $orange;
@@ -76,14 +72,17 @@ $orange: #E28F41;
       border-radius: 0;
       background: none;
       color: $orange;
-      border: $orange solid 1px;
+      border: $orange solid 1.5px;
       text-transform: uppercase;
       text-decoration: none;
       cursor: pointer;
       font-size: 0.7em;
       font-family: 'Bellefair', san-serif;
-      padding: 3px 6px 3px 6px;
+      padding: 6px 6px 6px 6px;
       display: inline-block;
+      vertical-align: top;
+      text-align: center;
+
     }
     .actions, .admin-setup {
       width: 100px;

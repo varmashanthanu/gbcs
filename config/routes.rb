@@ -58,7 +58,7 @@ Rails.application.routes.draw do
       post  :update_password
     end
     member do
-      get :column_graph, :indi_graph
+      get :column_graph, :indi_graph, :skill_graph
     end
   end
 

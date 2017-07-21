@@ -1,4 +1,5 @@
 $('#admin-select-btn').hide().after("<%= j render('get_pass') %>");
+$('#password').focus();
 $('#cancel').click(function(){
     $('#get-pass').remove();
     $('#admin-select-btn').show();

@@ -1,0 +1,6 @@
+$('.skill-graph').remove();
+$('#stats-<%=@user.id%>').after("<%= j render('skill_graph') %>");
+
+$(document).click(function(){
+    $('#skill-graph-<%=@user.id%>').remove();
+});

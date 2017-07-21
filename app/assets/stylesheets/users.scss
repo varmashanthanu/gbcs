@@ -2,8 +2,140 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//font-family: 'Bellefair', serif;
+//font-family: 'Lato', sans-serif;
+//font-family: 'Oxygen', sans-serif;
+//font-family: 'Raleway', sans-serif;
+//font-family: 'Zilla Slab', serif;
+//font-family: 'Muli', sans-serif;
+
+$breakpoint: 800px;
+$orange: #E28F41;
+$beige: #f5f3eb;
 
 
+.users {
+  padding-left: 20px;
+  background-color: $beige;
+  position: absolute;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  .wrapper {
+
+    .index {
+      .user-search {
+        input {
+          padding-left: 5px;
+          width: 160px;
+          border: solid $orange 1px;
+          height: 20px;
+        }
+        select {
+          padding-left: 5px;
+          border: solid $orange 1px;
+          width: 80px;
+        }
+        .submit-btn {
+          width: 50px;
+          border-radius: 0;
+          background: none;
+          color: $orange;
+          border: $orange solid 1px;
+          text-transform: uppercase;
+          text-decoration: none;
+          cursor: pointer;
+          font-size: 0.7em;
+          font-family: 'Bellefair', san-serif;
+          padding: 3px 3px 0px 3px;
+          vertical-align: middle;
+        }
+        input:focus, select:focus {
+          outline-color: $orange;
+        }
+      }
+    }
+    .user-list {
+
+      .list-head {
+        ul {
+          height: 30px;
+          border: solid $orange 1.5px;
+          max-width: 770px;
+
+          padding-top: 5px;
+          font-family: 'Zilla Slab', serif;
+          font-size: 0.9em;
+          color: $orange;
+          text-transform: uppercase;
+        }
+
+        li {
+          //border: solid blue;
+          display: inline-block;
+          //padding: 0px 50px 0 50px;
+          vertical-align: middle;
+          text-align: center;
+          width: 100px;
+        }
+      }
+      .list-rows {
+        ul {
+          //border: solid $orange 1.5px;
+          list-style: none;
+          width: 75%;
+          .skill-graph {
+            //border: green 1px solid;
+            width: 90% !important;
+            padding: 5px 0 5px 0;
+          }
+          a {
+
+            height: 40px;
+            text-decoration: none;
+            color: black;
+            .round {
+              border-radius: 100%;
+              vertical-align: middle;
+            }
+            //.dark {
+            //  background: rgba(black,0.3);
+            //}
+            //.light {
+            //  background: rgba(black,0.1);
+            //}
+          }
+          li {
+            font-family: 'Muli', sans-serif;
+            //border: solid blue;
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+          }
+          .submit-btn {
+            border-radius: 0;
+            background: none;
+            color: $orange;
+            border: $orange solid 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 0.7em;
+            font-family: 'Bellefair', san-serif;
+            padding: 3px 3px 0px 3px;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+  .pagination {
+    text-align: center;
+    color: $orange;
+  }
+}
 
 .avatar-upload-buttons {
   position: absolute;
@@ -21,5 +153,24 @@
   }
   a:hover {
     background: rgba(darkorange,0.5);
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .users {
+    .wrapper {
+      .user-list {
+        .list-head, .list-rows {
+          .mobile {
+            display: none;
+          }
+        }
+        .list-head {
+          ul {
+            width: 450px;
+          }
+        }
+      }
+    }
   }
 }

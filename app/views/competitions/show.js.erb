@@ -1,0 +1,12 @@
+$('.details').empty().append("<%= j render('show') %>");
+
+$(document).ready(function(){
+    $('#participate-button').click(function(){
+        $('#participate-button').toggle();
+        $('#choices').toggle();
+    });
+    $('#participate-cancel').click(function(){
+        $('#participate-button').toggle();
+        $('#choices').toggle();
+    });
+});

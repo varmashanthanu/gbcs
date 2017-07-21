@@ -1,54 +1,43 @@
 <% content_for :title, 'New Competition' %>
 
-<div class="competition-forms">
-  <h1>New Competition</h1>
+<div class="competitions">
   <div class="wrapper">
+    <h1>New Competition</h1>
     <%= form_for @competition, url: {action: 'create'}, html:{multipart: true} do |f| %>
 
-        <%= "Competition creator is #{User.find(@competition.creator_id).name}" %><br/><br/>
-        <%= f.hidden_field :creator_id, :value => current_user.id %>
 
-        <div class="data-fields">
-          <%= f.label :name %>
-          <%= f.text_field :name, autofocus: true, placeholder: 'Competition Name' %>
-        </div>
-        <div class="data-fields">
-          <%= f.label :url %>
-          <%= f.text_field :url, autofocus: true, placeholder: 'http://source.com' %>
-        </div>
-        <div class="data-fields">
-          <%= f.label :description %>
-          <%= f.text_area :description, autofocus: true, placeholder: 'Competition Details' %>
-        </div>
-        <div class="data-fields">
-          <%= f.label :host %>
-          <%= f.text_field :host, autofocus: true %>
-        </div>
-        <div class="data-fields">
-          <%= f.label :start_date %>
-          <%= f.date_field :start, autofocus: true, placeholder: 'Competition Name' %>
-        </div>
-        <div class="data-fields">
-          <%= f.label :type %>
-          <%= f.select :comp_type, %w(24-Hour Standard), autofocus: true, selected: 'Standard' %>
-        </div>
-        <div class="data-fields">
-          <%= f.label :duration, 'Duration (Days)' %>
-          <%= f.number_field :duration, autofocus: true, placeholder: 'Days' %>
-        </div>
-        <div class="data-fields">
-          <%= f.label :prize %>
-          <%= f.text_field :prize, autofocus: true, placeholder: 'Leave blank if none.' %>
-        </div>
+          <%= "Competition creator is #{User.find(@competition.creator_id).name}" %>
+          <%= f.hidden_field :creator_id, :value => current_user.id %>
+    <div class="data-fields">
+      <pre><%= f.label :name, "Name\t\t\t" %><%= f.text_field :name, autofocus: true, placeholder: 'Competition Name' %></pre>
+    </div>
+    <div class="data-fields">
+      <pre><%= f.label :url, "Web Link\t\t" %><%= f.text_field :url, autofocus: true, placeholder: 'http://source.com' %></pre>
+    </div>
+    <div class="data-fields">
+      <pre><%= f.label :description, "Description\t\t" %><%= f.text_area :description, autofocus: true, placeholder: 'Competition Details' %></pre>
+    </div>
+    <div class="data-fields">
+      <pre><%= f.label :host, "Host\t\t\t" %><%= f.text_field :host, autofocus: true %></pre>
+    </div>
+    <div class="data-fields">
+      <pre><%= f.label :start_date, "Start Date\t\t" %><%= f.date_field :start, autofocus: true, placeholder: 'Competition Name' %></pre>
+    </div>
+    <div class="data-fields">
+      <pre><%= f.label :type, "Competition Type\t" %><%= f.select :comp_type, %w(24-Hour Standard), autofocus: true, selected: 'Standard' %></pre>
+    </div>
+    <div class="data-fields">
+      <pre><%= f.label :duration, "Duration (Days) \t" %><%= f.number_field :duration, autofocus: true, placeholder: 'Days' %></pre>
+    </div>
+    <div class="data-fields">
+      <pre><%= f.label :prize, "Prize\t\t\t" %><%= f.text_field :prize, autofocus: true, placeholder: 'Leave blank if none.' %></pre>
+    </div>
+
         <div class="action-button">
-          <%= f.submit 'Create', class: 'btn' %><br />
+          <%= f.submit 'Create', class: 'submit-btn' %> <small><%= link_to 'Cancel', :back %></small>
+
         </div>
 
-        <div class="data-fields">
-          <div class="ue">
-            <small><%= link_to 'Cancel', :back %></small>
-          </div>
-        </div>
     <% end %>
   </div>
 </div>

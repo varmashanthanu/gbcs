@@ -1,0 +1,20 @@
+<% content_for :title, @competition.name %>
+
+<div class="competitions">
+  <div class="info">
+    <div class="data-fields">
+      <%= render 'competition' %>
+    </div>
+    <hr/>
+    <% if user_signed_in? %>
+      <div class="actions">
+        <% if @team %>
+            <%= render 'team' %>
+        <% else %>
+            <%= render 'participate' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

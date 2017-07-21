@@ -3,12 +3,16 @@ class CompetitionsController < ApplicationController
   before_action :check_authorization, only: [:edit, :update, :destroy]
 
   def index
-    @competitions = Competition.all
+    @competitions = Competition.latest.paginate(page: params[:page], per_page: 10)
   end
 
   def show
     @competition = Competition.find(params[:id])
-    @team = @competition.user_team(current_user)
+    @team = @competition.user_team(current_user) if user_signed_in?
+    respond_to do |format|
+      format.html { redirect_to competitions}
+      format.js
+    end
   end
 
   def new

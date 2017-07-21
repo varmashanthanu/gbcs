@@ -3,8 +3,11 @@
   <div class="login-control">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
-          <%= f.email_field :email, autofocus: true, placeholder:'email.address@ufl.edu', class:'login-field' %>
-          <%= f.password_field :password, autocomplete: "off", placeholder:'-Password-', class:'login-field' %>
+          <%= f.label '', 'Username' %><br/>
+          <%= f.email_field :email, autofocus: true, placeholder:'Gator.Link@ufl.edu', class:'login-field' %><br>
+          <%= f.label '', 'Password' %><br/>
+          <%= f.password_field :password, autocomplete: "off", placeholder:'-Password-', class:'login-field' %><br>
+          <p></p>
           <%= f.submit "LOG IN", class:'login-button' %>
         </div>
 
@@ -19,7 +22,7 @@
     <h3>Objective</h3>
     <p>
       A Service for users to create profiles, add skill sets, set working preferences and search for
-      complementary users to work with on competitions.
+      complementary <br/> users to work with on competitions.
     </p>
 
     <hr/>

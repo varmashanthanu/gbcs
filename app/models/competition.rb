@@ -11,6 +11,8 @@ class Competition < ApplicationRecord
 
   belongs_to :creator, class_name: 'User'
 
+  scope :latest, -> {order(created_at:'DESC')}
+
   def participant(user)
     self.teams.exists?Team.where(:id => Member.where(user:user).select(:team_id))
   end

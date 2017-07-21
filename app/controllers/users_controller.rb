@@ -6,14 +6,21 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update], except: [:edit_password]
   before_action :store_current_location
 
-  skip_before_filter :verify_authenticity_token, :only => :update_avatar
+  # skip_before_action :verify_authenticity_token, :only => :update_avatar
 
   def index
-    @users = search_params
+    @users = search_params.paginate(page: params[:page], per_page: 15)
   end
 
   def show
 
+  end
+  def skill_graph
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+end
   end
 
   def column_graph
