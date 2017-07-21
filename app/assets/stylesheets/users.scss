@@ -24,7 +24,7 @@ $beige: #f5f3eb;
   height: 100%;
   overflow: scroll;
   .wrapper {
-
+    font-family: 'Muli', sans-serif;
     .index {
       .user-search {
         input {
@@ -128,6 +128,22 @@ $beige: #f5f3eb;
             vertical-align: middle;
           }
         }
+      }
+    }
+    .profile-info {
+      pre {
+        font-size: .9em;
+        font-family: 'Muli', sans-serif;
+      }
+      .round {
+        //border: solid $orange;
+        display: inline-block;
+      }
+      .info {
+        border: solid $orange;
+        padding: 0 20px 0 20px;
+        vertical-align: top;
+        display: inline-block;
       }
     }
   }

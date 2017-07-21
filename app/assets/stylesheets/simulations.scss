@@ -2,71 +2,101 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//font-family: 'Bellefair', serif;
+//font-family: 'Lato', sans-serif;
+//font-family: 'Oxygen', sans-serif;
+//font-family: 'Raleway', sans-serif;
+//font-family: 'Zilla Slab', serif;
+//font-family: 'Muli', sans-serif;
 
-.user-view {
-  border: orangered solid 2px;
-  height: 200px;
-  overflow: scroll;
-}
+$breakpoint: 800px;
+$orange: #E28F41;
+$beige: #f5f3eb;
 
-.member-view {
-  border: orangered solid 2px;
-  height: 250px;
-  overflow: scroll;
-  width: 35%;
-  display: inline-block;
-}
-
-.team-skill-view {
-  border: orangered solid 2px;
-  height: 250px;
-  overflow: scroll;
-  width: 63.85%;
-  display: inline-block;
-}
-
-.user-stats {
-  position: fixed;
-  z-index: 5;
-  top: 50%;
-  left: 50%;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
-  width: 800px;
-  line-height: 0.5;
-  border: solid violet 2px;
-  background-color: rgba(beige,0.9);
-  display: none;
-}
-
-.yes-list-no, .yes-list-yes {
-  width: 30%;
-  display: inline-block;
-}
-
-.compatibility {
-  width: 29%;
-  height: inherit;
-  overflow: scroll;
-  position: fixed;
-  z-index: 5;
-  background-color: rgba(beige,0.9);
-  display: none;
-  //border: solid green;
-  line-height: 0.5;
-}
-
-#warning {
-  display: none;
+.simulations {
+  padding-left: 20px;
+  background-color: $beige;
   position: absolute;
-  float: right;
-  width: 25%;
-  //display: inline-block;
-  padding-left: 15px;
-  color: red;
-}
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  .wrapper {
+    font-family: 'Muli', sans-serif;
+    padding-right: 40px;
 
-.heading {
-  width: 70%;
-  display: inline-block;
+    .user-view {
+      border: $orange solid 2px;
+      height: 200px;
+      overflow: scroll;
+    }
+
+    .member-view {
+      border: $orange solid 2px;
+      height: 250px;
+      overflow: scroll;
+      width: 35%;
+      display: inline-block;
+    }
+
+    .team-skill-view {
+      border: $orange solid 2px;
+      height: 250px;
+      overflow: scroll;
+      width: 63.85%;
+      display: inline-block;
+    }
+
+    .user-stats {
+      position: fixed;
+      z-index: 5;
+      top: 50%;
+      left: 50%;
+      /* bring your own prefixes */
+      transform: translate(-50%, -50%);
+      width: 800px;
+      line-height: 0.5;
+      border: solid violet 2px;
+      background-color: rgba(beige,0.9);
+      display: none;
+    }
+
+    .yes-list-no, .yes-list-yes {
+      width: 30%;
+      display: inline-block;
+    }
+
+    .compatibility {
+      width: 29%;
+      height: inherit;
+      overflow: scroll;
+      position: fixed;
+      z-index: 5;
+      background-color: rgba(beige,0.9);
+      display: none;
+      //border: solid green;
+      line-height: 0.5;
+    }
+
+    #warning {
+      display: none;
+      position: absolute;
+      float: right;
+      width: 25%;
+      //display: inline-block;
+      padding-left: 15px;
+      color: red;
+    }
+
+    .heading {
+      width: 70%;
+      display: inline-block;
+    }
+
+  }
+  .pagination {
+    text-align: center;
+    color: $orange;
+  }
 }

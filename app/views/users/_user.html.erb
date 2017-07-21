@@ -1,4 +1,7 @@
+<%= image_tag(current_user.avatar.url(:display), size:'200x200' , class: 'round') %>
+
 <% if current_user.admin %>
+
     <%= "Name: #{@user.fullname||'Incomplete'}" %><br/>
     <%= "Email: #{@user.email}" %><br/>
     <%= "Contact No.: #{@user.telno}" %><br/>
@@ -6,15 +9,18 @@
     <br/><%= link_to 'Change Master Password', edit_admin_path(MasterPass.first), remote: true, id:'master-pass' %><br/><br/>
 
 <% else %>
-    <p><%= @user.fullname %></p>
+    <span class="info">
+      <p><% @user.fullname %></p>
 
-    <p>
-      <%= @user.program ? "Program: #{@user.program}" : "Program information not filled." %> |
-      <%= @user.term ? "Program: #{@user.term}" : "Term information not filled." %> |
-      <%= @user.graduation ? "Graduation: #{@user.graduation}" : "Graduation information not filled." %><br/>
-      <%= "Locations available: #{@user.preference.location.humanize}" %><br/>
-      <%= "Competitions Interested: #{@user.preference.competition.humanize}" %><br/>
-      <%= @user.active ? 'Participation Status: Active' : 'Participation Status: Inactive' %><br/>
-      <%= "Skill Score: #{@user.score}" %>
-    </p>
+      <pre>
+  <%= @user.program ? "Program: \t\t\t\t#{@user.program}" : "Program information not filled." %>
+  <%= @user.term ? "Term: \t\t\t\t\t#{@user.term}" : "Term information not filled." %>
+  <%= @user.graduation ? "Graduation: \t\t\t#{@user.graduation}" : "Graduation information not filled." %>
+  <%= "Email: \t\t\t\t\t#{@user.email}"%>
+  <%= "Locations available: \t\t#{@user.preference.location.humanize}" %>
+  <%= "Competitions Interested: \t#{@user.preference.competition.humanize}" %>
+  <%= @user.active ? "Participation Status: \t\tActive" : "Participation Status: \t\tInactive" %>
+  <%= "Skill Score: \t\t\t\t#{@user.score}" %>
+      </pre>
+    </span>
 <% end %>

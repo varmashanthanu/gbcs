@@ -1,53 +1,55 @@
 <% content_for :title, 'Builder' %>
+<div class="simulations">
+  <div class="wrapper">
+    <h1>Team Builder</h1>
 
-<h1>Team Builder</h1>
+    <div class="user-stats">
+    </div>
 
-<div class="user-stats">
+    <div class="user-view">
+      <div class="user-search" id="user-search">
+        <%= form_tag search_simulations_path, method: :get, remote: true do %>
+            <%= text_field_tag :name, params[:name],autofocus: true, placeholder: 'Enter Name', class: 'txt-fld' %>
+            <%= hidden_field :team, :id, value: @team.id %>
+            <div id="member-adds">
+              <% @members.each do |m| %>
+                  <%= hidden_field :members, :id, :value => m.id,multiple:true, id:"member-#{m.id}" %>
+              <% end %>
+            </div>
+            <%= select :sp, :sp1, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp1] if params[:sp]) %>
+            <%= select :so, :so1, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so1] if params[:sp]) %>
+            <%= select :sp, :sp2, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp2] if params[:sp]) %>
+            <%= select :so, :so2, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so2] if params[:sp]) %>
+            <%= select :sp, :sp3, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp3] if params[:sp]) %>
+            <%= select :so, :so3, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so3] if params[:sp]) %>
 
-</div>
+            <%= submit_tag 'Sort', name: nil, class: 'btn' %>
+        <% end %>
+      </div>
 
-<div class="user-view">
-  <div class="user-search" id="user-search">
-    <%= form_tag search_simulations_path, method: :get, remote: true do %>
-        <%= text_field_tag :name, params[:name],autofocus: true, placeholder: 'Enter Name', class: 'txt-fld' %>
-        <%= hidden_field :team, :id, value: @team.id %>
-        <div id="member-adds">
-          <% @members.each do |m| %>
-              <%= hidden_field :members, :id, :value => m.id,multiple:true, id:"member-#{m.id}" %>
-          <% end %>
-        </div>
-        <%= select :sp, :sp1, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp1] if params[:sp]) %>
-        <%= select :so, :so1, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so1] if params[:sp]) %>
-        <%= select :sp, :sp2, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp2] if params[:sp]) %>
-        <%= select :so, :so2, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so2] if params[:sp]) %>
-        <%= select :sp, :sp3, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp3] if params[:sp]) %>
-        <%= select :so, :so3, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so3] if params[:sp]) %>
+      <pre><%= "Name\t\tSkill Score\tProgram\t\tGraduation\tLocation Pref\tCompetition Pref" %> </pre>
+      <div id="user-view">
+        <%= render 'users' %>
+      </div>
 
-        <%= submit_tag 'Sort', name: nil, class: 'btn' %>
-    <% end %>
+
+    </div>
+
+    <div class="member-view">
+      <div class="compatibility">
+
+      </div>
+      <pre class="heading"><%= "Name\t\tScore\tProgram" %></pre>
+      <div id="warning">Issues</div>
+
+      <div id="list">
+        <%= render 'members' %>
+      </div>
+    </div>
+
+    <div class="team-skill-view">
+
+      <%= @members.any? ? (bar_chart team_skills_simulations_path  library: { hAxis:{title:'Level'},title:'Team Skills',colors: ['orangered'],min:0,max:5}, :members => @members.pluck(:id), id:'team-skills', remote:true) : (bar_chart [["",0]],library: { hAxis:{title:'Level'}, vAxis: {title:'Skills'},title:'Team Skills',colors: ['orangered']}, id:'chart-1', remote:true) %>
+    </div>
   </div>
-
-  <pre><%= "Name\t\tSkill Score\tProgram\t\tGraduation\tLocation Pref\tCompetition Pref" %> </pre>
-  <div id="user-view">
-    <%= render 'users' %>
-  </div>
-
-
-</div>
-
-<div class="member-view">
-  <div class="compatibility">
-
-  </div>
-  <pre class="heading"><%= "Name\t\tScore\tProgram" %></pre>
-  <div id="warning">Issues</div>
-
-  <div id="list">
-    <%= render 'members' %>
-  </div>
-</div>
-
-<div class="team-skill-view">
-
-  <%= @members.any? ? (bar_chart team_skills_simulations_path  library: { hAxis:{title:'Level'},title:'Team Skills',colors: ['orangered'],min:0,max:5}, :members => @members.pluck(:id), id:'team-skills', remote:true) : (bar_chart [["",0]],library: { hAxis:{title:'Level'}, vAxis: {title:'Skills'},title:'Team Skills',colors: ['orangered']}, id:'chart-1', remote:true) %>
 </div>
