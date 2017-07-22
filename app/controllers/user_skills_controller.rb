@@ -19,7 +19,7 @@ class UserSkillsController < ApplicationController
       end
     elsif @user_skill.save
       @user.update_attribute(:score,current_user.calc_score)
-      @user.teams.each do |t|; t.skill_update(current_user) ; end
+      @user.teams.each do |t|; t.skill_add(current_user) ; end
       respond_to do |format|
         format.html { redirect_to user_dashboard_path }
         format.js { flash[:notice] = 'Skill Added.' }
@@ -42,7 +42,7 @@ class UserSkillsController < ApplicationController
     @user = @user_skill.user
     if @user_skill.update_attributes(user_skills_params)
       @user.update_attribute(:score,current_user.calc_score)
-      @user.teams.each do |t|; t.skill_update(current_user) ; end
+      @user.teams.each do |t|; t.skill_update ; end
       respond_to do |format|
         format.html { redirect_to user_dashboard_path }
         format.js { flash[:notice] = 'Updated.' }
@@ -54,7 +54,7 @@ class UserSkillsController < ApplicationController
     @user_skill = UserSkill.destroy(params[:id])
     @user = @user_skill.user
     @user.update_attribute(:score,current_user.calc_score)
-    @user.teams.each do |t|; t.skill_update(current_user) ; end
+    @user.teams.each do |t|; t.skill_delete(current_user) ; end
     respond_to do |format|
       format.html { redirect_to user_dashboard_path }
       format.js { flash[:notice] = 'Deleted.' }

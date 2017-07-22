@@ -45,16 +45,20 @@ class Team < ApplicationRecord
     self.members.where(user:user).present?
   end
 
-  def skill_update(user) #TODO check if team skills change when Members edit skills / leaves team
-    user.user_skills.each do |us|
-      if self.team_skills.where(skill:us.skill).present?
-        l = self.team_skills.where(skill:us.skill).first.level || 0
-        c = self.team_skills.where(skill:us.skill).first.count
-        level = [l,us.level].max
-        count = c+1
-        self.team_skills.where(skill:us.skill).first.update_attributes(level:level,count:count)
-      else
-        self.team_skills.create(level:us.level,skill:us.skill,count:1)
+  def skill_update #TODO check if team skills change when Members edit skills / leaves team
+    self.team_skills.update_all(level:0)
+    users = self.users
+    users.each do |user|
+      user.user_skills.each do |us|
+        if self.team_skills.where(skill:us.skill).present?
+          l = self.team_skills.where(skill:us.skill).first.level || 0
+          c = self.team_skills.where(skill:us.skill).first.count
+          level = [l,us.level].max
+          count = c+1
+          self.team_skills.where(skill:us.skill).first.update_attributes(level:level,count:count)
+        else
+          self.team_skills.create(level:us.level,skill:us.skill,count:1)
+        end
       end
     end
   end
