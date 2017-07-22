@@ -33,18 +33,18 @@
     <div class="tasks">
       <div class="tabs">
         <ul>
+          <%= link_to competitions_path do %>
+              <li>Search Competition</li>
+              <% end %>
           <%= link_to new_competition_path do %>
               <li>Create Competition</li>
           <% end %>
-          <%= link_to competitions_path do %>
-              <li>Search Competition</li>
-          <% end %>
           <br/>
-          <%= link_to mine_teams_path do %>
-              <li>My Teams</li>
-          <% end %>
           <%= link_to teams_path do %>
               <li>Search Teams</li>
+              <% end %>
+          <%= link_to mine_teams_path do %>
+              <li>My Teams</li>
           <% end %>
           <br/>
           <%= link_to users_path do %>

@@ -22,25 +22,29 @@
 
     <div class="activities-block">
       <h2>Activities</h2>
-      <h3>Current Teams</h3>
-          <%= render 'teams' %>
-      <h3>Current Competitions</h3>
-      <% if @comps.count > 0 %>
-          <% @comps.each do |comp| %>
-              <p>
-                <%= link_to comp.name, comp  %>
-              </p>
-          <% end %>
-      <% else %>
-          <p>No Competitions Joined Yet</p>
-      <% end %>
+      <span class="block">
+        <h3>Current Teams</h3>
+        <%= render 'teams' %>
+      </span>
+      <span class="block">
+        <h3>Current Competitions</h3>
+        <% if @comps.count > 0 %>
+            <% @comps.each do |comp| %>
+                <p>
+                  <%= link_to comp.name, comp  %>
+                </p>
+            <% end %>
+        <% else %>
+            <p>No Competitions Joined Yet</p>
+        <% end %>
+      </span>
     </div>
 
     <div info-block>
       <h3>Preferences</h3>
       <%= render 'preferences/preference' %>
 
-      <h3>Skills Added - <%= current_user.score %></h3>
+      <h3>Skills Rank - <%= current_user.score %></h3>
       <div class="column-graph">
         <% if @user_skills.any? %>
             <% @user = current_user %>

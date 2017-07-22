@@ -16,6 +16,7 @@ $beige: #f5f3eb;
 
 .users {
   padding-left: 20px;
+  padding-bottom: 50px;
   background-color: $beige;
   position: absolute;
   right: 0;
@@ -150,6 +151,15 @@ $beige: #f5f3eb;
   .pagination {
     text-align: center;
     color: $orange;
+  }
+//  Dashboard
+  .activities-block {
+    border: solid red;
+    .block {
+      padding: 0 60px 0 0px;
+      border: solid blue;
+      display: inline-block;
+    }
   }
 }
 

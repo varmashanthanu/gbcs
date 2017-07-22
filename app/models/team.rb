@@ -48,7 +48,7 @@ class Team < ApplicationRecord
   def skill_update(user) #TODO check if team skills change when Members edit skills / leaves team
     user.user_skills.each do |us|
       if self.team_skills.where(skill:us.skill).present?
-        l = self.team_skills.where(skill:us.skill).first.level
+        l = self.team_skills.where(skill:us.skill).first.level || 0
         c = self.team_skills.where(skill:us.skill).first.count
         level = [l,us.level].max
         count = c+1
