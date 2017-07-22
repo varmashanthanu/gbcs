@@ -10,7 +10,7 @@ class CompetitionsController < ApplicationController
     @competition = Competition.find(params[:id])
     @team = @competition.user_team(current_user) if user_signed_in?
     respond_to do |format|
-      format.html { redirect_to competitions}
+      format.html { redirect_to competitions_path}
       format.js
     end
   end

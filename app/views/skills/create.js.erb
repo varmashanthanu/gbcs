@@ -1,7 +1,7 @@
 $("#new_skill").hide();
 $("#create-skill").show();
 $("#none-message").hide();
-$('#pie-chart').empty().append("<%= j render('piechart') %>");
+$('#pie-chart').empty().append("<%= j render('category_skills') %>");
 
 $("#skill-list").append("<%= j render(@skill) %>");
 $("#notice-message").html("<p><%= flash[:notice] %></p>").show();

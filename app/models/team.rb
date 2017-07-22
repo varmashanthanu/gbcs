@@ -16,6 +16,8 @@ class Team < ApplicationRecord
 
   has_many :invites, dependent: :destroy
 
+  has_many :notifications, foreign_key: :notifiable_id
+
   # scope :complementary,
 
   def self.mine(user)

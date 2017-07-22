@@ -3,11 +3,12 @@
 <div class="skills">
   <div class="wrapper">
     <h1>Skills</h1>
-
-    <div class="pie-chart">
-      <h3>Total Skills by Group</h3>
-      <div id="pie-chart">
-        <%= render 'piechart' if Skill.count > 0 %>
+    <h4>User Distribution</h4>
+    <small><%= link_to 'DETAILS', {controller:'skills', action:'index', view:'details'}, id:'details', remote:true %>
+    <%= link_to 'CORE', {controller:'skills', action:'index', view:'core'}, id:'core' %></small>
+    <div class="skill-dist">
+      <div id="chart">
+        <%= render 'category_skills' if Skill.count > 0 %>
       </div>
     </div>
     <div class="table-wrapper">

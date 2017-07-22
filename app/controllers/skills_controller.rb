@@ -3,10 +3,15 @@ class SkillsController < ApplicationController
 
   def index
     @skills = Skill.order(category:'ASC').order(name:'ASC')
+    @view = params[:view]
   end
 
-  def pie_chart #TODO maybe name this action appropriately
+  def category_skills #TODO maybe name this action appropriately
     render json: Skill.skill_dist
+  end
+
+  def indi_skills
+    render json: Skill.skill_dist_indi
   end
 
   def show

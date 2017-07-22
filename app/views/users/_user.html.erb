@@ -1,4 +1,4 @@
-<%= image_tag(current_user.avatar.url(:display), size:'200x200' , class: 'round') %>
+<%= image_tag(@user.avatar.url(:display), size:'200x200' , class: 'round') %>
 
 <% if current_user.admin %>
 

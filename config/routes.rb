@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :notifications, only: [:index, :show]
+
   resources :preferences, only: [:edit, :update]
   resources :programs
 
@@ -42,7 +44,7 @@ Rails.application.routes.draw do
 
   resources :skills do
     collection do
-      get :pie_chart
+      get :category_skills, :indi_skills
     end
   end
 
@@ -116,7 +118,7 @@ end
 # match 'join_comp/competitions' => 'competitions#join_comp', as: :join_comp_competitions, via: [:get]
 # match 'leave_comp/competitions' => 'competitions#leave_comp', as: :leave_comp_competitions, via: [:get]
 
-# get 'mine/teams' => 'teams#mine', as: :teams_mine, via: [:get]
+# get 'mine/users' => 'users#mine', as: :teams_mine, via: [:get]
 
 # match 'admin/make_admin' => 'admin#make_admin', as: :admin_make_admin, via: [:get]
 # match 'admin/get_pass' => 'admin#get_pass', as: :admin_get_pass, via: [:get]

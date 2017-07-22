@@ -6,8 +6,14 @@ class Invite < ApplicationRecord
   scope :sent, -> {where(sender_id:current_user.id)}
   scope :received, -> {where(user:current_user)}
 
+  after_create :notify
+
   def self.received(user)
     where(user:user)
+  end
+
+  def notify
+    Notification.create(user:self.sender,recipient:self.user,notifiable:self.team,action:'invited')
   end
 
   def self.sent(user)

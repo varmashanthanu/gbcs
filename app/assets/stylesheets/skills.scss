@@ -1,31 +1,50 @@
-// Place all the styles related to the skills controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+//font-family: 'Bellefair', serif;
+//font-family: 'Lato', sans-serif;
+//font-family: 'Oxygen', sans-serif;
+//font-family: 'Raleway', sans-serif;
+//font-family: 'Zilla Slab', serif;
+//font-family: 'Muli', sans-serif;
 
-//.skills{
-//  .wrapper{
-//    .table-wrapper{
-//      width: 20%;
-//      display: inline;
-//      border: solid red 0.1px;
-//
-//      padding: 20px 30px 10px 30px;
-//      overflow: scroll;
-//    }
-//
-//    .pie-chart{
-//      width: 20%;
-//      display: inline;
-//      border: solid blue 0.1px;
-//      overflow: scroll;
-//    }
-//  }
-//}
+$orange: #E28F41;
+$beige: #f5f3eb;
+
+.skills {
+  padding-left: 20px;
+  padding-bottom: 40px;
+  background-color: $beige;
+  position: absolute;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+
+  .wrapper {
+    font-family: 'Muli', sans-serif;
+  }
+  .skill-dist {
+    border: $orange solid 1px;
+    width: 95%;
+  }
+  small {
+    float: right;
+    position: relative;
+    margin-right: 55px;
+    margin-top: -20px;
+    #core {
+      display: none;
+    }
+    a {
+      text-decoration: none;
+      color: $orange;
+    }
+  }
+}
 
 #skill-density-chart{
   p{
     position: absolute;
-    z-index: 2;
+    z-index: 1;
     left: 40%;
   }
 }

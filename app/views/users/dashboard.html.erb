@@ -6,10 +6,10 @@
       <p>News Items for Competitions, Teams.</p>
 
       <% if @invites.any? %>
-        <p>Received Invites</p>
+        <p>Pending Invites</p>
         <% @invites.each do |invite| %>
           <p id="invite-<%=invite.id%>">
-            <%= "#{invite.sender.name} has invited you to join #{invite.team.name}" %>
+            <%= link_to invite.sender.fullname, invite.sender %> <%= 'invited' %> you to <%= link_to 'Team '+invite.team.name, invite.team %>
             <small>
               <%= link_to 'Accept', join_member_path(invite), remote: true %>
             </small>

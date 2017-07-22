@@ -1,0 +1,5 @@
+<% if current_user.notifications.unread.present? %>
+    <% current_user.notifications.unread.order(created_at:'DESC').each do |n| %>
+        <li><%= link_to "#{n.user.fullname} #{n.action} you to #{n.notifiable_type} #{n.notifiable.name}", n %></li>
+    <% end %>
+<% end %>

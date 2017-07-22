@@ -19,6 +19,12 @@
                 <li><%= link_to 'Logout', '/users/sign_out', :method => 'delete' %></li>
               </ul>
             </li>
+            <li><%= link_to 'Notifications', '#',id:"notif-dropdown" %>
+              <ul class="nav-dropdown notif-dropdown">
+                <li id="no-notifications"><%= link_to 'No new notifications', '#' unless current_user.notifications.unread.present? %></li>
+                <div id="notifications"><%= render('notifications/new_notifications') %></div>
+              </ul>
+            </li>
         <% else %> <!-- If not signed in -->
             <li><%= link_to 'Home', '/welcome/home' %></li>
             <li><%= link_to 'Competitions', competitions_path %></li> <!-- To see what competitions are going on -->

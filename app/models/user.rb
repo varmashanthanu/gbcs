@@ -27,6 +27,8 @@ class User < ApplicationRecord
   has_many :invites, foreign_key: :user_id, dependent: :destroy
   has_many :requests, :class_name => 'Invite', foreign_key: :sender_id, dependent: :destroy
 
+  has_many :notifications, foreign_key: :recipient_id
+
   scope :faculty, -> {where(admin: true)}
   scope :students, -> {where('admin IS NULL OR admin is FALSE')}
   scope :active, -> {where(active: true)}

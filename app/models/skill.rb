@@ -42,18 +42,22 @@ class Skill < ApplicationRecord
     100/(Skill.sum(&:rank)*5/Skill.count)
   end
 
-  def self.skill_dist
+  def self.skill_dist_indi
     data = []
     Skill.group(:category).count.each do |cat|
       set = {}
       set[:name] = cat[0]
       set[:data] = []
-      Skill.where(category:cat).order(:category).joins(:users).group(:name,:category).count.each do |s,c|
+      Skill.where(category:cat).order(:category).joins(:users).group(:name, :category).count.each do |s,c|
         set[:data] << [s[0],c]
       end
       data << set
     end
     data
+  end
+
+  def self.skill_dist
+    Skill.joins(:users).group(:category).count
   end
 
 end

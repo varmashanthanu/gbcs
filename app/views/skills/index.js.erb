@@ -1,0 +1,10 @@
+var chart = $('#chart-1')
+<% if @view == 'details' %>
+  chart.replaceWith("<%= j render('indi_skills') %>");
+  $('#details').toggle();
+  $('#core').toggle();
+<% elsif @view =='core' %>
+  chart.replaceWith("<%= j render('category_skills') %>");
+  $('#details').toggle();
+  $('#core').toggle();
+<% end %>
