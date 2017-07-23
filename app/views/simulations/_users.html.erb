@@ -1,4 +1,6 @@
+<%= will_paginate @users %>
 <% @users.each do |user| %>
     <pre id="user-<%=user.id%>"><%= link_to "#{user.fullname}", user_stats_simulation_path(user), remote: true %><%= "\t\t#{user.score}\t#{user.program}\t\t#{user.graduation}\t\t#{user.preference.location}\t\t#{user.preference.location}\t\t"%><%= link_to 'Add', {controller:'simulations', action:'new', :team => @team.id, :new_member => user.id, :members => @members.pluck(:id)}, id:"add-#{user.id}", remote: true %>
         </pre>
 <% end %>
+<%= will_paginate @users %>

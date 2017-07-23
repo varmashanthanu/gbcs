@@ -2,6 +2,11 @@ $('#list').empty().append("<%= j render('members') %>");
 $('#user-view').empty().append("<%= j render('users') %>");
 //$('#user-<=@member.id%>').remove();
 
+$('.pagination a').on('click',function(){
+    $.get(this.href,null,null,'script');
+    return false;
+});
+
 <% if @compatibility.present? %>
 $('#warning').css('display','inline-block');
 $('#warning').click(function(){
@@ -15,7 +20,7 @@ $('#warning').click(function(){
 });
 <% end %>
 
-$('#chart-1').replaceWith("<%= j bar_chart team_skills_simulations_path :members => @members.pluck(:id), id:'team-skills', remote:true %>");
+$('#team-skills').replaceWith("<%= j bar_chart User.combined_skills(@members),library: { backgroundColor:'transparent', hAxis: {title:'Level'},title:'Team Skills',colors: ['orangered'], min:0, max:5, :members => @members.pluck(:id)}, id:'team-skills', remote:true %>");
 $('#member-adds').empty();
 <% @members.each do |m| %>
 $('#member-adds').append("<%= j hidden_field :members, :id, :value => m.id,multiple:true, id:"member-#{m.id}" %>")

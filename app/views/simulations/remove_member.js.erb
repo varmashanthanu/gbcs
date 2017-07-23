@@ -1,8 +1,13 @@
 $('#list').empty().append("<%= j render('members') %>");
 $('#user-view').empty().append("<%= j render('users') %>");
 
+$('.pagination a').on('click',function(){
+    $.get(this.href,null,null,'script');
+    return false;
+});
+
 <% if @members.present? %>
-$('#chart-1').replaceWith("<%= j bar_chart team_skills_simulations_path :members => @members.pluck(:id), id:'team-skills', remote:true %>");
+$('#team-skills').replaceWith("<%= j bar_chart User.combined_skills(@members),library: { backgroundColor:'transparent', hAxis: {title:'Level'},title:'Team Skills',colors: ['orangered'], min:0, max:5, :members => @members.pluck(:id)}, id:'team-skills', remote:true %>");
 <% else %>
-$('#chart-1').replaceWith("<%= j bar_chart [["",0]],library: { title:'Team Skills',colors: ['orangered']}, id:'chart-1', remote:true %>");
+$('#team-skills').replaceWith("<%= j bar_chart [["",0]],library: { title:'Team Skills',colors: ['orangered']}, id:'team-skills', remote:true %>");
 <% end %>
