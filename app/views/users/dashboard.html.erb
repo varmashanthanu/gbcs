@@ -38,9 +38,9 @@
           <p id="invite-<%=invite.id%>">
             <%= link_to invite.sender.fullname, invite.sender %> <%= 'invited' %> you to <%= link_to 'Team '+invite.team.name, invite.team %>
             <small>
-              <%= link_to 'Accept', join_member_path(invite), remote: true %>
+              <%= link_to 'Accept', join_member_path(invite), remote: true, class:'submit-btn' %>
             </small>
-            <small><%= link_to 'Reject', invite, method: :delete, data: {confirm: 'Are you Sure?'}, remote:true %></small>
+            <small><%= link_to 'Reject', invite, method: :delete, data: {confirm: 'Are you Sure?'}, remote:true, class:'submit-btn' %></small>
           </p>
         <% end %>
       <%end%>

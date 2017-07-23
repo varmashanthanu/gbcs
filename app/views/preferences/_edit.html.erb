@@ -3,6 +3,6 @@
     <%= f.select :location, %w(In-State National Any), autofocus: true %>
     <%= "| Competition Types: "%>
     <%= f.select :competition, %w(24-Hour Standard Any), autofocus: true %>
-    <%= f.submit 'Save' %><small><%= link_to 'Cancel', '#', remote:true, id:'pref-cancel' %></small>
+    <%= f.submit 'Save', class:'submit-btn' %><small><%= link_to 'Cancel', '#', remote:true, id:'pref-cancel' %></small>
 
 <% end %>

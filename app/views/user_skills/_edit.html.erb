@@ -2,6 +2,6 @@
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.collection_select :skill_id, Skill.list_up, :id, :tag %>
     <%= f.number_field :level, autofocus: true, min: 1, max: 5, required:true, placeholder: '1' %><small><i> Level: Scale 1-5</i></small>
-    <%= f.submit 'update'%>
+    <%= f.submit 'Update', class:'submit-btn'%>
     <small><%= link_to 'Cancel','#',id:"cancel-#{@user_skill.id}", remote: true %></small>
 <% end %>

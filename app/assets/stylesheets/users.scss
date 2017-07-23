@@ -40,7 +40,7 @@ $beige: #f5f3eb;
           border: solid $orange 1px;
           width: 80px;
         }
-        .submit-btn {
+        submit-btn {
           width: 50px;
           border-radius: 0;
           background: none;
@@ -58,6 +58,19 @@ $beige: #f5f3eb;
           outline-color: $orange;
         }
       }
+    }
+    .submit-btn {
+      border-radius: 0;
+      background: none;
+      color: $orange;
+      border: $orange solid 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.7em;
+      font-family: 'Bellefair', san-serif;
+      padding: 5px 6px 2px 6px;
+      vertical-align: middle;
     }
     .user-list {
 
@@ -184,6 +197,24 @@ $beige: #f5f3eb;
     height: 300px;
     overflow-y: scroll;
     vertical-align: top;
+  }
+  .info-block {
+    input {
+      padding-left: 5px;
+      width: auto;
+      border: solid $orange 1px;
+      height: 20px;
+    }
+    select {
+      padding-left: 5px;
+      border: solid $orange 1px;
+      width: auto;
+    }
+    .submit-btn {
+      width: auto;
+      padding-bottom: 5px;
+      padding-top: 3px;
+    }
   }
 }
 
