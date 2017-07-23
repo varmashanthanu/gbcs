@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_many :teams, through: :members
 
   has_many :yes_lists, dependent: :destroy
+  has_many :marked, through: :yes_lists, source: :target
 
   has_one :preference, dependent: :destroy
 

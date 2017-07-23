@@ -8,22 +8,30 @@
 
           <div class="yes-list-chart-1">
             <p>The Most Difficult</p>
-            <%= column_chart difficult_graph_yes_lists_path, id:'difficult-chart' %>
+            <%= column_chart difficult_graph_yes_lists_path,library:{backgroundColor:'transparent', vAxis:{title:"No. of 'NO's Selected"}}, id:'difficult-chart' %>
           </div>
           <div class="yes-list-chart-2">
             <p>The Most Hated</p>
-            <%= column_chart hated_graph_yes_lists_path, id:'hated-chart' %>
+            <%= column_chart hated_graph_yes_lists_path, id:'hated-chart', library:{backgroundColor:'transparent', vAxis:{title:"No. of students who selected 'NO'"}} %>
           </div>
 
-          <hr/>
           <% c = 0; @users.each do ; c+=1; end %> <!-- Need to optimize TODO -->
           <%= "#{c} students with Working Preferences." %>
+
+          <hr/>
           <% @users.each do |u| %>
               <% @yes_lists = u.yes_lists %>
-              <h4><%= "#{u.fullname} - #{@yes_lists.count} Choices" %></h4>
-              <%= render 'yes_lists' %>
+              <h4>
+                <%= link_to u do %>
+                    <%= image_tag u.avatar.url(:thumb), size:'20x20', class:'round' %>
+                    <%= "#{u.fullname} - #{pluralize(@yes_lists.count, 'Choice')}" %>
+                <% end %>
+              </h4>
+              <small><%= link_to 'VIEW', '#', class:'view' %></small>
+              <div class="hate-list"><%= render 'yes_lists' %></div>
               <hr/>
           <% end %>
+          <%= will_paginate @users %>
 
         </div>
     <% else %>
@@ -40,11 +48,12 @@
               <p id="none-message"> You have not marked any user-compatibility preferences.</p>
           <% end %>
         </div>
+        <%= will_paginate @yes_lists %>
 
         <hr/>
 
         <div class="add-block">
-          <%= link_to 'Quick Add', new_yes_list_path, remote: true, id:'add-block' %>
+          <%= link_to 'Quick Add', new_yes_list_path, class:'submit-btn', remote: true, id:'add-block' %>
         </div>
     <% end %>
   </div>

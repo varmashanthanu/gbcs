@@ -1,10 +1,21 @@
 <% @yes_lists.each do |ylist| %>
 
-    <p id="yes-list-<%= ylist.id %>">
-      <%= "#{ylist.target.fullname} - " %>
-      <%= ylist.match == 'YES' ? 'YES':link_to('YES',toggle_yes_list_path(ylist.id),remote:true) %>
-      <%= ylist.match == 'NO' ? 'NO':link_to('NO',toggle_yes_list_path(ylist.id),remote:true) %>
-      <%= !ylist.match ? 'Don\'t Care':link_to('Don\'t Care',ylist, method: :delete, data: {confirm: 'Are You Sure?'},remote:true) %>
-    </p>
-
+    <% if current_user.admin %>
+        <p id="yes-list-<%= ylist.id %>">
+          <%= link_to ylist.target do %>
+          <%= image_tag(ylist.target.avatar.url(:thumb), size:'20x20', class:'round') %>
+          <%= "#{ylist.target.fullname} - #{ylist.match}" %>
+          <% end %>
+        </p>
+    <% else %>
+        <p id="yes-list-<%= ylist.id %>">
+          <%= link_to ylist.target do %>
+              <%= image_tag(ylist.target.avatar.url(:thumb), size:'20x20', class:'round') %>
+              <%= "#{ylist.target.fullname} - "%>
+          <% end %>
+          <%= ylist.match == 'YES' ? 'YES':link_to('YES',toggle_yes_list_path(ylist.id),remote:true, class: 'submit-btn') %>
+          <%= ylist.match == 'NO' ? 'NO':link_to('NO',toggle_yes_list_path(ylist.id),remote:true, class: 'submit-btn') %>
+          <%= !ylist.match ? 'Don\'t Care':link_to('Don\'t Care',ylist, method: :delete, data: {confirm: 'This will detele this preference. Are You Sure?'},remote:true, class: 'submit-btn') %>
+        </p>
+    <% end %>
 <% end %>
