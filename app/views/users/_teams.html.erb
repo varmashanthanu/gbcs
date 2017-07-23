@@ -1,5 +1,5 @@
-<% if @user_teams.count > 0 %>
-    <% @user_teams.each do |uteam| %>
+<% if user_teams.count > 0 %>
+    <% user_teams.each do |uteam| %>
         <p id="member-team-<%=uteam.id%>">
           <%= link_to uteam.team.name, uteam.team %>
           <small><%= link_to 'Leave Team', uteam, remote:true, method: :delete, data: {confirm: 'Are you Sure?'} %></small>

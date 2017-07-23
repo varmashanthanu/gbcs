@@ -1,6 +1,6 @@
 <div class="user-skills" id="user-skills">
-  <% if @user_skills.count > 0 %>
-      <% @user_skills.each do |uskill| %>
+  <% if user_skills.count > 0 %>
+      <% user_skills.each do |uskill| %>
           <p id="remove-id-<%=uskill.id%>">
             <%= uskill.name + ' - ' %><%= "Level #{uskill.level}"  %><%= " W-Level #{uskill.weighted_level}"  %>
             <small><%= link_to 'Edit', edit_user_skill_path(uskill),id:"edit_skill_#{uskill.id}", remote:true %></small>

@@ -2,12 +2,39 @@
 <div class="users">
   <div class="wrapper">
     <div class="news-block">
-      <h2>New Competitions</h2>
-      <p>News Items for Competitions, Teams.</p>
+      <h2>New Items</h2>
+      <div class="new-competitions">
+        <p><b>Newly Added Competitions</b></p>
+        <% new_comps.each do |c| %>
+            <%= link_to c do %>
+                <p><%= "#{c.name} - "%><%="Starts: #{c.start.strftime("%b %y")}" if c.start%></p>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
 
-      <% if @invites.any? %>
-        <p>Pending Invites</p>
-        <% @invites.each do |invite| %>
+    <div class="activities-block">
+      <h2>New Activities</h2>
+      <span class="block">
+        <p><b>Enrolled Teams</b></p>
+        <%= render 'teams' %>
+      </span>
+      <span class="block">
+        <p><b>Enrolled Competitions</b></p>
+        <% if comps.count > 0 %>
+            <% comps.each do |comp| %>
+                <p>
+                  <%= link_to comp.name, comp  %>
+                </p>
+            <% end %>
+        <% else %>
+            <p>No Competitions Joined Yet</p>
+        <% end %>
+      </span>
+      <span class="fullblock">
+        <% if invites.any? %>
+        <p><b>Pending Invites</b></p>
+            <% invites.each do |invite| %>
           <p id="invite-<%=invite.id%>">
             <%= link_to invite.sender.fullname, invite.sender %> <%= 'invited' %> you to <%= link_to 'Team '+invite.team.name, invite.team %>
             <small>
@@ -17,37 +44,16 @@
           </p>
         <% end %>
       <%end%>
-
-    </div>
-
-    <div class="activities-block">
-      <h2>Activities</h2>
-      <span class="block">
-        <h3>Current Teams</h3>
-        <%= render 'teams' %>
-      </span>
-      <span class="block">
-        <h3>Current Competitions</h3>
-        <% if @comps.count > 0 %>
-            <% @comps.each do |comp| %>
-                <p>
-                  <%= link_to comp.name, comp  %>
-                </p>
-            <% end %>
-        <% else %>
-            <p>No Competitions Joined Yet</p>
-        <% end %>
       </span>
     </div>
 
-    <div info-block>
+    <div class="info-block">
       <h3>Preferences</h3>
       <%= render 'preferences/preference' %>
 
       <h3>Skills Rank - <%= current_user.score %></h3>
       <div class="column-graph">
-        <% if @user_skills.any? %>
-            <% @user = current_user %>
+        <% if user_skills.any? %>
             <%= render 'indi_skill_graph' %>
         <% end %>
       </div>

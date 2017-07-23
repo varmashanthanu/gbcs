@@ -35,10 +35,11 @@ end
   end
 
   def dashboard
-    @user_skills = current_user.user_skills
-    @user_teams = current_user.members
-    @invites = Invite.received(current_user)
-    @comps = Competition.mine(current_user)
+    @user = current_user
+    # @user_skills = current_user.user_skills
+    # @user_teams = current_user.members
+    # @invites = Invite.received(current_user)
+    # @comps = Competition.mine(current_user)
   end
 
   def edit
