@@ -18,6 +18,8 @@ $('#warning').click(function(){
         $('#warning').css('display','inline-block');
     });
 });
+<% else %>
+$('#warning').hide();
 <% end %>
 
 $('#team-skills').replaceWith("<%= j bar_chart User.combined_skills(@members),library: { backgroundColor:'transparent', hAxis: {title:'Level'},title:'Team Skills',colors: ['orangered'], min:0, max:5, :members => @members.pluck(:id)}, id:'team-skills', remote:true %>");

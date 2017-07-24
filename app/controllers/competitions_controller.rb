@@ -8,7 +8,6 @@ class CompetitionsController < ApplicationController
 
   def show
     @competition = Competition.find(params[:id])
-    @team = @competition.user_team(current_user) if user_signed_in?
     respond_to do |format|
       format.html { redirect_to competitions_path}
       format.js
@@ -72,13 +71,10 @@ class CompetitionsController < ApplicationController
 
   def join_comp
     @competition = Competition.find(params[:competition])
-    Rails.logger.debug("TESTING #{params[:competition]}")
-    @team = Team.find(params[:team][:id]) || Team.create(team_params)
-    @comp_team = CompTeam.new(competition:@competition,team:@team)
     if @comp_team.save
       respond_to do |format|
         format.html
-        format.js { flash[:notice] = "You are participating in #{@competition.name} with Team #{@team.name}." }
+        format.js { flash[:notice] = "You are participating in #{@comp_team.competition.name} with Team #{@comp_team.team.name}." }
       end
     else
       respond_to do |format|
@@ -90,8 +86,6 @@ class CompetitionsController < ApplicationController
   end
 
   def leave_comp
-    @competition = Competition.find(params[:competition])
-    @team = Team.find(params[:team])
     @comp_team = CompTeam.where(competition:@competition, team:@team).first
     @comp_team.destroy
     respond_to do |format|

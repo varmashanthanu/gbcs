@@ -36,6 +36,7 @@ class SimulationsController < ApplicationController
     @team = Team.find(params[:team])
     params[:members] -= [params[:remove_member]]
     @members = User.find(params[:members])
+    @compatibility = YesList.compatibility(@members)
     @users = search_params.paginate(page: params[:page], per_page: 15)
     respond_to do |format|
       format.html
@@ -64,8 +65,10 @@ class SimulationsController < ApplicationController
 
   def search_params #TODO remove loggers
     user = User.active.where.not(:id=>@members.pluck(:id))
-    (user = user.where("fname iLIKE ? OR lname iLIKE ?", "%#{params[:name]}%", "%#{params[:name]}%")) if (params[:name] && params[:name] != '')
+    (user = user.where("fname iLIKE ? OR lname iLIKE ?", "%#{params[:name]}%", "%#{params[:name]}%");Rails.logger.debug("Triggered 3")) if (params[:name] && params[:name] != '')
 
+    params.each do |k,v|
+    end
     if params[:sp].present? && (params[:sp][:sp1].present? || params[:sp][:sp2].present? || params[:sp][:sp3].present?)
         user = user.search(params[:sp],params[:so])
     else

@@ -6,8 +6,23 @@ $('.pagination a').on('click',function(){
     return false;
 });
 
+<% if @compatibility.present? %>
+$('#warning').css('display','inline-block');
+$('#warning').click(function(){
+    $('#warning').hide();
+    $('.compatibility').show();
+    $('.compatibility').empty().append("<%= j render('compatibility') %>");
+    $('#close').click(function(){
+        $('.compatibility').hide();
+        $('#warning').css('display','inline-block');
+    });
+});
+<% else %>
+$('#warning').hide();
+<% end %>
+
 <% if @members.present? %>
 $('#team-skills').replaceWith("<%= j bar_chart User.combined_skills(@members),library: { backgroundColor:'transparent', hAxis: {title:'Level'},title:'Team Skills',colors: ['orangered'], min:0, max:5, :members => @members.pluck(:id)}, id:'team-skills', remote:true %>");
 <% else %>
-$('#team-skills').replaceWith("<%= j bar_chart [["",0]],library: { title:'Team Skills',colors: ['orangered']}, id:'team-skills', remote:true %>");
+$('#team-skills').replaceWith("<%= j bar_chart [["",0]],library: { backgroundColor:'transparent', title:'Team Skills',colors: ['orangered']}, id:'team-skills', remote:true %>");
 <% end %>

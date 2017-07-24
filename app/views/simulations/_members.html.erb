@@ -1,5 +1,9 @@
 <% @members.each do |u| %>
-  <pre id="member-<%=u.id%>"><%= link_to "#{u.fullname}", user_stats_simulation_path(u), remote: true %><%= "\t#{u.score}\t#{u.program}\t" %><%= link_to 'Remove', {controller:'simulations', action:'remove_member', :team => @team.id, :remove_member => u.id, :members => @members.pluck(:id)}, id:"remove-#{u.id}", remote: true unless @team.is_member(u) %>
-  </pre>
+  <div id="member-<%=u.id%>">
+    <div class="long"><%= link_to "#{u.fname} #{u.lname[0]}.", user_stats_simulation_path(u), remote: true %></div>
+    <div class="short"><%= u.score %></div>
+    <div class="short"><%= u.program %></div>
+    <div class="short"><%= link_to 'Remove', {controller:'simulations', action:'remove_member', :team => @team.id, :remove_member => u.id, :members => @members.pluck(:id)}, id:"remove-#{u.id}", class:'submit-btn', remote: true unless @team.is_member(u) %></div>
+  </div>
 <% end %>
-<%= link_to 'Send Invites', {controller:'invites', action:'mass_invite', :team => @team.id, :members => @members.pluck(:id)}, id:'mass-invite', remote: true if User.where(:id=>@members).where.not(:id=>@team.members.collect{|m|m.user_id}).present? %>
+<%= link_to 'Send Invites', {controller:'invites', action:'mass_invite', :team => @team.id, :members => @members.pluck(:id)},class:'submit-btn', id:'mass-invite', remote: true if User.where(:id=>@members).where.not(:id=>@team.members.collect{|m|m.user_id}).present? %>

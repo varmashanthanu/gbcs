@@ -2,12 +2,7 @@ class InvitesController < ApplicationController
 
   def new
     @invite = Invite.new
-    params.each do |k,v|
-      Rails.logger.debug(k)
-      Rails.logger.debug(v)
-    end
     @team = Team.find(params[:team])
-    # Rails.logger.debug("test #{params[:team_id]}")
   end
 
   def create
@@ -29,7 +24,6 @@ class InvitesController < ApplicationController
   def mass_invite
     @team = Team.find(params[:team])
     @users = User.where(:id=>params[:members]).where.not(:id=>@team.members.pluck(:user_id))
-    Rails.logger.debug(@users.pluck(:id))
     @users.each do |user|
       @invite = @team.invites.new(sender_id:current_user.id,user:user)
       @invite.save unless Invite.duplicate(@invite).present?
