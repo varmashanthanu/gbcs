@@ -19,7 +19,7 @@
                 <li><%= link_to 'Logout', '/users/sign_out', :method => 'delete' %></li>
               </ul>
             </li>
-            <li><%= link_to 'Notifications', '#',id:"notif-dropdown" %>
+            <li><%= link_to image_tag('icons/notification.png',size:'20x20', id:'notif-icon'), '#',id:"notif-dropdown" %>
               <ul class="nav-dropdown notif-dropdown">
                 <li id="no-notifications"><%= link_to 'No new notifications', '#' unless current_user.notifications.unread.present? %></li>
                 <div id="notifications"><%= render('notifications/new_notifications') %></div>
