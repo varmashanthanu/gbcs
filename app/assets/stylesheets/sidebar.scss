@@ -6,6 +6,25 @@
 
 $side-bar-width: 150px;
 $side-background: #593674;
+$orange: #E28F41;
+
+.side-bar-open, .side-bar-close {
+  display: none;
+  z-index: 3;
+  position: fixed;
+  top: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  border: $orange solid 1px;
+  background-color: rgba($orange,0.1);
+  cursor: pointer;
+}
+.side-bar-open { left: 15px;}
+.side-bar-close { left: 165px;}
+.side-bar-open:hover, .side-bar-close:hover {
+  background-color: rgba($orange,0.5);
+}
 
 .sidebar-container{
   z-index: 5;
@@ -60,5 +79,23 @@ $side-background: #593674;
         }
       }
     }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .sidebar-container {
+    display: none;
+  }
+  .side-bar-open {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  .sidebar-container {
+    display: block;
+  }
+  .side-bar-open, .side-bar-close {
+    display: none;
   }
 }
