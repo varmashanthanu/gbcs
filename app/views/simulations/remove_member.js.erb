@@ -6,6 +6,11 @@ $('.pagination a').on('click',function(){
     return false;
 });
 
+$("#member-adds").empty();
+<% @members.each do |m| %>
+$("#member-adds").append("<%= j hidden_field :members, :id, :value => m.id,multiple:true, id:"member-#{m.id}" %>");
+<% end %>
+
 <% if @compatibility.present? %>
 $('#warning').css('display','inline-block');
 $('#warning').click(function(){

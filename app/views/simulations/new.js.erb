@@ -2,6 +2,11 @@ $('#list').empty().append("<%= j render('members') %>");
 $('#user-view').empty().append("<%= j render('users') %>");
 //$('#user-<=@member.id%>').remove();
 
+$("#member-adds").empty();
+<% @members.each do |m| %>
+  $("#member-adds").append("<%= j hidden_field :members, :id, :value => m.id,multiple:true, id:"member-#{m.id}" %>");
+<% end %>
+
 $('.pagination a').on('click',function(){
     $.get(this.href,null,null,'script');
     return false;

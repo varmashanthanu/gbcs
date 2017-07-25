@@ -2,3 +2,9 @@
 // All this logic will automatically be available in application.js.erb.
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
+$(function(){
+    $('.pagination a').on('click',function(){
+        $.get(this.href,null,null,'script');
+        return false;
+    });
+});

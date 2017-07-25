@@ -1,0 +1,23 @@
+<table>
+  <thead>
+  <tr>
+    <td>S.No.</td>
+    <td>Competition</td>
+    <td>Start Date</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% i = 1 %>
+  <% @competitions.each do |competition| %>
+      <tr>
+        <td><%= i %></td>
+        <td><%= link_to "#{competition.name}", competition_path(competition), remote:true %></td>
+        <td><%= competition.start.strftime('%-d %b, %Y') if competition.start %></td>
+      </tr>
+      <% i+=1 %>
+  <% end %>
+  </tbody>
+</table>
+<br/>
+<br/>
+<%= will_paginate @competitions %>
