@@ -79,6 +79,12 @@ class User < ApplicationRecord
     self.score = (self.score/Skill.count).ceil
   end
 
+  def self.refresh
+    User.students.each do |u|
+      u.update_attributes(score:u.calc_score)
+    end
+  end
+
   # Skill_Calc builds a data hash for Skill category & Score for building a graph.
   def skill_calc
     data = Skill.group(:category).count
