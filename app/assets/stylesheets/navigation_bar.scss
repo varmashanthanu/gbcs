@@ -30,6 +30,10 @@ $beige: #f5f3eb;
   //border: 0.5px solid fuchsia;
 }
 
+#mobile {
+  display: none;
+}
+
 .nav-container {
 
   max-width: $content-width;
@@ -147,6 +151,14 @@ $beige: #f5f3eb;
     display: block;
     margin-right: 15px;
 
+  }
+  #mobile {
+    display: inline-block;
+    letter-spacing: 5px;
+    font-size: 1.6em;
+  }
+  #screen {
+    display: none;
   }
 
   nav {
