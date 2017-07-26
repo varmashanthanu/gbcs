@@ -1,4 +1,4 @@
-class UfgbcsActionCable < ActionCable::Connection::WebSocket
+class NotificationActionCable < ActionCable::Connection::WebSocket
   def initialize(app, options={})
     @app = app
   end
