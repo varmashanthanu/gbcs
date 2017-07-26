@@ -28,6 +28,10 @@ Rails.application.configure do
       password: ENV["GMAIL_PASSWORD"]
   }
 
+  # Action Cable for Heroku
+  config.middleware.use NotificationActionCable
+  config.web_socket_server_url = "wss://ufgbcs.herokuapp.com/"
+
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
