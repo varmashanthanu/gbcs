@@ -29,7 +29,7 @@ Rails.application.configure do
   }
 
   # Action Cable for Heroku
-  config.middleware.use NotificationActionCable
+  config.middleware.use UfgbcsActionCable
   config.web_socket_server_url = "wss://ufgbcs.herokuapp.com/"
 
   # Full error reports are disabled and caching is turned on.

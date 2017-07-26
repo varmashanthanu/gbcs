@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d56ecca-dc53-4f09-b863-d2ff3f840ae2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/middleware/notification_action_cable.rb.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/channels/notifications.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/channels/notifications.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/navigation_bar.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/navigation_bar.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/cable.yml" afterPath="$PROJECT_DIR$/config/cable.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/production.rb" afterPath="$PROJECT_DIR$/config/environments/production.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,7 +47,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="notification_action_cable.rb.erb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="notification_action_cable.rb.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/middleware/notification_action_cable.rb.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -65,14 +60,14 @@
       <file leaf-file-name="production.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/environments/production.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="32" column="46" lean-forward="false" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+            <state relative-caret-position="388">
+              <caret line="31" column="21" lean-forward="true" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cable.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cable.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/cable.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
@@ -214,9 +209,9 @@
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/navigation_bar.scss" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/channels/notifications.js" />
-        <option value="$PROJECT_DIR$/app/middleware/notification_action_cable.rb.erb" />
         <option value="$PROJECT_DIR$/config/environments/production.rb" />
         <option value="$PROJECT_DIR$/config/cable.yml" />
+        <option value="$PROJECT_DIR$/app/middleware/notification_action_cable.rb.erb" />
       </list>
     </option>
   </component>
@@ -768,7 +763,7 @@
       <workItem from="1500694076567" duration="1155000" />
       <workItem from="1500698999163" duration="3345000" />
       <workItem from="1500706651708" duration="4384000" />
-      <workItem from="1500727573783" duration="60986000" />
+      <workItem from="1500727573783" duration="61511000" />
     </task>
     <task id="LOCAL-00001" summary="First issue. Clean Start. Gems Installed. Going to start devise install.">
       <created>1496512963844</created>
@@ -1092,11 +1087,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501001597218</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Added Heroku Redis Settings.">
+      <created>1501057495491</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1501057495491</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="618293000" />
+    <option name="totallyTimeSpent" value="618818000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1109,7 +1111,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21243942" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32863188" sideWeight="0.49353796" order="9" side_tool="false" content_ui="tabs" />
@@ -1119,7 +1120,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32863188" sideWeight="0.3974152" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3822285" sideWeight="0.42245558" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32863188" sideWeight="0.60258484" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32863188" sideWeight="0.60258484" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1156,7 +1157,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Somemore things, don't remember what exactly... Mostly seeds and DB resets." />
     <MESSAGE value="Fixed Team Skills. Can view overall skills of teams based on members present in team. Going to set up graphical display." />
     <MESSAGE value="Added Skill_Match to search for teams that does not have your skills." />
     <MESSAGE value="Added column in teams to count number of skills in teams for sorting." />
@@ -1181,7 +1181,8 @@
     <MESSAGE value="Fixed AJAX in pagination for Competitions. Minor fix for @members in Simulations index as AJAX only refreshes user-list, not hidden members fields - Done." />
     <MESSAGE value="Fixed notifications icon" />
     <MESSAGE value="Fixed Responsive Design." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Responsive Design." />
+    <MESSAGE value="Added Heroku Redis Settings." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Heroku Redis Settings." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1584,26 +1585,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/middleware/notification_action_cable.rb.erb">
+    <entry file="file://$PROJECT_DIR$/config/cable.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="29" lean-forward="false" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="29" />
+        <state relative-caret-position="165">
+          <caret line="11" column="78" lean-forward="false" selection-start-line="11" selection-start-column="78" selection-end-line="11" selection-end-column="78" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/environments/production.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="32" column="46" lean-forward="false" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+        <state relative-caret-position="388">
+          <caret line="31" column="21" lean-forward="true" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/cable.yml">
+    <entry file="file://$PROJECT_DIR$/app/middleware/notification_action_cable.rb.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="78" lean-forward="false" selection-start-line="11" selection-start-column="78" selection-end-line="11" selection-end-column="78" />
+        <state relative-caret-position="0">
+          <caret line="0" column="29" lean-forward="false" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="29" />
           <folding />
         </state>
       </provider>
