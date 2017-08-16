@@ -1,14 +1,20 @@
 <% @teams.each do |team| %>
-    <p id="remove-id-<%= team.id %>">
-      <%= link_to team.name, team %>
-      <% if team.comp_teams.any? %>
-        <% team.comp_teams.each do |ct| %>
-              <%= ct.competition.name %>
+    <div class="team" id="team_<%=team.id%>">
+      <% @compatibility = YesList.compatibility(team.users) %>
+      <div class="heading">
+        <h4><%=link_to team.name,team%></h4>
+        <span class="comp-show" id="compatibility_mark_<%=team.id%>"><%= render 'compatibility_mark', compatibility:@compatibility %></span>
+      </div>
+      <div class="skill" id="skill_<%=team.id%>">
+        <%= render 'team_skills', team:team %>
+      </div>
+      <div class="compatibility">
+        <span id="compatibility_list_<%=team.id%>"><%= render 'compatibility_list', compatibility:@compatibility %></span>
+      </div>
+      <div class="members">
+        <% team.users.each do |user| %>
+            <%= render 'user', user:user %>
         <% end %>
-      <% end %>
-      <small>
-        <%= link_to 'Edit', edit_team_path(team), id: "edit-team-#{team.id}", remote: true if (team.is_member(current_user)||team.is_lead(current_user)) %>
-        <%= link_to 'Delete', team, method: :delete, data: {confirm: 'Are you sure?'}, remote: true if team.is_lead(current_user)||current_user.admin %>
-      </small>
-    </p>
+      </div>
+    </div>
 <% end %>

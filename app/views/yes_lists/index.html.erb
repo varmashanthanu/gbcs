@@ -15,22 +15,12 @@
             <%= column_chart hated_graph_yes_lists_path, id:'hated-chart', library:{backgroundColor:'transparent', vAxis:{title:"No. of students who selected 'NO'"}} %>
           </div>
 
-          <% c = 0; @users.each do ; c+=1; end %> <!-- Need to optimize TODO -->
-          <%= "#{c} students with Working Preferences." %>
+          <%= "#{@count} students with Working Preferences." %>
 
           <hr/>
-          <% @users.each do |u| %>
-              <% @yes_lists = u.yes_lists %>
-              <h4>
-                <%= link_to u do %>
-                    <%= image_tag u.avatar.url(:thumb), size:'20x20', class:'round' %>
-                    <%= "#{u.fullname} - #{pluralize(@yes_lists.count, 'Choice')}" %>
-                <% end %>
-              </h4>
-              <small><%= link_to 'VIEW', '#', class:'view' %></small>
-              <div class="hate-list"><%= render 'yes_lists' %></div>
-              <hr/>
-          <% end %>
+          <div class="users-admin-view" id="infinite-coffee-scroll">
+            <%= render 'users_admin_view' %>
+          </div>
           <%= will_paginate @users %>
 
         </div>
@@ -54,7 +44,12 @@
 
         <div class="add-block">
           <%= link_to 'Quick Add', new_yes_list_path, class:'submit-btn', remote: true, id:'add-block' %>
+          <hr/>
         </div>
+        <div class="all-users" id="infinite-coffee-scroll">
+          <%= render 'users' %>
+        </div>
+        <%= will_paginate @users %>
     <% end %>
   </div>
 </div>

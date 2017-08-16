@@ -1,0 +1,12 @@
+<% @users.each do |u| %>
+    <% @yes_lists = u.yes_lists %>
+    <h4>
+      <%= link_to u do %>
+          <%= image_tag u.avatar.url(:thumb), size:'20x20', class:'round' %>
+          <%= "#{u.fullname} - #{pluralize(@yes_lists.count, 'Choice')}" %>
+      <% end %>
+    </h4>
+    <small><%= link_to 'VIEW', '#', class:'view' %></small>
+    <div class="hate-list"><%= render 'yes_lists' %></div>
+    <hr/>
+<% end %>

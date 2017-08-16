@@ -33,6 +33,16 @@ class Team < ApplicationRecord
     data
   end
 
+  def skill_group
+    data = Skill.group(:category).order(:category).count
+    data.each {|k,v|data[k]=0}
+    skills = self.team_skills
+    skills.each do |s|
+      data[s.skill.category] += s.weighted_level.round(1)
+    end
+    data
+  end
+
   def is_lead(user)
     user.id == lead_id
   end

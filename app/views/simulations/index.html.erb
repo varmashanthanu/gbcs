@@ -12,14 +12,10 @@
             <%= text_field_tag :name, params[:name],autofocus: true, placeholder: 'Enter Name', class: 'txt-fld' %>
             <%= hidden_field :team, :id, value: @team.id %>
 
-            <%= select :sp, :sp1, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp1] if params[:sp]) %>
-            <%= select :so, :so1, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so1] if params[:sp]) %>
-            <%= select :sp, :sp2, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp2] if params[:sp]) %>
-            <%= select :so, :so2, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so2] if params[:sp]) %>
-            <%= select :sp, :sp3, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp3] if params[:sp]) %>
-            <%= select :so, :so3, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so3] if params[:sp]) %>
-
-            <%= submit_tag 'Sort', name: nil, class: 'submit-btn' %>
+            <span id="filter-sort">
+              <span class="sorter"><%= render 'sorter' %></span>
+              <span class="filter" style="display: none"><%= render 'filter' %></span>
+            </span>
             <div id="member-adds">
               <% @members.each do |m| %>
                   <%= hidden_field :members, :id, :value => m.id,multiple:true, id:"member-#{m.id}" %>
@@ -28,7 +24,23 @@
         <% end %>
       </div>
       <div id="user-view">
-        <%= render 'users' %>
+        <div class="user-head">
+          <div class="long">NAME</div>
+          <!--<div class="short">SCORE</div>-->
+          <div class="short mobile">PROGRAM</div>
+          <!--<div class="short mobile">GRADUATION</div>-->
+          <!--<div class="short mobile">LOCATIONS</div>-->
+          <!--<div class="short mobile">COMPETITIONS</div>-->
+          <% Skill.group(:category).count.each do |k,v| %>
+              <div class="short" style="width: 60px"><%= k[0..4].upcase+'.' %></div>
+          <% end %>
+        </div>
+        <div class="user-list" id="infinite-scroll">
+          <div id="scroll-list">
+            <%= render 'users' %>
+          </div>
+          <%= will_paginate @users %>
+        </div>
       </div>
     </div>
 

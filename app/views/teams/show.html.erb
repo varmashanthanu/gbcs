@@ -1,5 +1,5 @@
 <% content_for :title, "#{@team.name.humanize}" %>
-
+<!--TODO FIX THE AJAX CALLS-->
 <div class="teams">
   <div class="wrapper">
     <h1>Team Information</h1>
@@ -7,6 +7,10 @@
       <%= "Name: #{@team.name.humanize}" %><br/>
       <%= "Lead: #{User.find(@team.lead_id).name.humanize}" %><br/>
       <%= "Created On: #{@team.created_at}" %><br/>
+      <small>
+        <%= link_to 'Edit', edit_team_path(@team), id: "edit-team-#{@team.id}", remote: true if (@team.is_member(current_user)||@team.is_lead(current_user)) %>
+        <%= link_to 'Delete', @team, method: :delete, data: {confirm: 'Are you sure?'}, remote: true if @team.is_lead(current_user)||current_user.admin %>
+      </small>
 
       <div class="team-skills">
         <p>

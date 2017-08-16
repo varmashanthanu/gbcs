@@ -1,0 +1,9 @@
+$('.users-admin-view').append("<%= j render 'users_admin_view' %>");
+
+$('.all-users').append('<%= j render 'users' %>');
+<% if @users.next_page %>
+$('.pagination').replaceWith('<%= j will_paginate @users %>');
+<% else %>
+$('#infinite-coffee-scroll').off('scroll');
+$('.pagination').remove();
+<% end %>

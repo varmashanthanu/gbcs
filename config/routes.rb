@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   resources :teams do
     collection do
       get :mine
+      post :transfer
     end
   end
 

@@ -1,0 +1,5 @@
+<div id="member-adds">
+  <% @members.each do |m| %>
+      <%= hidden_field :members, :id, :value => m.id,multiple:true, id:"member-#{m.id}" %>
+  <% end %>
+</div>

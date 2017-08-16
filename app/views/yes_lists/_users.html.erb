@@ -1,0 +1,15 @@
+<% @users.each do |u| %>
+    <span id="user-<%=u.id%>">
+      <div class="image">
+        <%= image_tag(u.avatar.url(:frame)) %>
+      </div>
+      <div class="details">
+        <%= u.fullname %><br/>
+        <%= u.program %><br/>
+        <%= "#{u.fname} prefers working with you." if u.likes(current_user) %><br/>
+        <%= link_to 'YES', yes_lists_path(yes_list:{user_id:current_user.id,target_id:u.id,match:'YES'}), method: :post, remote: true, class:'submit-btn' %>
+        <%= link_to 'NO', yes_lists_path(yes_list:{user_id:current_user.id,target_id:u.id,match:'YES'}), method: :post, remote: true, class:'submit-btn' %>
+      </div>
+      <hr/>
+    </span>
+<% end %>

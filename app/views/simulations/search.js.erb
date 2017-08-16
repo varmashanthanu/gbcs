@@ -1,6 +1,10 @@
-$('#user-view').empty();
-$('#user-view').append("<%= j render('users') %>");
-
+$('#scroll-list').empty();
+$('#scroll-list').append("<%= j render('users') %>");
+<% if @users.next_page %>
+  $('.pagination').replaceWith("<%= j will_paginate @users %>");
+<% else %>
+$('.pagination').replaceWith("<%= j will_paginate @users %>");
+<% end %>
 $('.pagination a').on('click',function(){
     $.get(this.href,null,null,'script');
     return false;

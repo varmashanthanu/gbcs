@@ -28,18 +28,14 @@ class Skill < ApplicationRecord
   def tag
     "#{name}, #{category}"
   end
-  # TODO rethink the scoring mechanism
+  # TODO rethink the scoring mechanism - LOOKS DONE
   def rank
-    set = Skill.where(category:self.category) # All skills in category including self
-    base = 0.0 # Sum of all weights: 100% mark
-    set.each do |s|
-      base += s.weight||1.0
+    total_weight = 0.00
+    skills = Skill.where(category:self.category)
+    skills.each do |s|
+      total_weight += s.weight
     end
-    (self.weight||1.0)/base # Return the [ x / (x+y+z) ] for individual rank
-  end
-
-  def self.mult
-    100/(Skill.sum(&:rank)*5/Skill.count)
+    self.weight/total_weight
   end
 
   def self.skill_dist_indi
@@ -57,7 +53,15 @@ class Skill < ApplicationRecord
   end
 
   def self.skill_dist
-    Skill.joins(:users).group(:category).count
+    data = Skill.group(:category).count
+    data.each do |k,v|
+      data[k] = []
+      skills = Skill.where(category:k)
+      skills.each do |s|
+        data[k] << s.users.collect{|u|u.id}
+      end
+      data[k] = data[k].flatten.uniq.count
+    end
   end
 
 end

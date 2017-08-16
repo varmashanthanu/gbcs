@@ -1,0 +1,9 @@
+<% if compatibility.present? %>
+    <small class="comp-show">
+      <%= link_to 'COMPATIBILITY', '#',style: 'color: red', class: 'submit-btn' %>
+    </small>
+<% else %>
+    <small style="color: green" >
+      <%= link_to 'COMPATIBILITY', '#',style: 'color: green', class: 'submit-btn' %>
+    </small>
+<% end %>

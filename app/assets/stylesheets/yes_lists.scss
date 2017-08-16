@@ -111,6 +111,19 @@ $beige: #f5f3eb;
       display: none;
     }
 
+    .users-admin-view {
+      height: 400px;
+      overflow: scroll;
+    }
+    .all-users {
+      height: 1200px;
+      overflow: scroll;
+      .details, .image {
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+
   }
   .pagination {
     text-align: center;

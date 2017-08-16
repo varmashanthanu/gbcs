@@ -1,0 +1,9 @@
+
+<% skills = team.skill_group %>
+<%= column_chart skills, height:'60px',id:"chart_#{team.id}", library: {backgroundColor:'transparent',vAxis:{ticks: 'none' , gridlines: {color: 'transparent'}}},discrete:true %>
+
+
+
+<!--<% skills.each do |k,v| %>-->
+    <!--<span> <%= k.upcase[0..2].to_s+':'+v.to_s %></span>-->
+<!--<% end %>-->

@@ -98,9 +98,11 @@ $beige: #f5f3eb;
       }
       .list-rows {
         ul {
-          //border: solid $orange 1.5px;
+          border: solid $orange 1.5px;
           list-style: none;
           width: 75%;
+          height: 400px;
+          overflow: scroll;
           .skill-graph {
             //border: green 1px solid;
             width: 90% !important;

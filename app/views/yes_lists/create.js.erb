@@ -1,5 +1,6 @@
 $('#new_yes_list').remove();
 $('.list-block').append("<%= j render('yes_list') %>");
+$("#user-<%=@yes_list.target_id %>").remove();
 $('#none-message').hide();
 $('#add-block').show();
 

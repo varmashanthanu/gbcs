@@ -1,6 +1,7 @@
 $('#list').empty().append("<%= j render('members') %>");
-$('#user-view').empty().append("<%= j render('users') %>");
-//$('#user-<=@member.id%>').remove();
+$('#scroll-list').empty().append("<%= j render('users') %>");
+
+$('.pagination').replaceWith("<%= j will_paginate @users %>");
 
 $("#member-adds").empty();
 <% @members.each do |m| %>

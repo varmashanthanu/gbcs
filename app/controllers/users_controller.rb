@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   # skip_before_action :verify_authenticity_token, :only => :update_avatar
 
   def index
-    @users = search_params.paginate(page: params[:page], per_page: 15)
+    @users = search_params.paginate(page: params[:page], per_page: 20)
   end
 
   def show

@@ -15,6 +15,7 @@ $beige: #f5f3eb;
 
 .teams {
   padding-left: 20px;
+  padding-bottom: 40px;
   background-color: $beige;
   position: absolute;
   right: 0;
@@ -24,9 +25,97 @@ $beige: #f5f3eb;
   overflow: scroll;
   .wrapper {
     font-family: 'Muli', sans-serif;
+    width: 95%;
+    .team {
+      //border: $orange solid 1px;
+      margin-bottom: 10px;
+      width: 48%;
+      height: 200px;
+      display: inline-block;
+
+      .heading{
+        border: $orange solid 1px;
+        height: 30px;
+        h4{margin: 3px 0 0 5px; display: inline-block;}
+        .submit-btn { float: right; margin: 6px 5px 0 0; display: inline-block;}
+        a {text-decoration: none;}
+      }
+      .skill{
+        border: $orange solid 1px;
+        height: 50px;
+      }
+      .compatibility {
+        margin: 8px 0 0 8px;
+        padding: 8px;
+        border: solid $orange 0.1px;
+        border-radius: 5px;
+        width: auto;
+        position: absolute;
+        z-index: 2;
+        background-color: rgba($beige,0.9);
+        display: none;
+      }
+      .members{
+        border: $orange solid 1px;
+        height: 120px;
+        //overflow-y: scroll;
+        .member {
+          display: inline-block;
+          margin-right: 5px;
+
+          .round {
+            border-radius: 100%;
+            margin: 5px;
+            text-align: center;
+            cursor: move;
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+            &:active {
+              cursor: grabbing;
+              cursor: -moz-grabbing;
+              cursor: -webkit-grabbing;
+            }
+          }
+          .hov-indic {
+            background-color: $orange;
+          }
+          .details {
+            z-index: 10;
+            width: 200px;
+            position: absolute;
+            background-color: rgba($beige,0.8);
+            border: $orange solid 0.1px;
+            padding: 2px 4px 2px 4px;
+            border-radius: 0 4px 4px 4px;
+            display: none;
+          }
+        }
+
+      }
+    }
+
+
+
   }
   .pagination {
     text-align: center;
     color: $orange;
   }
+}
+
+@media only screen and (max-width: 600px){
+
+  .teams{
+    .wrapper{
+      width: 90%;
+      .team {
+        width: 100%;
+        .compatibility, .members {
+          width: 100%;
+        }
+      }
+    }
+  }
+
 }

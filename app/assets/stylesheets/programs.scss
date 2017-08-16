@@ -1,3 +1,28 @@
 // Place all the styles related to the programs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$orange: #E28F41;
+$beige: #f5f3eb;
+
+.programs {
+  padding-left: 20px;
+  padding-bottom: 40px;
+  background-color: $beige;
+  position: absolute;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+
+  .wrapper {
+    font-family: 'Muli', sans-serif;
+
+    .chart {
+      border: $orange solid 1px;
+      left: 20px;
+      margin-right: 40px;
+    }
+  }
+}

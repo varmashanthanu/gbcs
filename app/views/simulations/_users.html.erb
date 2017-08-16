@@ -1,28 +1,26 @@
-<div class="user-head">
-  <div class="long">NAME</div>
-  <div class="short">SCORE</div>
-  <div class="short mobile">PROGRAM</div>
-  <div class="short mobile">GRADUATION</div>
-  <div class="short mobile">LOCATIONS</div>
-  <div class="short mobile">COMPETITIONS</div>
-  <%= will_paginate @users %>
-</div>
-<div class="user-list">
-  <% @users.each do |user| %>
-      <div id="user-<%=user.id%>" class="user-indi">
-        <div class="long">
-          <%= link_to user do %>
-              <%= image_tag(user.avatar.url(:thumb),size:'20x20',class:'round')+"#{user.fullname}" %>
-          <% end %>
-        </div>
-        <div class="short"><%=user.score%></div>
-        <div class="short mobile"><%=user.program%></div>
-        <div class="short mobile"><%=user.graduation%></div>
-        <div class="short mobile"><%=user.preference.location%></div>
-        <div class="short mobile"><%=user.preference.competition%></div>
-        <div class="submit-btn"><%=  %><%= link_to 'STATS', user_stats_simulation_path(user), remote: true %></div>
-        <div class="submit-btn"><%= link_to 'ADD', {controller:'simulations', action:'new', :team => @team.id, :new_member => user.id, :members => @members.pluck(:id)}, id:"add-#{user.id}", remote: true %></div>
-      </div>
 
-  <% end %>
-</div>
+    <% @users.each do |user| %>
+        <div id="user-<%=user.id%>" class="user-indi">
+          <div class="long">
+            <%= link_to user do %>
+                <%= image_tag(user.avatar.url(:thumb),size:'20x20',class:'round')+"#{user.fullname}" %>
+            <% end %>
+          </div>
+          <!--<div class="short"><%=user.score%></div>-->
+          <div class="short mobile"><%=user.program%></div>
+          <!--<div class="short mobile"><%=user.graduation%></div>-->
+          <!--<div class="short mobile"><%=user.preference.location%></div>-->
+          <!--<div class="short mobile"><%=user.preference.competition%></div>-->
+
+          <span>
+            <% user.skill_calc.each do |k,v| %>
+                <div class="short" style="width: 60px"><%= v %></div>
+            <% end %>
+          </span>
+
+          <div class="submit-btn"><%=  %><%= link_to 'STATS', user_stats_simulation_path(user), remote: true %></div>
+          <div class="submit-btn"><%= link_to 'ADD', {controller:'simulations', action:'new', :team => @team.id, :new_member => user.id, :members => @members.pluck(:id)}, id:"add-#{user.id}", remote: true %></div>
+        </div>
+
+    <% end %>
+

@@ -1,0 +1,12 @@
+<span class="member" id="member_<%=user.id%>">
+              <%= image_tag user.avatar.url(:thumb), size:'50x50',class:'round', id:"member-#{user.id}" %>
+  <div class="details">
+      <small><%= user.fullname %></small>
+      <small><%= "#{user.program} | #{user.graduation} | #{user.term}" %></small>
+      <small>
+        <% user.skill_calc.each do |k,v| %>
+            <%= "#{k.upcase[0..2]}:#{v.round(1)}" %>
+        <% end %>
+      </small>
+  </div>
+</span>

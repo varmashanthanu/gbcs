@@ -14,7 +14,7 @@ class TeamSkill < ApplicationRecord
   # TODO rethink the scoring mechanism
   def weighted_level
 
-    (self.skill.rank*Skill.mult * self.level).floor #need to find optimized way to evaluate multiplier
+    (self.level*self.skill.rank)*1.00 #need to find optimized way to evaluate multiplier
   end
 
 end

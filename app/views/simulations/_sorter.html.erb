@@ -1,0 +1,8 @@
+<%= select :sp, :sp1, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp1] if params[:sp]) %>
+<%= select :so, :so1, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so1] if params[:sp]) %>
+<%= select :sp, :sp2, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp2] if params[:sp]) %>
+<%= select :so, :so2, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so2] if params[:sp]) %>
+<%= select :sp, :sp3, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp3] if params[:sp]) %>
+<%= select :so, :so3, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so3] if params[:sp]) %>
+
+<%= submit_tag 'Sort', name: nil, class: 'submit-btn' %> | <%= link_to 'Filter', '#', id:'filter' %>

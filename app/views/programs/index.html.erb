@@ -1,20 +1,26 @@
 <% content_for :title, 'All Programs' %>
 
-<div class="heading">
-  <h2>All Programs</h2>
-</div>
+<div class="programs">
+  <div class="wrapper">
+    <div class="heading">
+      <h2>All Programs</h2>
+    </div>
+    <div class="chart">
+      <%= column_chart Program.distribution, library: {backgroundColor: 'transparent',vAxis:{title:'Students'}, title: 'Student Distribution'},id:'distribution-chart' %>
+    </div>
+    <div class="program-index">
+      <div id="program-list">
+        <pre><%= "Name\tDescription" %></pre>
+        <% if @programs.present? %>
+            <%= render 'programs' %>
+        <% else %>
+            <p class="none-message">No Programs Added Yet.</p>
+        <% end %>
+      </div>
 
-<div class="program-index">
-  <div id="program-list">
-    <pre><%= "Name\tDescription" %></pre>
-    <% if @programs.present? %>
-        <%= render 'programs' %>
-    <% else %>
-        <p class="none-message">No Programs Added Yet.</p>
-    <% end %>
+      <hr/>
+      <%= link_to 'Add', new_program_path, remote:true, id:'add-program' %>
+
+    </div>
   </div>
-
-  <hr/>
-  <%= link_to 'Add', new_program_path, remote:true, id:'add-program' %>
-
 </div>

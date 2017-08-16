@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
 
+  include TeamsHelper
   before_action :authenticate_user!, only: [:new, :create]
   before_action :check_lead, only: [ :edit, :update, :destroy]
 
@@ -54,6 +55,23 @@ class TeamsController < ApplicationController
       respond_to do |format|
         format.html
         format.js
+      end
+    end
+  end
+
+  def transfer
+    old_team_id = params[:old_team].split('_').last.to_i
+    user_id = params[:user].split('_').last.to_i
+    new_team_id = params[:new_team].split('_').last.to_i
+    @user = User.find(user_id)
+    @new_team = Team.find(new_team_id)
+    @old_team = Team.find(old_team_id)
+    @member = Member.where(user:@user,team:@old_team).first
+    if @member.update_attributes(team:@new_team)
+      @old_team.skill_update
+      @new_team.skill_update
+      respond_to do |format|
+        format.js { flash[:notice] = "Transferred #{@user.fname} from #{@old_team.name} to #{@new_team.name}." }
       end
     end
   end

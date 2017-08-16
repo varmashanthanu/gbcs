@@ -1,0 +1,10 @@
+<% if compatibility.present? %>
+    <% compatibility.each do |k,list| %>
+        <%= "#{k} has issues with: " %>
+        <% list.each do |l| %>
+            <%= l.target.fname %><%= l==list.last ? '.':', ' %>
+        <% end %><br/>
+    <% end %>
+<% else %>
+    <%= 'No Compatibility Issues' %>
+<% end %>

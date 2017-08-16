@@ -8,3 +8,16 @@ $(function(){
         return false;
     });
 });
+
+$(document).ready(function(){
+
+    $('#filter').click(function(){
+        $('.sorter').hide();
+        $('.filter').show();
+    });
+
+    $('#sorter').click(function(){
+        $('.sorter').show();
+        $('.filter').hide();
+    });
+});

@@ -1,6 +1,7 @@
 class YesListsController < ApplicationController
   def new
     @yes_list = YesList.new
+    @users = User.students.no_pref(current_user)
   end
 
   def create
@@ -20,7 +21,9 @@ class YesListsController < ApplicationController
   end
 
   def index
+    @count = YesList.group(:user_id).count.count
     current_user.admin ? @users = [User.joins(:yes_lists).select("users.*, count(yes_lists.id) as ycount").group("users.id").order("ycount DESC")].flatten.paginate(page: params[:page], per_page: 20) : @yes_lists = YesList.where(user:current_user).paginate(page: params[:page], per_page: 20)
+    @users = (User.students.no_pref(current_user).order(:fname) - [current_user]).paginate(page: params[:page], per_page:10) unless current_user.admin
   end
 
   def difficult_graph

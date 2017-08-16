@@ -72,11 +72,14 @@ class User < ApplicationRecord
 
   # Calculating the User Score
   def calc_score
-    self.score = 0.0
-    Skill.all.each do |s|
-      self.score += self.user_skills.where(skill:s).any? ? self.user_skills.where(skill:s).first.weighted_level : 0
+    skill_count = self.user_skills.where("level > ?", 0).count
+    secondary = (5.00/Skill.count)
+    multiplier = 95.00/(5*Skill.group(:category).count.count)
+    score = 0.00
+    self.user_skills.each do |us|
+      score += us.weighted_level
     end
-    self.score = (self.score/Skill.count).ceil
+      self.score = score*multiplier.round(2) + skill_count*secondary.round(2)
   end
 
   def self.refresh
@@ -88,22 +91,20 @@ class User < ApplicationRecord
   # Skill_Calc builds a data hash for Skill category & Score for building a graph.
   def skill_calc
     data = Skill.group(:category).count
-    mult = Skill.mult
     data.each do |category,score|
       data[category] = 0
-      mod = 0.0
       userskill = self.user_skills.where(:skill => Skill.where(category:category))
       userskill.each do |us|
-        mod += us.skill.rank * mult * 5.0
         data[category] += us.weighted_level
       end
-      data[category] = data[category]*5.0/mod
     end
     data
   end
 
   def indi_skill_calc
-    skill_weight = Skill.group(:name).count
+    names = Skill.order(:category).pluck(:name)
+    skill_weight = {}
+    names.each {|n|skill_weight[n]=0}
     skill_weight.each do |name,score|
       skill_weight[name] = self.user_skills.where(:skill => Skill.where(name:name)).any? ? self.user_skills.where(:skill => Skill.where(name:name)).first.level : 0
     end
@@ -178,22 +179,47 @@ class User < ApplicationRecord
   end
 
   def self.combined_skills(users)
-    c_skills = Hash.new
-    Skill.order(:category).all.each do |k,v|
-      c_skills[k.name] = 0
+    c_skills = Skill.group(:category).count
+    c_skills.each do |k,v|
+      c_skills[k] = 0
     end
 
     users.each do |u|
-      u.user_skills.each do |us|
-        c_skills[us.name] = [c_skills[us.name],us.level].max
+      temp = u.skill_calc
+      temp.each do |k,v|
+        c_skills[k] = [c_skills[k],temp[k]].max
       end
     end
-    data = Hash.new
-    c_skills.each do |k,v|
-      data[k] = c_skills[k] if c_skills[k] > 0
-    end
-    data
+    c_skills
   end
+
+  def self.no_pref(user)
+    yes_listed = user.yes_lists.collect{|y|y.target_id}
+    User.where.not(id:yes_listed)
+  end
+
+  def likes(user)
+    self.yes_lists.where(target:user,match:'YES').present? ? true : false
+  end
+
+  # def self.combined_skills(users)
+  #   c_skills = Hash.new
+  #   Skill.order(:category).all.each do |k,v|
+  #     c_skills[k.name] = 0
+  #   end
+  #
+  #   users.each do |u|
+  #     u.user_skills.each do |us|
+  #       c_skills[us.name] = [c_skills[us.name],us.level].max
+  #     end
+  #   end
+  #   data = Hash.new
+  #   c_skills.each do |k,v|
+  #     data[k] = c_skills[k] if c_skills[k] > 0
+  #   end
+  #   data
+  #   Rails.logger.debug(data)
+  # end
 
 
 end
