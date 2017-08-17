@@ -14,7 +14,7 @@
 
           <span>
             <% user.skill_calc.each do |k,v| %>
-                <div class="short" style="width: 60px"><%= v %></div>
+                <div class="short" style="width: 60px"><%= v.round(1) %></div>
             <% end %>
           </span>
 

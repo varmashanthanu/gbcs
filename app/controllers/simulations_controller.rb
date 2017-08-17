@@ -5,6 +5,7 @@ class SimulationsController < ApplicationController
     @team = Team.find(params[:team])
     params[:members] ? @members = User.where(:id => params[:members]) : @members = User.where(:id => @team.members.pluck(:user_id))
     @users = search_params.paginate(page: params[:page], per_page: 15)
+    Rails.logger.debug(@users.count)
   end
 
   def search
@@ -63,18 +64,11 @@ class SimulationsController < ApplicationController
     @team.is_lead(current_user) || @team.is_member(current_user)
   end
 
-  def search_params #TODO remove loggers
-    user = User.active.where.not(:id=>@members.pluck(:id))
-    (user = user.where("fname iLIKE ? OR lname iLIKE ?", "%#{params[:name]}%", "%#{params[:name]}%");Rails.logger.debug("Triggered 3")) if (params[:name] && params[:name] != '')
-
-    params.each do |k,v|
-    end
-    if params[:sp].present? && (params[:sp][:sp1].present? || params[:sp][:sp2].present? || params[:sp][:sp3].present?)
-        user = user.search(params[:sp],params[:so])
-    else
-      current_user.admin ? user = user.students.order(:program).order(score:'DESC') : user = user.gen_sort(current_user)
-    end
-    current_user.admin ? user : user - [current_user]
+  def search_params
+    user = User.students.active.search(params[:name])
+    user = user.sorter(params[:sp],params[:so])
+    user = user.filter(params[:filter])
+    current_user.admin ? user.active : user.active.where.not(id:current_user.id)
   end
 
 end

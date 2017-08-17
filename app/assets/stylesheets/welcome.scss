@@ -3,6 +3,30 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $orange: #E28F41;
+$beige: #f5f3eb;
+
+.pagination {
+  span.previous_page, a.previous_page {
+    display: none;
+  }
+}
+
+#check-box {
+  position: absolute;
+  border: $orange solid 0.1px;
+  background-color: $beige;
+  padding: 5px;
+
+  input {
+    width: 10px;
+    &:active {
+      color: $orange;
+    }
+  }
+  small.label {
+    color: $orange;
+  }
+}
 
 .pages{
   position: absolute;

@@ -11,13 +11,16 @@ $(function(){
 
 $(document).ready(function(){
 
+    var sorter = $('.sorter');
+    var filter = $('.filter');
+
     $('#filter').click(function(){
-        $('.sorter').hide();
-        $('.filter').show();
+        sorter.hide();
+        filter.animate({'filter.height':'toggle'},'fast');
     });
 
     $('#sorter').click(function(){
-        $('.sorter').show();
-        $('.filter').hide();
+        sorter.animate({'sorter.height':'toggle'},'fast');
+        filter.hide();
     });
 });

@@ -1,4 +1,0 @@
-<%= select :filter, :programs, options_for_select(Program.all.collect{|p|p.name}),{}, {multiple:true,style:'width: 60px;height: 40px; vertical-align: middle;'}  %>
-<%= select :filter, :graduations, options_for_select((Date.today.year)..(Date.today.year+6)),{}, {multiple:true,style:'width: 60px;height: 40px; vertical-align: middle;'}  %>
-<%= select :filter, :programs, options_for_select(Program.all.collect{|p|p.name}),{}, {multiple:true,style:'width: 60px;height: 40px; vertical-align: middle;'}  %>
-<%= submit_tag 'Filter', name: nil, class: 'submit-btn' %> | <%= link_to 'Sorter', '#', id:'sorter' %>

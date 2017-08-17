@@ -1,8 +1,8 @@
 $('#scroll-list').append("<%= j render('users') %>");
 <% if @users.next_page %>
-  $('.pagination').replaceWith("<%= j will_paginate @users %>");
+  $('.pagination').replaceWith("<%= j will_paginate @users, page_links: false %>");
 <% else %>
-  $('.pagination').empty();
+  $('.pagination').html('<i>-fin-</i>');
 <% end %>
 $('.pagination a').on('click',function(){
     $.get(this.href,null,null,'script');

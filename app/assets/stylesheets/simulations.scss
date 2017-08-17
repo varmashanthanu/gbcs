@@ -28,6 +28,7 @@ $beige: #f5f3eb;
     padding-right: 40px;
 
     form {
+      a {color: $orange; text-decoration: none;}
       input {
         padding-left: 5px;
         width: auto;
@@ -53,7 +54,12 @@ $beige: #f5f3eb;
     .user-view {
       margin-top: -20px;
       border: $orange solid 2px;
-      height: 250px;
+      height: 280px;
+      form{
+        height: 50px;
+        padding-top: 2px;
+        padding-left: 2px;
+      }
       .user-indi {
         padding: 2px 0 2px 0;
         border-top: solid 0.5px $orange;

@@ -118,27 +118,43 @@ class User < ApplicationRecord
     self.program ||= 'Pending'
   end
 
-  def self.gen_sort(user)
-    # hate_list = User.where(id:YesList.where("user_id = ? AND match = ?", user, "NO").select(:target_id))
-    hate_list = User.students.where(id:YesList.where(user:user, match:'NO').select(:target_id)).order(score:'DESC')
-    yes_students = User.students.where.not(id:YesList.where(user:user, match:'NO').select(:target_id)).order(score:'DESC')
-    # yes_students = User.where(id:YesList.where("user = ? AND match = ? OR match IS NULL", user,'YES').select(:target_id))
-    same_year = yes_students.where(graduation:user.graduation).order(score:'DESC')
-    # mix_year_yes_students = yes_students.where(graduation:nil)# change this after seeding
-    mix_year_yes_students = yes_students.where.not(graduation:user.graduation).order(score:'DESC')# change this after seeding
-    same_class = mix_year_yes_students.where(program:user.program).order(score:'DESC')
-    mix_class_year_yes_students = mix_year_yes_students.where.not(program:user.program).order(score:'DESC')
-    # TODO "ORDER BY SCORE" may be redundant in this section. Need to Review
-    mix_class_year_yes_students.order(score:'DESC')
-    same_class.order(score:'DESC')
-    same_year.order(score:'DESC')
-    hate_list.order(score:'DESC')
+  # def self.gen_sort(user)
+  #   # hate_list = User.where(id:YesList.where("user_id = ? AND match = ?", user, "NO").select(:target_id))
+  #   hate_list = User.students.where(id:YesList.where(user:user, match:'NO').select(:target_id)).order(score:'DESC')
+  #   yes_students = User.students.where.not(id:YesList.where(user:user, match:'NO').select(:target_id)).order(score:'DESC')
+  #   # yes_students = User.where(id:YesList.where("user = ? AND match = ? OR match IS NULL", user,'YES').select(:target_id))
+  #   same_year = yes_students.where(graduation:user.graduation).order(score:'DESC')
+  #   # mix_year_yes_students = yes_students.where(graduation:nil)# change this after seeding
+  #   mix_year_yes_students = yes_students.where.not(graduation:user.graduation).order(score:'DESC')# change this after seeding
+  #   same_class = mix_year_yes_students.where(program:user.program).order(score:'DESC')
+  #   mix_class_year_yes_students = mix_year_yes_students.where.not(program:user.program).order(score:'DESC')
+  #   # TODO "ORDER BY SCORE" may be redundant in this section. Need to Review
+  #   mix_class_year_yes_students.order(score:'DESC')
+  #   same_class.order(score:'DESC')
+  #   same_year.order(score:'DESC')
+  #   hate_list.order(score:'DESC')
+  #
+  #   mix_class_year_yes_students | same_class | same_year | hate_list
+  # end
 
-    mix_class_year_yes_students | same_class | same_year | hate_list
+  def self.search(n)
+
+    Rails.logger.debug('search entered')
+    return students unless n.present?
+
+    names = []
+    n = n.split(/\W+/)
+    n.each{|name|names<<"%#{name.downcase}%" unless name==''}
+    Rails.logger.debug('search done')
+    query = ''
+    names.each{|name| name == names.last ? query<<'fname iLIKE ? OR lname iLIKE ?' : query<<'fname iLIKE ? OR lname iLIKE ? OR ' }
+    self.where(query,*names, *names)
+
   end
 
-  def self.search(priority,order)
-    users = User.students
+  def self.sorter(priority,order)
+    Rails.logger.debug('sort entered')
+    return order(lname:'ASC') unless priority.present?
 
     string = []
     query = ''
@@ -150,8 +166,42 @@ class User < ApplicationRecord
       query += s
       query += ', ' unless s==string.last
     end
+    Rails.logger.debug('sort done') if query.present?
+    query.present? ? order(query) : order(lname:'ASC')
+  end
 
-    users.order(query)
+  def self.filter(filter)
+    Rails.logger.debug('filter entered')
+    return where(nil) unless filter.present?
+
+    programs = []
+    graduations = []
+    terms = []
+    users = where(nil)
+
+    if filter[:programs].present?
+      filter[:programs].each{|p|programs<<p unless p==''}
+      query = ''
+      programs.each{|program|program == programs.last ? query<<'program = ?' : query<<'program = ? OR '}
+      users = users.where(query,*programs)
+      Rails.logger.debug('filter done')
+    end
+    if filter[:graduations].present?
+      filter[:graduations].each{|g|graduations<<g unless g==''}
+      query = ''
+      graduations.each{|graduation|graduation == graduations.last ? query<<'graduation = ?' : query<<'graduation = ? OR '}
+      users = users.where(query,*graduations)
+      Rails.logger.debug('filter done')
+    end
+    if filter[:terms].present?
+      filter[:terms].each{|t|terms<<t unless t==''}
+      query = ''
+      terms.each{|term|term == terms.last ? query<<'term = ?' : query<<'term = ? OR '}
+      users = users.where(query,*terms)
+      Rails.logger.debug('filter done')
+    end
+
+    users
   end
 
   def self.hated

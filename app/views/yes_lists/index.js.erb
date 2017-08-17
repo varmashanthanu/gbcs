@@ -5,5 +5,5 @@ $('.all-users').append('<%= j render 'users' %>');
 $('.pagination').replaceWith('<%= j will_paginate @users %>');
 <% else %>
 $('#infinite-coffee-scroll').off('scroll');
-$('.pagination').remove();
+$('.pagination ').html('<i>-fin-</i>');
 <% end %>

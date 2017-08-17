@@ -29,11 +29,13 @@ $beige: #f5f3eb;
     font-family: 'Muli', sans-serif;
     .index {
       .user-search {
+
         input {
           padding-left: 5px;
-          width: 160px;
+          width: auto;
           border: solid $orange 1px;
           height: 20px;
+
         }
         select {
           padding-left: 5px;
@@ -51,7 +53,7 @@ $beige: #f5f3eb;
           cursor: pointer;
           font-size: 0.7em;
           font-family: 'Bellefair', san-serif;
-          padding: 3px 3px 0px 3px;
+          padding: 3px 3px 3px 3px;
           vertical-align: middle;
         }
         input:focus, select:focus {
@@ -69,7 +71,7 @@ $beige: #f5f3eb;
       cursor: pointer;
       font-size: 0.7em;
       font-family: 'Bellefair', san-serif;
-      padding: 5px 6px 2px 6px;
+      padding: 3px 6px 15px 6px;
       vertical-align: middle;
     }
     .user-list {
@@ -192,6 +194,7 @@ $beige: #f5f3eb;
   }
   a {
     text-decoration: none;
+    color: $orange;
   }
   .news-block, .activities-block {
     display: inline-block;

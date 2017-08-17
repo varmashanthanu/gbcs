@@ -20,18 +20,18 @@
 
 //= require_tree .
 
-$(document).ready(function() {
-    var mult = 1;
-    if ($('.pagination').length) {
-        var scrollWindow = $('#infinite-scroll');
-        scrollWindow.on('scroll',function() {
-            var url = $('.pagination .next_page').attr('href');
-            if (url && (scrollWindow.scrollTop()/mult) > $(document).height() - scrollWindow.height() - 285) {
-                $('.pagination').html('<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />');
-                mult = mult + 1.8;
-                return $.getScript(url);
-            }
-        });
-        return scrollWindow.scroll();
-    }
-});
+//$(document).ready(function() {
+//    var mult = 1;
+//    if ($('.pagination').length) {
+//        var scrollWindow = $('#infinite-scroll');
+//        scrollWindow.on('scroll',function() {
+//            var url = $('.pagination .next_page').attr('href');
+//            if (url && (scrollWindow.scrollTop()/mult) > $(document).height() - scrollWindow.height() - 285) {
+//                $('.pagination').html('<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />');
+//                mult = mult + 1.8;
+//                return $.getScript(url);
+//            }
+//        });
+//        return scrollWindow.scroll();
+//    }
+//});

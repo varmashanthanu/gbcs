@@ -1,7 +1,22 @@
 $('#list').empty().append("<%= j render('members') %>");
-$('#scroll-list').empty().append("<%= j render('users') %>");
 
-$('.pagination').replaceWith("<%= j will_paginate @users %>");
+<% if !@users.previous_page && !@users.next_page %>
+  $('#scroll-list').empty();
+  $('#scroll-list').append("<%= j render('users') %>");
+<% else %>
+  <% if @users.next_page == 2 %>
+    $('#scroll-list').empty();
+    $('#scroll-list').append("<%= j render('users') %>");
+  <% else %>
+    $('#scroll-list').append("<%= j render('users') %>");
+  <% end %>
+<% end %>
+
+<% if @users.next_page %>
+$('.pagination').replaceWith("<%= j will_paginate @users, page_links: false %>");
+<% else %>
+$('.pagination').html('<i>-fin-</i>');
+<% end %>
 
 $("#member-adds").empty();
 <% @members.each do |m| %>

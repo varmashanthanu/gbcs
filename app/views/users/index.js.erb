@@ -1,24 +1,24 @@
-
 $('.sorter').hide();
 $('.filter').hide();
 
 <% if !@users.previous_page && !@users.next_page %>
   $('#scroll-list').empty();
-  $('#scroll-list').append("<%= j render('users') %>");
+  $('#scroll-list').append("<%= j render('index_user') %>");
 <% else %>
   <% if @users.next_page == 2 %>
     $('#scroll-list').empty();
-    $('#scroll-list').append("<%= j render('users') %>");
+    $('#scroll-list').append("<%= j render('index_user') %>");
   <% else %>
-    $('#scroll-list').append("<%= j render('users') %>");
+    $('#scroll-list').append("<%= j render('index_user') %>");
   <% end %>
 <% end %>
 
 <% if @users.next_page %>
-    $('.pagination').replaceWith("<%= j will_paginate @users, page_links: false %>");
+  $('.pagination').replaceWith("<%= j will_paginate @users, page_links: false %>");
 <% else %>
-    $('.pagination').html('<i>-fin-</i>');
+  $('.pagination ').html('<i>-fin-</i>');
 <% end %>
+
 $('.pagination a').on('click',function(){
     $.get(this.href,null,null,'script');
     return false;

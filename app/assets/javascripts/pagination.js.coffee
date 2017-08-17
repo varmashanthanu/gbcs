@@ -5,7 +5,7 @@ jQuery ->
 
     scroller.on 'scroll', ->
       more_posts_url = $('.pagination .next_page').attr('href')
-      if more_posts_url && (scroller.scrollTop()) > (mult*scroller.height()) - (scroller.height()/4)
+      if more_posts_url && (scroller[0].scrollHeight - scroller.scrollTop() == scroller.height())
         mult = mult+1.6
         $('.pagination').html('<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />')
         $.getScript more_posts_url

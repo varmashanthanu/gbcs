@@ -5,17 +5,13 @@
     <div class="index">
 
       <div class="user-search">
-        <%= form_tag users_path, method: :get do %>
+        <%= form_tag users_path, method: :get, remote: true do %>
             <%= text_field_tag :name, params[:name],autofocus: true, placeholder: 'Enter Name', class: 'txt-fld' %>
-
-            <%= select :sp, :sp1, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp1] if params[:sp]) %>
-            <%= select :so, :so1, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so1] if params[:sp]) %>
-            <%= select :sp, :sp2, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp2] if params[:sp]) %>
-            <%= select :so, :so2, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so2] if params[:sp]) %>
-            <%= select :sp, :sp3, %w(PROGRAM GRADUATION SCORE),autofocus: true, class: 'txt-fld', include_blank: 'None', selected: (params[:sp][:sp3] if params[:sp]) %>
-            <%= select :so, :so3, %w(ASC DESC),autofocus: true, class: 'txt-fld', selected: (params[:so][:so3] if params[:sp]) %>
-
-            <%= submit_tag 'Refine', name: nil, class: 'submit-btn' %>
+            <%= submit_tag 'SEARCH', name: nil, class: 'submit-btn' %> <small><%= link_to 'SORT |', '#', id:'sorter' %> <%= link_to 'FILTER', '#', id:'filter' %></small> <br/>
+            <span id="filter-sort">
+              <span class="sorter" style="display: none"><%= render 'helper/sorter' %></span>
+              <span class="filter" style="display: none"><%= render 'helper/filter' %></span>
+            </span>
         <% end %>
       </div>
       <div class="user-list">
@@ -30,10 +26,12 @@
           </ul>
         </span>
         <span class="list-rows">
-          <ul>
-            <%= render 'index_user' %>
-            <br/><br/>
-            <%= will_paginate @users %>
+          <ul id="infinite-coffee-scroll">
+            <span class="scroll-list" id="scroll-list">
+              <%= render 'index_user' %>
+            </span>
+            <br/>
+            <%= will_paginate @users, page_links: false %>
           </ul>
         </span>
       </div>

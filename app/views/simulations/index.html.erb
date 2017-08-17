@@ -11,10 +11,10 @@
         <%= form_tag search_simulations_path, method: :get, remote: true do %>
             <%= text_field_tag :name, params[:name],autofocus: true, placeholder: 'Enter Name', class: 'txt-fld' %>
             <%= hidden_field :team, :id, value: @team.id %>
-
+            <%= submit_tag 'SEARCH', name: nil, class: 'submit-btn' %> <small><%= link_to 'SORT |', '#', id:'sorter' %> <%= link_to 'FILTER', '#', id:'filter' %></small><br/>
             <span id="filter-sort">
-              <span class="sorter"><%= render 'sorter' %></span>
-              <span class="filter" style="display: none"><%= render 'filter' %></span>
+           <span class="sorter" style="display: none"><%= render 'helper/sorter' %></span>
+              <span class="filter" style="display: none"><%= render 'helper/filter' %></span>
             </span>
             <div id="member-adds">
               <% @members.each do |m| %>
@@ -35,11 +35,11 @@
               <div class="short" style="width: 60px"><%= k[0..4].upcase+'.' %></div>
           <% end %>
         </div>
-        <div class="user-list" id="infinite-scroll">
+        <div class="user-list" id="infinite-coffee-scroll">
           <div id="scroll-list">
             <%= render 'users' %>
           </div>
-          <%= will_paginate @users %>
+          <%= will_paginate @users, page_links: false %>
         </div>
       </div>
     </div>

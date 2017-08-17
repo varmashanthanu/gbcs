@@ -1,0 +1,19 @@
+<div id="check-box">
+  <% Program.all.each do |program| %>
+      <%= check_box( :filter, :programs, {multiple: true}, program.name, nil) %>
+      <small class="label"><%= program.name %></small>
+  <% end %>
+  <br/>
+  <% ((Date.today.year)..(Date.today.year+6)).each do |year| %>
+      <%= check_box(:filter, :graduations, {multiple: true}, year, nil) %>
+      <small class="label"><%= year %></small>
+  <% end %>
+  <br/>
+  <% %w[FALL SPRING SUMMER].each do |term| %>
+      <%= check_box(:filter, :terms, {multiple: true}, term, nil) %>
+      <small class="label"><%= term %></small>
+  <% end %>
+</div>
+<!--<%= select :filter, :programs, options_for_select(Program.all.collect{|p|p.name}),{}, {multiple:true,style:'width: 60px;height: 40px; vertical-align: middle;'}  %>-->
+<!--<%= select :filter, :graduations, options_for_select((Date.today.year)..(Date.today.year+6)),{}, {multiple:true,style:'width: 60px;height: 40px; vertical-align: middle;'}  %>-->
+<!--<%= select :filter, :terms, %w[FALL SPRING SUMMER],{}, {multiple:true,style:'width: 60px;height: 40px; vertical-align: middle;'}  %>-->
