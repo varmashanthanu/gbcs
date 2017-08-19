@@ -17,9 +17,11 @@
                 <div class="short" style="width: 60px"><%= v.round(1) %></div>
             <% end %>
           </span>
-
           <div class="submit-btn"><%=  %><%= link_to 'STATS', user_stats_simulation_path(user), remote: true %></div>
-          <div class="submit-btn"><%= link_to 'ADD', {controller:'simulations', action:'new', :team => @team.id, :new_member => user.id, :members => @members.pluck(:id)}, id:"add-#{user.id}", remote: true %></div>
+          <% filter = {};params[:filter].each{|k,v| filter[k] = v } if params[:filter]  %>
+          <% sp = {}; sp[:sp1] = params[sp:[:sp1]]; sp[:sp2] = params[sp:[:sp2]]; sp[:sp3] = params[sp:[:sp3]] %>
+          <% so = {}; so[:so1] = params[so:[:so1]]; so[:so2] = params[so:[:so2]]; so[:so3] = params[so:[:so3]] %>
+          <div class="submit-btn"><%= link_to 'ADD', {controller:'simulations', action:'new', filter: filter,name: params[:name], sp: sp, so: so,  :team => @team.id, :new_member => user.id, :members => @members.pluck(:id)}, id:"add-#{user.id}", remote: true %></div>
         </div>
 
     <% end %>

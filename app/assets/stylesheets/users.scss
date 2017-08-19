@@ -25,6 +25,7 @@ $beige: #f5f3eb;
   height: 100%;
   overflow: scroll;
   .wrapper {
+    width: 95%;
 
     font-family: 'Muli', sans-serif;
     .index {
@@ -42,7 +43,7 @@ $beige: #f5f3eb;
           border: solid $orange 1px;
           width: 80px;
         }
-        submit-btn {
+        .submit-btn {
           width: 50px;
           border-radius: 0;
           background: none;
@@ -159,8 +160,9 @@ $beige: #f5f3eb;
         display: inline-block;
       }
       .info {
-        border: solid $orange;
-        padding: 0 20px 0 20px;
+        height: 185px;
+        border: solid $orange 0.1px;
+        padding: 10px 20px 0 20px;
         vertical-align: top;
         display: inline-block;
       }
@@ -177,19 +179,16 @@ $beige: #f5f3eb;
   .activities-block {
     padding-left: 20px;
     .block {
-      padding: 0 60px 0 0px;
-      display: inline-block;
-      margin-top: -20px;
+      padding: 0 60px 0 0;
+      //display: inline-block;
       //border: solid $orange 1px;
-      height: 150px;
-      overflow: scroll;
+      height: auto;
     }
     .fullblock {
       padding: 0 60px 0 0px;
-      display: inline-block;
+      //display: inline-block;
       //border: solid $orange 1px;
-      height: 100px;
-      overflow: scroll;
+      height: auto;
     }
   }
   a {
@@ -199,7 +198,7 @@ $beige: #f5f3eb;
   .news-block, .activities-block {
     display: inline-block;
     width: 45%;
-    height: 300px;
+    height: auto;
     overflow-y: scroll;
     vertical-align: top;
   }
@@ -209,6 +208,14 @@ $beige: #f5f3eb;
       width: auto;
       border: solid $orange 1px;
       height: 20px;
+    }
+    input[type='radio'] {
+      vertical-align: middle;
+      margin: 0 10px 0 10px;
+      &:after {border: 0.1px solid $orange;}
+      &:checked:after {
+        background-color: $orange;
+      }
     }
     select {
       padding-left: 5px;
@@ -220,6 +227,14 @@ $beige: #f5f3eb;
       padding-bottom: 5px;
       padding-top: 3px;
     }
+    .skill-category {
+      color: $orange;
+    }
+    #skill-name {
+      width: 300px;
+    }
+    .field_with_errors {
+      display: inline-block; }
   }
 }
 

@@ -19,6 +19,57 @@ $beige: #f5f3eb;
   .wrapper {
     font-family: 'Muli', sans-serif;
 
+    pre, a {color: $orange; text-decoration: none;}
+    .submit-btn {
+      width: 50px;
+      border-radius: 0;
+      background: none;
+      color: $orange;
+      border: $orange solid 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.7em;
+      font-family: 'Bellefair', san-serif;
+      padding: 3px 3px 3px 3px;
+      vertical-align: middle;
+    }
+
+    form {
+      input {
+        padding-left: 5px;
+        width: 200px;
+        border: solid $orange 1px;
+        height: 20px;
+
+      }
+      .submit-btn {
+        width: auto;
+        border-radius: 0;
+        background: none;
+        color: $orange;
+        border: $orange solid 1px;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 0.7em;
+        font-family: 'Bellefair', san-serif;
+        padding: 3px 3px 3px 3px;
+        vertical-align: middle;
+      }
+      input:focus, select:focus {
+        outline-color: $orange;
+      }
+      small {
+        margin: 0;
+        vertical-align: middle;
+        display: inline-block;
+        float: none;
+        font-style: italic;
+        font-size: 80%;
+        a {color: $orange; text-decoration: none;}
+      }
+    }
     .chart {
       border: $orange solid 1px;
       left: 20px;

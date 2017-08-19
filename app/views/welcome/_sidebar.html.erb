@@ -24,6 +24,13 @@
                 <%= link_to programs_path do %>
                     <li>Program List</li>
                 <% end %>
+                <%= link_to teams_path do %>
+                    <li>Search Teams</li>
+                <% end %>
+                <%= link_to mine_teams_path do %>
+                    <li>My Teams</li>
+                <% end %>
+                <br/>
             <% end %>
             <%= link_to yes_lists_path do %>
                 <li>The Yes-List</li>
@@ -35,20 +42,7 @@
     <div class="tasks">
       <div class="tabs">
         <ul>
-          <%= link_to competitions_path do %>
-              <li>Search Competition</li>
-              <% end %>
-          <%= link_to new_competition_path do %>
-              <li>Create Competition</li>
-          <% end %>
-          <br/>
-          <%= link_to teams_path do %>
-              <li>Search Teams</li>
-              <% end %>
-          <%= link_to mine_teams_path do %>
-              <li>My Teams</li>
-          <% end %>
-          <br/>
+
           <%= link_to users_path do %>
               <li>All Students</li>
           <% end %>

@@ -1,6 +1,6 @@
-$('#remove-id-<%= @team.id %>').hide().after("<%= j render ('edit') %>");
+$('.team-info').hide().after("<%= j render ('edit') %>");
 
 $('#cancel-edit-<%=@team.id%>').click(function(){
-   $('#remove-id-<%= @team.id %>').show();
-   $('#edit_team_<%= @team.id %>').remove();
+    $('.team-info').show();
+    $('#edit_team_<%= @team.id %>').remove();
 });

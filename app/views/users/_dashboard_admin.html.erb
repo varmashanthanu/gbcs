@@ -1,0 +1,9 @@
+<h2>Admin Dashboard</h2>
+<br/><%= link_to 'Change Master Password', edit_admin_path(MasterPass.first), remote: true, id:'master-pass' %> for Admin Signup.<br/>
+<hr/>
+<h4>Information</h4>
+<%="Total Number of Students: #{User.students.count}"%><br/>
+<%="Active Students: #{User.students.active.count}"%><br/><br/>
+<%="Total Number of Programs: #{Program.count}"%><br/>
+<%="Total Number of Skills: #{Skill.count}"%><br/><br/>
+<%="Total Number of Teams: #{Team.count}"%><br/>

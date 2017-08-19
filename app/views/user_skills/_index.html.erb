@@ -1,13 +1,13 @@
-<div class="user-skills" id="user-skills">
-  <% if user_skills.count > 0 %>
-      <% user_skills.each do |uskill| %>
-          <p id="remove-id-<%=uskill.id%>">
-            <%= uskill.name + ' - ' %><%= "Level: #{uskill.level}"  %>
-            <small><%= link_to 'Edit', edit_user_skill_path(uskill),id:"edit_skill_#{uskill.id}", remote:true %></small>
-            <small><%= link_to 'Remove', uskill, method: :delete, data: {confirm: 'Are You Sure?'}, remote: true %></small>
-          </p>
-      <% end %>
-  <% else %>
-      <p id="none-message">No Skills Added Yet</p>
-  <% end %>
-</div>
+<!--<div class="user-skills" id="user-skills">-->
+  <!--<% if user_skills.count > 0 %>-->
+      <!--<% user_skills.each do |uskill| %>-->
+          <!--<p id="remove-id-<%=uskill.id%>">-->
+            <!--<%= uskill.name + ' - ' %><%= "Level: #{uskill.level}"  %>-->
+            <!--<small><%= link_to 'Edit', edit_user_skill_path(uskill),id:"edit_skill_#{uskill.id}", remote:true %></small>-->
+            <!--<small><%= link_to 'Remove', uskill, method: :delete, data: {confirm: 'Are You Sure?'}, remote: true %></small>-->
+          <!--</p>-->
+      <!--<% end %>-->
+  <!--<% else %>-->
+      <!--<p id="none-message">No Skills Added Yet</p>-->
+  <!--<% end %>-->
+<!--</div>-->

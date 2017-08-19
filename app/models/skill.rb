@@ -12,6 +12,8 @@ class Skill < ApplicationRecord
   validates :name, :presence => true, uniqueness: true
   validates :category, :presence => true
 
+  after_commit :update_dependants, on: [:create, :update]
+  before_destroy :update_dependants
 
   def duplicate
     Skill.where(name:self.name)
@@ -23,6 +25,13 @@ class Skill < ApplicationRecord
 
   def self.list_down
     order(category:'DESC').order(name:'DESC')
+  end
+
+  def update_dependants
+    self.users.refresh
+    self.teams.each do |team|
+      team.skill_update
+    end
   end
 
   def tag

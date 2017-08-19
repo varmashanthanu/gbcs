@@ -1,10 +1,10 @@
   <%= form_for @skill, remote: true do |f| %>
-        <div id="editskill-<%=@skill.id%>">
-          <td><%= Skill.order(category:'ASC').order(name:'ASC').all.index(@skill)+1 %></td><!-- TODO Make a Scope? -->
-          <td><%= f.text_field :name, autofocus: true, required: true, placeholder: 'Skill' %></td>
-          <td><%= f.text_field :category, autofocus: true, required: true, placeholder: 'Skill category' %></td>
-          <td><%= f.number_field :weight, autofocus: true, min: 0, max: 5, placeholder: '0' %><small><i> Weight: Scale 1-5, 0 for none</i></small></td>
-          <td><%= f.submit 'Update', id:'update' %></td>
-          <td><small><%= link_to 'Cancel', '#', id:"cancel-#{@skill.id}" %></small></td>
-        </div>
+          <span id="editskill-<%=@skill.id%>">
+            <li class="short"><%= Skill.order(category:'ASC').order(name:'ASC').all.index(@skill)+1 %></li><!-- TODO Make a Scope? -->
+            <li class="long"><%= f.text_field :name, autofocus: true, required: true, placeholder: 'Skill' %></li>
+            <li class="short"><%= f.number_field :weight, autofocus: true, min: 0, max: 5, placeholder: '0' %></li>
+            <li class="long"><%= f.text_field :category, autofocus: true, required: true, placeholder: 'Skill category' %></li>
+            <li class="action"><%= f.submit 'Update', id:'update', class:'submit-btn' %></li>
+            <li class="action"><small><%= link_to 'Cancel', '#', id:"cancel-#{@skill.id}" %></small></li>
+          </span>
   <% end %>

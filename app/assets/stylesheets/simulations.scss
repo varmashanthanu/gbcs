@@ -191,7 +191,7 @@ $beige: #f5f3eb;
     .team-skill-view {
       border: $orange solid 2px;
       height: 250px;
-      overflow: scroll;
+      //overflow: scroll;
       width: 63.85%;
       display: inline-block;
     }
@@ -204,6 +204,7 @@ $beige: #f5f3eb;
       /* bring your own prefixes */
       transform: translate(-50%, -50%);
       width: 800px;
+      //height: 400px;
       line-height: 0.5;
       border: solid violet 2px;
       background-color: rgba(beige,0.9);

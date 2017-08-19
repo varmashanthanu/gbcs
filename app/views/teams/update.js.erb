@@ -1,4 +1,4 @@
-$('#remove-id-<%= @team.id %>').replaceWith("<%= j render (@team) %>").show();
+$('.team-display').replaceWith("<%= j render 'show_details' %>").show();
 $('#edit_team_<%= @team.id %>').remove();
 
 $("#notice-message").html("<p><%= flash[:notice] %></p>").show();

@@ -1,0 +1,7 @@
+<% Skill.order(:category).group(:category).count.each do |k,v| %>
+    <p class="skill-category"><%= k %></p>
+    <small style="color: #593674">&#x21E6;Beginner----Level----Advanced&#x21E8;&emsp;&emsp;SKILL</small>
+    <% Skill.where(category:k).order(:name).each do |skill| %>
+        <%= render 'user_skills/newuserskill', skill:skill %>
+    <% end %>
+<% end %>

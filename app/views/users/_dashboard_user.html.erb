@@ -1,0 +1,39 @@
+<div class="activities-block">
+  <h2>New Activities</h2>
+  <span class="block">
+        <b>Enrolled Teams</b>
+    <%= render 'teams' %>
+      </span>
+
+  <span class="fullblock">
+        <% if invites.any? %>
+        <p><b>Pending Invites</b></p>
+        <% invites.each do |invite| %>
+          <p id="invite-<%=invite.id%>">
+            <%= link_to invite.sender.fullname, invite.sender %> <%= 'invited' %> you to <%= link_to 'Team '+invite.team.name, invite.team %>
+            <small>
+              <%= link_to 'Accept', join_member_path(invite), remote: true, class:'submit-btn' %>
+            </small>
+            <small><%= link_to 'Reject', invite, method: :delete, data: {confirm: 'Are you Sure?'}, remote:true, class:'submit-btn' %></small>
+          </p>
+        <% end %>
+      <%end%>
+      </span>
+</div>
+
+<div class="info-block">
+  <h3>Preferences</h3>
+  <%= render 'preferences/preference' %>
+
+  <h3>Skill Rank - <%= current_user.score.round(2) %></h3>
+  <div class="column-graph">
+    <% if user_skills.any? %>
+        <%= render 'indi_skill_graph' %>
+    <% end %>
+  </div>
+  <div class="skill-list">
+    <%= render 'skill_list' %>
+  </div>
+
+  <hr/>
+</div>

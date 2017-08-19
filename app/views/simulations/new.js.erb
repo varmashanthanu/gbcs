@@ -43,7 +43,7 @@ $('#warning').click(function(){
 $('#warning').hide();
 <% end %>
 
-$('#team-skills').replaceWith("<%= j bar_chart User.combined_skills(@members),library: { backgroundColor:'transparent', hAxis: {title:'Level'},title:'Team Skills',colors: ['orangered'], min:0, max:5, :members => @members.pluck(:id)}, id:'team-skills', remote:true %>");
+$('#team-skills').replaceWith("<%= j bar_chart User.combined_skills(@members),library: { backgroundColor:'transparent', hAxis: {title:'Level'},title:'Team Skills',colors: ['orangered'], :members => @members.pluck(:id)},height:'250px', id:'team-skills', remote:true %>");
 $('#member-adds').empty();
 <% @members.each do |m| %>
 $('#member-adds').append("<%= j hidden_field :members, :id, :value => m.id,multiple:true, id:"member-#{m.id}" %>")

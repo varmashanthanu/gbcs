@@ -1,5 +1,4 @@
 $('.team-display').empty().append("<%= j render 'teams/show_details' %>").show();
-$('#member-team-<%=@member.id%>').remove();
 
 $("#notice-message").html("<p><%= flash[:notice] %></p>").show();
 $(".error").show();
@@ -10,7 +9,7 @@ $(function(){setTimeout(function(){
     $(".error").fadeOut('slow',function() {
         $(this).hide();
     })
-}, 3000);
+}, 2000);
 });
 
 <% flash.clear %>

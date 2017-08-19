@@ -58,12 +58,14 @@ $beige: #f5f3eb;
       .members{
         border: $orange solid 1px;
         height: 120px;
-        //overflow-y: scroll;
+        overflow-y: hidden;
         .member {
+
           display: inline-block;
           margin-right: 5px;
 
           .round {
+            z-index: 10;
             border-radius: 100%;
             margin: 5px;
             text-align: center;
@@ -94,9 +96,26 @@ $beige: #f5f3eb;
 
       }
     }
+    .team-display {
 
-
-
+      .team-skills {
+        .skill-toggle {
+          float: right;
+          #details, #core {
+            border: solid 0.1px $orange;
+            padding: 3px;
+            cursor: pointer;
+            a{text-decoration: none;color: $orange;}
+          }
+          #core {
+            display: none;
+          }
+        }
+        #chart-1{
+          border: solid $orange 0.1px;
+        }
+      }
+    }
   }
   .pagination {
     text-align: center;

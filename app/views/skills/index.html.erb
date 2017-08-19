@@ -13,31 +13,27 @@
     </div>
     <div class="table-wrapper">
         <div class="skills-table">
-          <table>
-            <thead>
-            <tr>
-              <td>S.No.</td>
-              <td>Skill</td>
-              <td>Weight</td>
-              <td>Category</td>
-              <td>Description</td>
-              <td></td>
-              <td></td>
-            </tr>
-            </thead>
-            <tbody id="skill-list">
+            <ul>
+              <li class="short">S.No.</li>
+              <li class="long">SKILL</li>
+              <li class="short">WGHT</li>
+              <li class="long">CATEGORY</li>
+              <li class="action"></li>
+              <li class="action"></li>
+            </ul>
+            <ul id="skill-list">
               <% if @skills.count > 0 %>
                   <%= render partial: 'skills' %>
               <% else %>
-                <tr id="none-message" style="text-align: center"><td colspan="6">No Skills Added Yet.</td></tr>
+                <span id="none-message" style="text-align: center"><span colspan="6">No Skills Added Yet.</span></span>
               <% end %>
-            </tbody>
+            </ul>
           </table>
         </div>
     </div>
 
     <hr/>
-    <%= link_to 'Create Skill', new_skill_path, id: 'create-skill', remote: true %>
+    <%= link_to 'Create Skill', new_skill_path, class:'submit-btn', id: 'create-skill', remote: true %>
 
   </div>
 </div>

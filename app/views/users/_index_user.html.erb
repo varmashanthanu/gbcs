@@ -7,7 +7,7 @@
             <%=user.fullname%>
           </li>
           <li><%=user.program%></li>
-          <li><%=user.score%></li>
+          <li><%=user.score.round(2)%></li>
           <li class="mobile"><%=user.term%></li>
           <li class="mobile"><%=user.graduation%></li>
           <li class="mobile"><%=user.active ? 'Active':'Inactive'%></li>

@@ -1,0 +1,34 @@
+<div class="team-info">
+  <%= "Name: #{@team.name}" %><br/>
+  <%= "Lead: #{User.find(@team.lead_id).name}" %><br/>
+  <%= "Created On: #{@team.created_at.strftime('%d %b %y')}" %><br/>
+  <small>
+    <%= link_to 'Edit', edit_team_path(@team), id: "edit-team-#{@team.id}", remote: true if (@team.is_member(current_user)||@team.is_lead(current_user)) %>
+    <%= link_to 'Delete', @team, method: :delete, data: {confirm: 'Are you sure?'}, remote: true if @team.is_lead(current_user)||current_user.admin %>
+  </small>
+</div>
+<div class="team-skills">
+  <p>
+    <%= "Team Skills:"%><small class="skill-toggle"><span id="details"><%=link_to 'DETAILS',team_path(@team,view:'details'), remote: true%></span><span id="core"><%= link_to 'CORE', team_path(@team,view:'core'), remote: true%></span> </small> <br/>
+    <%= column_chart @team.skill_group, library:{title:'Team Skills', vAxis:{title:'Level'}, backgroundColor:'transparent'} %>
+  </p>
+</div>
+
+<% if @team.members.any? %>
+    <p>Members:</p>
+    <ul>
+      <% @team.members.each do |m| %>
+          <li id="member-team-<%=m.id%>"><%=link_to "#{m.user.name.humanize}", m.user %>
+            <small><%= link_to 'Remove', m, remote:true, method: :delete, data: {confirm: 'Are you Sure?'} if @team.is_lead(current_user)%></small>
+          </li>
+      <% end %>
+    </ul>
+<% end %>
+<% if @team.is_lead(current_user) %> <!-- Options if member, add additional members -->
+    <div class="add-members">
+      <div id="add-member-button">
+        <%= link_to 'Quick Add', {:controller => "members", :action => "new", :team => @team.id }, class:'submit-btn', id:'add-member', remote: true %>
+        <%= link_to 'Constructor', {:controller => "simulations", :action => "index", :team => @team.id }, class:'submit-btn' %>
+      </div>
+    </div>
+<% end %>

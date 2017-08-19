@@ -1,5 +1,5 @@
 <%= form_for @program, remote:true, id:'new-program' do |f| %>
     <%= f.text_field :name, autofocus: true, required: true, placeholder:'Program Tag, e.g.: FTMBA2' %>
     <%= f.text_field :description, required: true, autofocus: true, placeholder:'Description, e.g.: Full Time MBA 2-Year' %>
-    <%= f.submit 'Save' %> <%= link_to 'Cancel', '#', id:'cancel', remote:true %>
+    <%= f.submit 'Save', class:'submit-btn' %> <small><%= link_to 'Cancel', '#', id:'cancel', remote:true %></small>
 <% end %>

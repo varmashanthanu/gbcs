@@ -102,13 +102,17 @@ class User < ApplicationRecord
   end
 
   def indi_skill_calc
-    names = Skill.order(:category).pluck(:name)
-    skill_weight = {}
-    names.each {|n|skill_weight[n]=0}
-    skill_weight.each do |name,score|
-      skill_weight[name] = self.user_skills.where(:skill => Skill.where(name:name)).any? ? self.user_skills.where(:skill => Skill.where(name:name)).first.level : 0
+    data = []
+    Skill.group(:category).count.each do |cat|
+      set = {}
+      set[:name] = cat[0]
+      set[:data] = []
+      self.user_skills.where(skill:Skill.where(category:cat)).each do |skill|
+        set[:data] << [skill.name,skill.level]
+      end
+      data << set
     end
-    skill_weight
+    data
   end
 
   def init

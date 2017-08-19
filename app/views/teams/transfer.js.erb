@@ -21,7 +21,8 @@ $(function(){
 
     $('.member').draggable({
         revert: 'invalid',
-        // helper: 'clone',
+        // scroll: false,
+        helper: 'clone',
         // containment: 'window',
         stop: function(){
             $(this).draggable('option','revert','invalid');
@@ -29,10 +30,11 @@ $(function(){
     });
     $('.member').droppable({
         greedy: true,
+
         // tolerance: 'touch',
         drop: function(event,ui){
             ui.draggable.draggable('option','revert',true);
-
+            $(this).html('<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />');
         }
     });
     $('.members').droppable({
@@ -77,3 +79,12 @@ $(function(){setTimeout(function(){
 });
 
 <% flash.clear %>
+
+//$('#member_<=@change[:user].id %>').remove();
+//$('#team_<=@change[:new].id%>').find('.members').append("<= j render 'user', user:@change[:user] %>");
+//$('#skill_<=@change[:old].id%>').empty().append("<= j render 'team_skills', team:@change[:old] %>");
+//$('#compatibility_mark_<=@change[:old].id%>').empty().append("<= j render 'compatibility_mark', compatibility:YesList.compatibility(@change[:old].users) %>");
+//$('#compatibility_list_<=@change[:old].id%>').empty().append("<= j render 'compatibility_list', compatibility:YesList.compatibility(@change[:old].users) %>");
+//$('#skill_<=@change[:new].id%>').empty().append("<= j render 'team_skills', team:@change[:new] %>");
+//$('#compatibility_mark_<=@change[:new].id%>').empty().append("<= j render 'compatibility_mark', compatibility:YesList.compatibility(@change[:new].users) %>");
+//$('#compatibility_list_<=@change[:new].id%>').empty().append("<= j render 'compatibility_list', compatibility:YesList.compatibility(@change[:new].users) %>");

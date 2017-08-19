@@ -15,11 +15,11 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
+    @view = params[:view]
   end
 
   def new
     @team = Team.new(lead_id:current_user.id)
-    @team.comp_teams.new
   end
 
   def create
@@ -28,15 +28,6 @@ class TeamsController < ApplicationController
       unless current_user.admin
         Member.create(team:@team,user:current_user)
         @team.skill_add(current_user)
-      end
-      if @team.comp_teams_attributes
-        @team.comp_teams_attributes.first[1].each do | k,v| #TODO WTF is going on here?
-          Rails.logger.debug(v)
-          if v.to_i>0
-            @team.comp_teams.create(competition_id:v.to_i)
-          end
-        end
-        # Rails.logger.debug(@team.comp_teams_attributes.first[1].each do |k,v|; )
       end
       respond_to do |format|
         format.html { redirect_to @team, notice: 'Team Created' }
@@ -60,18 +51,14 @@ class TeamsController < ApplicationController
   end
 
   def transfer
-    old_team_id = params[:old_team].split('_').last.to_i
-    user_id = params[:user].split('_').last.to_i
-    new_team_id = params[:new_team].split('_').last.to_i
-    @user = User.find(user_id)
-    @new_team = Team.find(new_team_id)
-    @old_team = Team.find(old_team_id)
-    @member = Member.where(user:@user,team:@old_team).first
-    if @member.update_attributes(team:@new_team)
-      @old_team.skill_update
-      @new_team.skill_update
+    if member[:m].transfer(member[:o],member[:n])
+      @user = member[:u]
+      @old_team = member[:o]
+      @new_team = member[:n]
+      # @change = Hash.new
+      # @change = {:user => member[:u],:old => member[:o],:new => member[:n]}
       respond_to do |format|
-        format.js { flash[:notice] = "Transferred #{@user.fname} from #{@old_team.name} to #{@new_team.name}." }
+        format.js { flash[:notice] = "Transferred #{member[:u].fname} from #{member[:o].name} to #{member[:n].name}." }
       end
     end
   end
@@ -94,10 +81,17 @@ class TeamsController < ApplicationController
   end
 
   def teams_params
-    params.require(:team).permit(:name,:avatar,:lead_id, comp_teams_attributes: [:competition_id])
+    params.require(:team).permit(:name,:avatar,:lead_id)
   end
 
-  def member_params
-    params.require(:member).permit(:user,:team_id,:id)
+  def member
+    old_team_id = params[:old_team].split('_').last.to_i
+    user_id = params[:user].split('_').last.to_i
+    new_team_id = params[:new_team].split('_').last.to_i
+    user = User.find(user_id)
+    new_team = Team.find(new_team_id)
+    old_team = Team.find(old_team_id)
+    member = Member.where(team:old_team,user:user).first
+    {o: old_team, n: new_team, u: user, m: member}
   end
 end

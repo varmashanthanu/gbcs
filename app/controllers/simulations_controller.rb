@@ -65,7 +65,8 @@ class SimulationsController < ApplicationController
   end
 
   def search_params
-    user = User.students.active.search(params[:name])
+    user = User.students.active.where.not(id:@members)
+    user = user.search(params[:name])
     user = user.sorter(params[:sp],params[:so])
     user = user.filter(params[:filter])
     current_user.admin ? user.active : user.active.where.not(id:current_user.id)

@@ -2,7 +2,7 @@ $('#new_team').remove();
 $('#none-message').hide();
 $('#new-team').show();
 
-$("#team-list").append("<%= j render (@team)%>");
+$("#team-list").append("<%= j render (@team), team:@team %>");
 $("#notice-message").html("<p><%= flash[:notice] %></p>").show();
 $(".error").show();
 $(function(){setTimeout(function(){

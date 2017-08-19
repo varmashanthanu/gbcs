@@ -22,7 +22,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :members, only: [:destroy] do
+  resources :members, only: [:destroy, :new, :create] do
+    collection do
+      get :mass_add
+    end
     member do
       get :join
     end
@@ -65,7 +68,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :user_skills, except: :show
+  resources :user_skills, only: [:create, :update, :index] do
+    collection do
+      patch :update
+    end
+  end
 
   get 'welcome/home'
   get 'welcome/contact_us'

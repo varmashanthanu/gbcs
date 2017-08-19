@@ -1,26 +1,27 @@
 <%= image_tag(@user.avatar.url(:display), size:'200x200' , class: 'round') %>
 
-<% if current_user.admin %>
-
-    <%= "Name: #{@user.fullname||'Incomplete'}" %><br/>
-    <%= "Email: #{@user.email}" %><br/>
-    <%= "Contact No.: #{@user.telno}" %><br/>
-
-    <br/><%= link_to 'Change Master Password', edit_admin_path(MasterPass.first), remote: true, id:'master-pass' %><br/><br/>
-
+<% if current_user == @user || current_user.admin %>
+    <span class="info">
+      <%= @user.fullname %><br/>
+      <%= "Email: \t\t\t\t\t#{@user.email}"%><br/>
+      <% unless @user.admin %>
+          <%= @user.program ? "Program: \t\t\t\t#{@user.program}" : "Program information not filled." %><br/>
+          <%= @user.term ? "Term: \t\t\t\t\t#{@user.term}" : "Term information not filled." %><br/>
+          <%= @user.graduation ? "Graduation: \t\t\t#{@user.graduation}" : "Graduation information not filled." %><br/>
+          <%= @user.active ? "Participation Status: \t\tActive" : "Participation Status: \t\tInactive" %><br/>
+          <%= "Skill Score: \t\t\t\t#{@user.score.round(2)}" %><br/>
+      <% end %>
+    </span>
 <% else %>
     <span class="info">
-      <p><% @user.fullname %></p>
-
-      <pre>
-  <%= @user.program ? "Program: \t\t\t\t#{@user.program}" : "Program information not filled." %>
-  <%= @user.term ? "Term: \t\t\t\t\t#{@user.term}" : "Term information not filled." %>
-  <%= @user.graduation ? "Graduation: \t\t\t#{@user.graduation}" : "Graduation information not filled." %>
-  <%= "Email: \t\t\t\t\t#{@user.email}"%>
-  <%= "Locations available: \t\t#{@user.preference.location.humanize}" %>
-  <%= "Competitions Interested: \t#{@user.preference.competition.humanize}" %>
-  <%= @user.active ? "Participation Status: \t\tActive" : "Participation Status: \t\tInactive" %>
-  <%= "Skill Score: \t\t\t\t#{@user.score}" %>
-      </pre>
+      <%= "Name: #{@user.fullname||'Incomplete'}" %><br/>
+      <%= "Email: \t\t\t\t\t#{@user.email}"%><br/>
+      <% unless @user.admin %>
+          <%= @user.program ? "Program: \t\t\t\t#{@user.program}" : "Program information not filled." %><br/>
+          <%= @user.term ? "Term: \t\t\t\t\t#{@user.term}" : "Term information not filled." %><br/>
+          <%= @user.graduation ? "Graduation: \t\t\t#{@user.graduation}" : "Graduation information not filled." %><br/>
+          <%= @user.active ? "Participation Status: \t\tActive" : "Participation Status: \t\tInactive" %><br/>
+          <%= "Skill Score: \t\t\t\t#{@user.score.round(2)}" %><br/>
+      <% end %>
     </span>
 <% end %>

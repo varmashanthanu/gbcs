@@ -1,3 +1,3 @@
 <div id="skill-graph">
-  <%= column_chart indi_graph_user_path(@user),library:{vAxis:{title:'Level'},title:'Skills',backgroundColor:'transparent'}, height: "200px", min:0, max:5, remote:true,id:'indi-chart', legend: true %>
+  <%= column_chart @user.indi_skill_calc,library:{vAxis:{title:'Level'},title:'Skills',backgroundColor:'transparent'},discrete:true,min:0,max:5, remote:true, id:'indi-chart', legend: true %>
 </div>

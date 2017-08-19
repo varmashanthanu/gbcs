@@ -1,8 +1,19 @@
-$("#new_user_skill").hide();
-$("#add-skill").show();
-$("#none-message").hide();
 $('#indi-chart').replaceWith("<%= j render('users/indi_skill_graph') %>");
-$("#user-skills").append("<%= j render(@user_skill) %>");
+$(".skill-list").empty().append("<%= j render 'users/skill_list' %>");
+
+$('input.level').on('click', function(){
+    $(this).parent().submit();
+    $(this).closest('form').submit(function(){
+        var valuesToSubmit = $(this).serialize();
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: valuesToSubmit,
+            dataType: 'JSON'
+        })
+    });
+});
+
 $("#notice-message").html("<p><%= flash[:notice] %></p>").show();
 $(".error").show();
 $(function(){setTimeout(function(){

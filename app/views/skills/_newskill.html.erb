@@ -1,7 +1,7 @@
 <%= form_for @skill, remote: true, id:'newskill' do |f| %>
     <%= f.text_field :name, autofocus: true, required: true, placeholder: 'Skill' %>
     <%= f.text_field :category, autofocus: true, required: true, placeholder: 'Skill category' %>
-    <%= f.number_field :weight, autofocus: true, min: 0, max: 5, placeholder: '0' %><small><i> Weight: Scale 1-5, 0 for none</i></small>
-    <%= f.submit %>
-    <small><%= link_to 'Cancel','#',id:'cancel-create', remote: true %></small>
+    <%= f.number_field :weight, autofocus: true, min: 0, max: 5, placeholder: '0' %><small>Weight: Scale 1-5, 0 for none</small>
+    <%= f.submit 'Add', class:'submit-btn' %>
+    <%= link_to 'Cancel','#',id:'cancel-create', remote: true, class:'submit-btn' %>
 <% end %>

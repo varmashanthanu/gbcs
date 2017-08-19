@@ -22,7 +22,8 @@ $(document).ready(function(){
 
     $('.member').draggable({
         revert: 'invalid',
-        // helper: 'clone',
+        // scroll: false,
+        helper: 'clone',
         // containment: 'window',
         stop: function(){
             $(this).draggable('option','revert','invalid');

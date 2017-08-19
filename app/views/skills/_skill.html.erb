@@ -1,10 +1,9 @@
-<tr id="remove-id-<%= skill.id %>">
-    <td><%= Skill.all.index(skill)+1 %></td>
-    <td><%= link_to "#{skill.name}", skill %></td>
-    <td><%= skill.weight %></td>
-    <td><%= "#{skill.category}" %></td>
-    <td>Description Needed?</td>
-    <td><small><%= link_to 'Edit', edit_skill_path(skill),id:"edit-#{skill.id}", remote:true %></small></td>
-    <td><small><%= link_to 'Remove', skill, method: :delete, data: {confirm: 'Are You Sure?'}, remote: true %></small></td>
+<span id="remove-id-<%= skill.id %>">
+    <li class="short"><%= Skill.all.index(skill)+1 %></li>
+    <li class="long"><%= link_to "#{skill.name}", '#' %></li>
+    <li class="short"><%= skill.weight %></li>
+    <li class="long"><%= "#{skill.category}" %></li>
+    <li class="action"><%= link_to 'Edit', edit_skill_path(skill),id:"edit-#{skill.id}", remote:true %></li>
+    <li class="action"><%= link_to 'Remove', skill, method: :delete, data: {confirm: 'Are You Sure?'}, remote: true %></li>
     <!--Todo-->
-</tr>
+</span>

@@ -9,7 +9,7 @@
         <%= render 'team_skills', team:team %>
       </div>
       <div class="compatibility">
-        <span id="compatibility_list_<%=team.id%>"><%= render 'compatibility_list', compatibility:@compatibility %></span>
+        <span id="compatibility_list_<%=team.id%>"><%= render 'compatibility_list', compatibility:@compatibility if @compatibility.present? %></span>
       </div>
       <div class="members">
         <% team.users.each do |user| %>

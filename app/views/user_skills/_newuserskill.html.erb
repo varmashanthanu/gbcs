@@ -1,7 +1,15 @@
-<%= form_for @user_skill, remote: true, url: {action: 'create' }, id:'newuserskill' do |f| %>
+<% user_skill = current_user.user_skills.where(skill:skill).first_or_create %>
+<%= form_for user_skill, remote: true, url: {controller: 'user_skills', id:user_skill.id }, id:'newuserskill' do |f| %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.collection_select :skill_id, Skill.list_up, :id, :tag %>
-    <%= f.number_field :level, autofocus: true, min: 1, max: 5, required:true, placeholder: '1' %><small><i> Level: Scale 1-5</i></small>
-    <%= f.submit 'Add', class:'submit-btn'%>
-    <small><%= link_to 'Cancel','#',id:'cancel-add', remote: true %></small>
+    <%= f.hidden_field :skill_id, value: skill.id %>
+    <%= f.label '0' %>
+    <%= f.radio_button :level, nil, {class: 'level'} %>
+    <%= f.radio_button :level, 1, {class: 'level'} %>
+    <%= f.radio_button :level, 2, {class: 'level'} %>
+    <%= f.radio_button :level, 3, {class: 'level'} %>
+    <%= f.radio_button :level, 4, {class: 'level'} %>
+    <%= f.radio_button :level, 5, {class: 'level'} %>
+    <%= f.label '5' %>
+    <span id="skill-name"><%= " : #{skill.name}" %></span>
+    <% f.submit 'Add', class:'submit-btn'%>
 <% end %>

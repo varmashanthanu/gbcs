@@ -1,3 +1,60 @@
 // Place all the styles related to the members controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$breakpoint: 800px;
+$orange: #E28F41;
+$beige: #f5f3eb;
+
+#add-member-button {
+  a.submit-btn {
+    width: 50px;
+    border-radius: 0;
+    background: none;
+    color: $orange;
+    border: $orange solid 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.7em;
+    font-family: 'Bellefair', san-serif;
+    padding: 3px 3px 3px 3px;
+    vertical-align: middle;
+  }
+}
+#new_member {
+
+  a {
+    text-decoration: none;
+    color: $orange;
+  }
+  input {
+    padding-left: 5px;
+    width: auto;
+    border: solid $orange 1px;
+    height: 20px;
+
+  }
+  select {
+    padding-left: 5px;
+    border: solid $orange 1px;
+    width: auto;
+  }
+  .submit-btn {
+    width: 50px;
+    border-radius: 0;
+    background: none;
+    color: $orange;
+    border: $orange solid 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.7em;
+    font-family: 'Bellefair', san-serif;
+    padding: 3px 3px 3px 3px;
+    vertical-align: middle;
+  }
+  input:focus, select:focus {
+    outline-color: $orange;
+  }
+}
