@@ -1,6 +1,5 @@
 
-$('#add-member-button').hide().after("<%= j render('new') %>");
-
+$('#add-member-button').hide().after("<%= j render('members/new') %>");
 $('#cancel-add').click(function(){
     $('#new_member').remove();
     $('#add-member-button').show();

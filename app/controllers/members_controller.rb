@@ -25,7 +25,7 @@ class MembersController < ApplicationController
   def new
     @member = Member.new
     @team = Team.find(params[:team])
-    @students = User.students.active.where.not(id:@team.users.pluck(:id))
+    @students = User.students.active.order(:fname)
   end
 
   def create
