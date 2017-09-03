@@ -1,12 +1,12 @@
 class TeamsController < ApplicationController
 
   include TeamsHelper
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :check_admin
   before_action :check_lead, only: [ :edit, :update, :destroy]
 
 
   def index
-    current_user.admin ? @teams = Team.order(:created_at) : @teams = Team.skill_match(current_user)
+    @teams = Team.order(:created_at)
   end
 
   def mine
@@ -73,11 +73,24 @@ class TeamsController < ApplicationController
 
   private
   def check_lead
-    Team.find(params[:id]).is_lead(current_user)
+    unless Team.find(params[:id]).is_lead(current_user)
+      respond_to do |format|
+        format.js {
+          flash[:notice] = 'Team-Lead only feature.'
+          render 'invites/error'
+        }
+      end
+    end
   end
 
   def check_member
     Team.find(params[:id]).is_member(current_user)
+  end
+
+  def check_admin
+    unless User.faculty.exists?current_user.id
+      redirect_back(fallback_location: root_path, notice:'Admin only feature.')
+    end
   end
 
   def teams_params

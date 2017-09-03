@@ -1,5 +1,6 @@
 <span class="member" id="member_<%=user.id%>">
-              <%= image_tag user.avatar.url(:thumb), size:'50x50',class:'round', id:"member-#{user.id}" %>
+              <%= image_tag user.avatar.url(:thumb), size:'50x50',class:'round', id:"member-#{user.id}" %><br/>
+              <small class="really-small"><%= user.fullname[0..9] %></small>
   <div class="details">
       <small><%= user.fullname %></small>
       <small><%= "#{user.program} | #{user.graduation} | #{user.term}" %></small>

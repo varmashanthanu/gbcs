@@ -143,13 +143,11 @@ class User < ApplicationRecord
 
   def self.search(n)
 
-    Rails.logger.debug('search entered')
     return students unless n.present?
 
     names = []
     n = n.split(/\W+/)
     n.each{|name|names<<"%#{name.downcase}%" unless name==''}
-    Rails.logger.debug('search done')
     query = ''
     names.each{|name| name == names.last ? query<<'fname iLIKE ? OR lname iLIKE ?' : query<<'fname iLIKE ? OR lname iLIKE ? OR ' }
     self.where(query,*names, *names)
@@ -157,7 +155,6 @@ class User < ApplicationRecord
   end
 
   def self.sorter(priority,order)
-    Rails.logger.debug('sort entered')
     return order(lname:'ASC') unless priority.present?
 
     string = []
@@ -170,12 +167,10 @@ class User < ApplicationRecord
       query += s
       query += ', ' unless s==string.last
     end
-    Rails.logger.debug('sort done') if query.present?
     query.present? ? order(query) : order(lname:'ASC')
   end
 
   def self.filter(filter)
-    Rails.logger.debug('filter entered')
     return where(nil) unless filter.present?
 
     programs = []
@@ -188,21 +183,18 @@ class User < ApplicationRecord
       query = ''
       programs.each{|program|program == programs.last ? query<<'program = ?' : query<<'program = ? OR '}
       users = users.where(query,*programs)
-      Rails.logger.debug('filter done')
     end
     if filter[:graduations].present?
       filter[:graduations].each{|g|graduations<<g unless g==''}
       query = ''
       graduations.each{|graduation|graduation == graduations.last ? query<<'graduation = ?' : query<<'graduation = ? OR '}
       users = users.where(query,*graduations)
-      Rails.logger.debug('filter done')
     end
     if filter[:terms].present?
       filter[:terms].each{|t|terms<<t unless t==''}
       query = ''
       terms.each{|term|term == terms.last ? query<<'term = ?' : query<<'term = ? OR '}
       users = users.where(query,*terms)
-      Rails.logger.debug('filter done')
     end
 
     users
