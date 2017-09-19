@@ -2,11 +2,11 @@ class TeamSkill < ApplicationRecord
   belongs_to :skill
   belongs_to :team, counter_cache: true
 
-  after_initialize :init
-
-  def init
-    self.count ||= 0
-  end
+  # after_initialize :init
+  #
+  # def init
+  #   self.count ||= 0
+  # end
 
   def name
     self.skill.name
