@@ -62,7 +62,7 @@ class Team < ApplicationRecord
   end
 
   def skill_update #TODO check if team skills change when Members edit skills / leaves team
-    self.team_skills.update_all(level:0)
+    self.team_skills.update_all(level:0,count:0)
     users = self.users
     users.each do |user|
       user.user_skills.each do |us|
