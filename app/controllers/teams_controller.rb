@@ -27,7 +27,6 @@ class TeamsController < ApplicationController
     if @team.save
       unless current_user.admin
         Member.create(team:@team,user:current_user)
-        @team.skill_add(current_user)
       end
       respond_to do |format|
         format.html { redirect_to @team, notice: 'Team Created' }
