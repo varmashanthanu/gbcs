@@ -106,7 +106,7 @@ class Team < ApplicationRecord
   #   skills = user.skills
   #   nteams = Team.where.not(id:TeamSkill.where(skill:skills).select(:team_id))
   #   yteams = Team.where(id:TeamSkill.where(skill:skills).select(:team_id))
-  #   nteams.order('team_skills_count ASC') | yteams.order('team_skills_count ASC')
+  #   nteams.order('team_skil  ls_count ASC') | yteams.order('team_s   kills_count ASC')
   # end
 
 end
