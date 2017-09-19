@@ -4,7 +4,7 @@
   <%= "Created On: #{@team.created_at.strftime('%d %b %y')}" %><br/>
   <small>
     <%= link_to 'Edit', edit_team_path(@team), id: "edit-team-#{@team.id}", remote: true if (@team.is_member(current_user)||@team.is_lead(current_user)) %>
-    <%= link_to 'Delete', @team, method: :delete, data: {confirm: 'Are you sure?'}, remote: true if @team.is_lead(current_user)||current_user.admin %>
+    <%= link_to 'Delete', @team, method: :delete, data: {confirm: 'Are you sure?'} if @team.is_lead(current_user)||current_user.admin %>
   </small>
 </div>
 <div class="team-skills">
