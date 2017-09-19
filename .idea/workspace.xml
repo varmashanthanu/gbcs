@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7d56ecca-dc53-4f09-b863-d2ff3f840ae2" name="Default" comment="Fixed Notifications for Adding to Team.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/team.rb" afterPath="$PROJECT_DIR$/app/models/team.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -70,8 +71,8 @@
       <file leaf-file-name="team.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/team.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="75" column="72" lean-forward="true" selection-start-line="75" selection-start-column="72" selection-end-line="75" selection-end-column="72" />
+            <state relative-caret-position="342">
+              <caret line="77" column="9" lean-forward="true" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -231,8 +232,8 @@
         <option value="$PROJECT_DIR$/db/migrate/20170603191011_create_teams.rb" />
         <option value="$PROJECT_DIR$/app/views/welcome/_navbar.html.erb" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
-        <option value="$PROJECT_DIR$/app/models/team.rb" />
         <option value="$PROJECT_DIR$/app/controllers/teams_controller.rb" />
+        <option value="$PROJECT_DIR$/app/models/team.rb" />
       </list>
     </option>
   </component>
@@ -922,7 +923,7 @@
       <workItem from="1503504067390" duration="236000" />
       <workItem from="1503513909176" duration="5008000" />
       <workItem from="1504415270427" duration="4259000" />
-      <workItem from="1505746946930" duration="6555000" />
+      <workItem from="1505746946930" duration="6680000" />
     </task>
     <task id="LOCAL-00002" summary="Issue with MySQL on first Migrate fixed. Root Password changed to NO Password. Followed command rails db:-&gt; create, migrate. Schema working well.">
       <created>1496515833184</created>
@@ -1271,7 +1272,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="809406000" />
+    <option name="totallyTimeSpent" value="809531000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1733,8 +1734,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/team.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="75" column="72" lean-forward="true" selection-start-line="75" selection-start-column="72" selection-end-line="75" selection-end-column="72" />
+        <state relative-caret-position="342">
+          <caret line="77" column="9" lean-forward="true" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
           <folding />
         </state>
       </provider>
