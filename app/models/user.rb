@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   after_initialize :init, :init_pref_addr
 
+  before_destroy :cleanup
+
   attr_accessor :address_attributes, :teams_attributes, :invites_attributes
 
   has_one :address, as: :addressable, dependent: :destroy
@@ -44,6 +46,10 @@ class User < ApplicationRecord
   def init_pref_addr
     self.preference = Preference.new(location:'Any',competition:'Any') unless self.preference.present?
     self.build_address unless self.preference.present?
+  end
+
+  def cleanup
+    Notifications.where(sender:self).destroy_all
   end
 
   # Name Calls
