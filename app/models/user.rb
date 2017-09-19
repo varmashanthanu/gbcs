@@ -49,7 +49,7 @@ class User < ApplicationRecord
   end
 
   def cleanup
-    Notification.where(sender:self).destroy_all
+    Notification.where(user:self).destroy_all
   end
 
   # Name Calls

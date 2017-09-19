@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7d56ecca-dc53-4f09-b863-d2ff3f840ae2" name="Default" comment="Fixed Notifications for Adding to Team.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -51,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/app/models/user.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="372">
-              <caret line="51" column="48" lean-forward="false" selection-start-line="51" selection-start-column="48" selection-end-line="51" selection-end-column="48" />
+              <caret line="51" column="16" lean-forward="false" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -882,7 +883,7 @@
       <workItem from="1503504067390" duration="236000" />
       <workItem from="1503513909176" duration="5008000" />
       <workItem from="1504415270427" duration="4259000" />
-      <workItem from="1505746946930" duration="11266000" />
+      <workItem from="1505746946930" duration="11337000" />
     </task>
     <task id="LOCAL-00002" summary="Issue with MySQL on first Migrate fixed. Root Password changed to NO Password. Followed command rails db:-&gt; create, migrate. Schema working well.">
       <created>1496515833184</created>
@@ -1231,7 +1232,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="814117000" />
+    <option name="totallyTimeSpent" value="814188000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1699,7 +1700,7 @@
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="372">
-          <caret line="51" column="48" lean-forward="false" selection-start-line="51" selection-start-column="48" selection-end-line="51" selection-end-column="48" />
+          <caret line="51" column="16" lean-forward="false" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
           <folding />
         </state>
       </provider>
