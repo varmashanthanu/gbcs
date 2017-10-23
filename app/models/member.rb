@@ -6,9 +6,13 @@ class Member < ApplicationRecord
   after_create :notify
 
   def transfer(o,n)
-    self.update_attributes(team:n)
-    o.skill_update
-    n.skill_update
+    if self.update_attributes(team:n)
+      o.skill_update
+      n.skill_update
+      true
+    else
+      false
+    end
   end
 
   def notify
