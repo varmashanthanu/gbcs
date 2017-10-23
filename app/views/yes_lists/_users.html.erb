@@ -8,7 +8,7 @@
         <%= u.program %><br/>
         <%= "#{u.fname} prefers working with you." if u.likes(current_user) %><br/>
         <%= link_to 'YES', yes_lists_path(yes_list:{user_id:current_user.id,target_id:u.id,match:'YES'}), method: :post, remote: true, class:'submit-btn' %>
-        <%= link_to 'NO', yes_lists_path(yes_list:{user_id:current_user.id,target_id:u.id,match:'YES'}), method: :post, remote: true, class:'submit-btn' %>
+        <%= link_to 'NO', yes_lists_path(yes_list:{user_id:current_user.id,target_id:u.id,match:'NO'}), method: :post, remote: true, class:'submit-btn' %>
       </div>
       <hr/>
     </span>
