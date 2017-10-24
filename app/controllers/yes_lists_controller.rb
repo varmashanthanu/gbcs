@@ -22,7 +22,7 @@ class YesListsController < ApplicationController
 
   def index
     @count = YesList.group(:user_id).count.count
-    current_user.admin ? @users = [User.joins(:yes_lists).select("users.*, count(yes_lists.id) as ycount").group("users.id").order("ycount DESC")].flatten.paginate(page: params[:page], per_page: 20) : @yes_lists = YesList.where(user:current_user).paginate(page: params[:page], per_page: 20)
+    current_user.admin ? @users = search_params.paginate(page: params[:page], per_page: 20) : @yes_lists = YesList.where(user:current_user).paginate(page: params[:page], per_page: 20)
     @users = (User.students.no_pref(current_user).order(:fname) - [current_user]).paginate(page: params[:page], per_page:10) unless current_user.admin
   end
 
@@ -75,4 +75,18 @@ class YesListsController < ApplicationController
   def list_params
     params.require(:yes_list).permit(:user_id,:target_id,:match,:id)
   end
+
+  def search_params
+    if params[:name].blank? and params[:match].blank?
+      Rails.logger.debug('Trigger A')
+      [User.joins(:yes_lists).select("users.*, count(yes_lists.id) as ycount").group("users.id").order("ycount DESC")].flatten
+    else
+      Rails.logger.debug('Trigger B')
+      params[:name].blank? ? users = User.all : users = User.students.search(params[:name])
+      @match = params[:match]
+      @count = users.joins(:yes_lists).group(:user_id).count.count
+      [users.joins(:yes_lists).select("users.*, count(yes_lists.id) as ycount").group("users.id").order("ycount DESC")].flatten
+    end
+  end
+
 end

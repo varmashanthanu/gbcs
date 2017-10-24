@@ -1,5 +1,5 @@
 <% @users.each do |u| %>
-    <% @yes_lists = u.yes_lists %>
+    <% @match.present? ? @yes_lists = u.yes_lists.where(match:@match) : @yes_lists = u.yes_lists %>
     <h4>
       <%= link_to u do %>
           <%= image_tag u.avatar.url(:thumb), size:'20x20', class:'round' %>

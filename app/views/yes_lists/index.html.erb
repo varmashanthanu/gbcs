@@ -15,7 +15,13 @@
             <%= column_chart hated_graph_yes_lists_path, id:'hated-chart', library:{backgroundColor:'transparent', vAxis:{title:"No. of students who selected 'NO'"}} %>
           </div>
 
-          <%= "#{@count} students with Working Preferences." %>
+          <%= form_tag yes_lists_path, method: 'get' do %>
+              <%= text_field_tag :name, params[:name],autofocus: true, placeholder: 'Enter Name', class: 'txt-fld' %>
+              <%= select_tag :match, options_for_select([['YES'],['NO']],selected:params[:match]),include_blank:'None' %>
+              <%= submit_tag 'Filter' %>
+          <% end %>
+
+          <%= "#{pluralize(@count,'student')} with Working Preferences." %>
 
           <hr/>
           <div class="users-admin-view" id="infinite-coffee-scroll">
