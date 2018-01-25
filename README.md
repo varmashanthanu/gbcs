@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Sample student team management application for university/school requirements.
+Skill based matching and Team Build simulations for reviewing balance.
