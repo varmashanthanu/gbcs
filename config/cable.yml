@@ -6,9 +6,9 @@ test:
   adapter: async
 
 production: &production
-  :url:     redis://h:p9e45ba9bdba4e982070ef7f8eb9f8c3ddab34978fa1d4667175bc79a14545a92@ec2-52-3-6-123.compute-1.amazonaws.com:15579
-  :host: ec2-52-3-6-123.compute-1.amazonaws.com
-  :port: 15579
-  :password: p9e45ba9bdba4e982070ef7f8eb9f8c3ddab34978fa1d4667175bc79a14545a92
+  :url:  <%= ENV["REDIS_URL"] %>
+  :host: <%= ENV["REDIS_HOST"] %>
+  :port: <%= ENV["REDIS_PORT"] %>
+  :password: <%= ENV["REDIS_PASSWORD"] %>
   :inline: true
   :timeout: 1
