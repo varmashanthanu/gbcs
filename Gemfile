@@ -59,7 +59,7 @@ gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
 gem 'rqrcode-with-patches'
 
 # For charts and graphs
-gem 'chartkick', '~> 2.2.0'
+gem 'chartkick', '~> 3.4.0'
 gem 'groupdate', '~> 2.1.1'
 gem 'active_median', '~> 0.1.0'
 
